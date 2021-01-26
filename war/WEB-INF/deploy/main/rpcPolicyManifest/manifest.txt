@@ -1,0 +1,3 @@
+# Module main
+# RPC service class, partial path of RPC policy file
+ee.protoskoop.gwt.edulog.client.DatabaseService, BCC5D8755FE6268D865896ADDB1FEAE0.gwt.rpc
