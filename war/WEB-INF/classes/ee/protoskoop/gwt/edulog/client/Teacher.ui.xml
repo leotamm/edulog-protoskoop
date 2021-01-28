@@ -5,52 +5,95 @@
 	
 	</ui:style>
 	<g:HTMLPanel>
-		<div class="container">
+		<div class="container" style="padding:0">
 			<h1 class="page-header">EduLog</h1>
 			<hr></hr>
-				<p style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;"> Comment: Class/course adding page for teachers</p>
-				
-				<div class="container" style="padding:0">
-					<form>	
-					
-						<div class="form-group">
-							<label>Select class</label>
-							<g:ListBox ui:field="listboxClass" styleName="form-control">
-							  <g:item value="1A">Class 1A</g:item>
-							  <g:item value="1B">Class 1B</g:item>
-							  <g:item value="1C">Class 1C</g:item>
-							  <g:item value="2A">Class 2A</g:item>
-							  <g:item value="2B">Class 2B</g:item>
-							  <g:item value="2C">Class 2C</g:item>
-							</g:ListBox>
-						</div>
-						
-						<div class="form-group">
-							<label>Select activity</label>
-							<g:ListBox ui:field="listboxActivity" styleName="form-control">
-							  <g:item value="classroomSession">Classroom study session</g:item>
-							  <g:item value="outdoorSession">Outdoor study session</g:item>
-							  <g:item value="onlineSession">Online study session</g:item>
-							</g:ListBox>
-						</div>
-						<br></br>
-					
-						<g:Button ui:field="buttonAddSession">Add session</g:Button>
-						<br></br><br></br><br></br>
+			<p
+				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
+				Comment:
+				<mark>Class/course</mark>
+				adding page for teachers
+			</p>
 
-						<div class="form-group">
-							<label>Selected session</label>
-							<g:TextBox ui:field="selectedSession" styleName="form-control"></g:TextBox>
-						</div>
-
- 						<div class="form-group">
- 							<label>All sessions</label>
- 							<g:FlexTable ui:field="sessionTable" styleName="form-control"></g:FlexTable>
- 						</div>
- 							
-					</form>
+			<form>
+				<div class="form-group">
+					<label>Select class</label>
+					<g:ListBox ui:field="listboxClass"
+						styleName="form-control">
+						<g:item value="1A">Class 1A</g:item>
+						<g:item value="1B">Class 1B</g:item>
+						<g:item value="1C">Class 1C</g:item>
+						<g:item value="2A">Class 2A</g:item>
+						<g:item value="2B">Class 2B</g:item>
+						<g:item value="2C">Class 2C</g:item>
+					</g:ListBox>
 				</div>
-						
+
+				<div class="form-group">
+					<label>Select activity</label>
+					<g:ListBox ui:field="listboxActivity"
+						styleName="form-control">
+						<g:item value="classroomSession">Classroom study session</g:item>
+						<g:item value="outdoorSession">Outdoor study session</g:item>
+						<g:item value="onlineSession">Online study session</g:item>
+					</g:ListBox>
+				</div>
+				<br></br>
+
+				<g:Button ui:field="buttonAddSession">Add session</g:Button>
+				<br></br>
+				<br></br>
+
+				<!-- OLD SESSION TABLE -->
+
+				<div class="form-group">
+					<label>Selected session</label>
+					<g:TextBox ui:field="selectedSession"
+						styleName="form-control"></g:TextBox>
+				</div>
+
+				<div class="form-group">
+					<label>All sessions</label>
+					<g:FlexTable ui:field="sessionTable"
+						styleName="form-control"></g:FlexTable>
+				</div>
+				<br></br>
+				<br></br>
+
+				<!-- NEW SESSION TABLE -->
+				<div class="form-group d-flex ">
+					<table> <!--  siia flextable !!! -->
+						<tr class="flex-fill justify-content-between">
+							<th class="flex-fill" styleName="form-control">Class</th>
+							<th class="flex-fill" styleName="form-control">Activity</th>
+							<th class="flex-fill" styleName="form-control"></th>
+							<th class="flex-fill" styleName="form-control"></th>
+						</tr>
+						<tr class="flex-fill justify-content-between">
+							<td class="flex-fill" styleName="form-control">
+								<g:FlexTable ui:field="tableClassInSessionList"
+									styleName="form-control"></g:FlexTable>
+							</td>
+							<td>
+								<g:FlexTable ui:field="tableActivityInSessionList"
+									styleName="form-control"></g:FlexTable>
+							</td>
+							<td>
+								<g:Button ui:field="buttonEditSessionList"
+									styleName="form-control">Edit</g:Button>
+							</td>
+							<td>
+								<g:Button ui:field="buttonDeleteSessionList"
+									styleName="form-control">Delete</g:Button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<br></br>
+
+				<g:Button ui:field="buttonSaveSessionChanges">Save changes</g:Button>
+
+			</form>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -1,11 +1,19 @@
 package ee.protoskoop.gwt.edulog.client;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
+
+import org.apache.james.mime4j.field.datetime.DateTime;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -35,6 +43,7 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 	@UiField
 	Button buttonLogin;
 
+	User user;
 
 	@UiHandler("buttonLogin")
 	void onClick(ClickEvent e) {
@@ -48,7 +57,7 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 		// TODO: write unit tests												NOT STARTED
 
 		if(loginEmail !="" && loginPass !="") {
-			User user = new User();
+			user = new User();
 			user.setEmail(loginEmail);
 			user.setPassword(loginPass);
 
@@ -63,6 +72,12 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 				public void onSuccess(String result) { /* Window.alert("Database query successful");*/ 
 
 					if (result.equals("ok")) {
+						Cookies.setCookie("sessionUser", user.getEmail());
+//						Local.sessionStorage.setItem("sessionUser", user.getEmail());
+						
+						
+//						LocalDate sessionEnds = LocalDate.now().plusDays(1);
+//						Cookies.setCookie("sessionEnds", user.getEmail(), sessionEnds);
 						Window.Location.assign("Teacher.html");
 
 					} else {

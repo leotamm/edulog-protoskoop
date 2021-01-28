@@ -1,8 +1,10 @@
 package ee.protoskoop.gwt.edulog.client;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gargoylesoftware.htmlunit.util.Cookie;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -11,12 +13,14 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.StackLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -31,17 +35,31 @@ public class Teacher extends Composite implements EntryPoint{
 
 	interface TeacherUiBinder extends UiBinder<Widget, Teacher> {
 	}
-	
+
 	@UiField
 	ListBox listboxClass;
 	@UiField
 	ListBox listboxActivity;
 	@UiField
 	Button buttonAddSession;
+	
 	@UiField
 	TextBox selectedSession;
+	
 	@UiField
 	FlexTable sessionTable;
+	
+	@UiField
+	FlexTable tableClassInSessionList;
+	@UiField
+	FlexTable tableActivityInSessionList;
+	@UiField
+	Button buttonEditSessionList;
+	@UiField
+	Button buttonDeleteSessionList;
+	
+	@UiField
+	Button buttonSaveSessionChanges;
 
 	
 	private int sessionCounter = 0;
@@ -86,10 +104,17 @@ public class Teacher extends Composite implements EntryPoint{
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
 		
+		GWT.log(Cookies.getCookie("sessionUser")); // cookie works!
+		
+		
 		//FlexTable initiation
 		FlexTable sessionTable = new FlexTable();
+
 //		sessionTable.getFlexCellFormatter().setColSpan(1, 0, 2);
 	    RootPanel.get().add(sessionTable);
+	    
+	    tableClassInSessionList.setText(0, 0, "Some random class");
+	    tableActivityInSessionList.setText(0, 0, "Some random activity with a very long description");
 	    
 	    //CellTable initiation
 /*	    CellTable<Session> sessionLog = new CellTable<Session>();

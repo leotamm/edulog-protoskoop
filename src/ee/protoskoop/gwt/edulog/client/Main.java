@@ -42,8 +42,6 @@ public class Main extends Composite implements EntryPoint {
 //		initWidget(uiBinder.createAndBindUi(this));
 //	}
 	
-	@UiField
-	VerticalPanel navPanel;
 
 	@Override
 	public void onModuleLoad() {
