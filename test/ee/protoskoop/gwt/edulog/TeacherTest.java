@@ -1,33 +1,25 @@
 package ee.protoskoop.gwt.edulog;
+import ee.protoskoop.gwt.edulog.server.DAO;
+
 
 import org.testng.annotations.Test;
-
-import ee.protoskoop.gwt.edulog.server.DAO;
-import ee.protoskoop.gwt.edulog.shared.SessionLargeData;
-
 import org.testng.annotations.BeforeMethod;
-
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 
+import java.util.ArrayList;
+
 public class TeacherTest {
-	
+
 	//private Map<String, Map> expectedSessionData;
 	//private Map<String, String> innerExpectedSessionData;
 
-	final String sessionTeacher = "teacher_one";
-	ArrayList<String> sessionClass = new ArrayList();
-	ArrayList<String> sessionActivity = new ArrayList();
-	
-	
+	final String sessionTeacher = "teacher_two";
+	ArrayList<String> sessionClass = new ArrayList<String>();
+	ArrayList<String> sessionActivity = new ArrayList<String>();
+	ArrayList<String> sessionSubject = new ArrayList<String>();
+
+
 	@BeforeMethod
 	public void beforeMethod() {
 
@@ -39,7 +31,6 @@ public class TeacherTest {
 		innerExpetectedSessionData.put("2B", "online_study_session");
 		innerExpetectedSessionData.put("1A", "indoor_study_session");
 		expetedSessionData.put("teacher1", innerExpetectedSessionData);
-		 
 
 		innerExpectedSessionData = Stream.of(new String[][] {
 			{ "1C", "outdoor_study_session" },
@@ -53,7 +44,7 @@ public class TeacherTest {
 		expectedSessionData = Stream.of(new Object[][] { 
 			{ "teacher1", innerExpectedSessionData }, 
 		}).collect(Collectors.toMap(data -> (String) data[0], data -> (Map) data[1]));
-		*/
+		 */
 
 		sessionClass.add("1C");
 		sessionClass.add("3B");
@@ -66,28 +57,42 @@ public class TeacherTest {
 		sessionActivity.add("online_study_session");
 		sessionActivity.add("online_study_session");
 		sessionActivity.add("indoor_study_session");
+
+		sessionSubject.add("Nature");
+		sessionSubject.add("Math");
+		sessionSubject.add("Arts");
+		sessionSubject.add("PE");
+		sessionSubject.add("Music");
+
 	}
 
 	@Test
 	public void sessionsAreStoredLocally() {	// testing if session data is stored while teacher 
-												// chooses activities for classes
+		// chooses activities for classes
 		boolean sessionDataPresent = DAO.getInstance().sessionsAreStoredLocally(sessionTeacher, sessionClass, sessionActivity);			
 		Assert.assertTrue(sessionDataPresent);
 	}
-	
+
 	@Test
 	public void sessionsAreStoredInDatabase() {	// testing saving the same dataset in database el_sessions
-		
+
 		boolean sessionDataStored = DAO.getInstance().addSessionToDatabase(sessionTeacher, sessionClass, sessionActivity);
 		Assert.assertTrue(sessionDataStored);
 	}
-	
-	
+
+	@Test void subjectsAreStoredInDatabase() {		// testing if subjects' data is stored in database el_	
+
+		boolean subjectDataStored = DAO.getInstance().addSubjectsToDatabase(sessionTeacher, sessionSubject);
+		Assert.assertTrue(subjectDataStored);		
+	}
+
+
 	@AfterMethod
 	public void afterMethod() {
 
 		sessionClass.clear();
 		sessionActivity.clear();
+		sessionSubject.clear();
 
 	}
 

@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -18,8 +15,6 @@ import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.i18n.shared.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Window;
 
-import ee.protoskoop.gwt.edulog.shared.SessionLargeData;
-import ee.protoskoop.gwt.edulog.shared.SessionSmallData;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 public class DAO {
@@ -48,12 +43,10 @@ public class DAO {
 		pool.start();
 	}
 
-
 	// purely for testing purposes
 	public boolean connectionCheck() {
 		return pool.isConnected();
 	}
-
 
 	// purely for testing purposes
 	public boolean isAnyUserDataInDatabase () {
@@ -81,7 +74,6 @@ public class DAO {
 		return reply;
 	}
 
-
 	// purely for testing purposes
 	public boolean passwordsAreHash() {
 
@@ -106,7 +98,6 @@ public class DAO {
 		}	
 		return reply;
 	}
-
 
 	public boolean doesUserExist(User user) {
 
@@ -141,7 +132,6 @@ public class DAO {
 		return reply;
 	}
 
-
 	public String createNewUser(User user, String hashedPassword) {
 
 		String result = "";
@@ -175,7 +165,6 @@ public class DAO {
 		return result;
 	}
 
-
 	public String checkUserCredentials(User user, String hashedPassword) {
 
 		String result = "";
@@ -207,22 +196,6 @@ public class DAO {
 		return result;
 	}
 
-	/*	public boolean isSessionDataPresent(SessionLargeData testLargeSet) {
-
-		String result = "";
-
-		final String currentTeacher = testLargeSet.getTeacher();
-		final HashMap<String, String> currentSmallSet = testLargeSet.getSessionSmallData();
-		HashMap<String, String> testList = new HashMap<String, String>();
-
-		for (int i = 0; i < currentSmallSet.size(); i++) {
-			System.out.println(currentSmallSet.toString());
-			// testList.put(currentSmallSet.get(course), currentTeacher)
-		}
-				return false;
-	}
-	 */
-
 	// purely for testing purposes
 	public boolean sessionsAreStoredLocally(String sessionTeacher, 
 			ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
@@ -242,7 +215,6 @@ public class DAO {
 			}
 
 			if (testClass.equals(sessionClass) && testActivity.equals(sessionActivity)) {
-
 				result = true;
 			}
 
@@ -255,70 +227,71 @@ public class DAO {
 
 		boolean result = false;
 
-		ArrayList<String> testClass = new ArrayList();
-		ArrayList<String> testActivity = new ArrayList();
-
 		if (sessionTeacher.length() > 0 && sessionClass.size() > 0 && sessionActivity.size() > 0 && 
 				sessionClass.size() == sessionActivity.size()) {
 
-			for (int i = 0; i < sessionClass.size(); i++) {
+			// post data to database
+			logger.info("Initiating session data transfer to database");
 
-				testClass.add(sessionClass.get(i));
-				testActivity.add(sessionActivity.get(i));
+			try {
+				PreparedStatement pstmt = pool.getConnection().prepareStatement(
+						"INSERT INTO el_session(teacher, study_group, activity) VALUES(?,?,?)", 
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_UPDATABLE);
+
+				pstmt.setString(1, sessionTeacher);
+
+				final String[] classDataToSql = sessionClass.toArray(new String[sessionClass.size()]);
+				final java.sql.Array classSqlArray = pool.getConnection().createArrayOf("text", classDataToSql);
+				pstmt.setArray(2, classSqlArray);
+
+				final String[] activityDataToSql = sessionActivity.toArray(new String[sessionActivity.size()]);
+				final java.sql.Array activitySqlArray = pool.getConnection().createArrayOf("text", activityDataToSql);
+				pstmt.setArray(3, activitySqlArray);
+
+				pstmt.executeUpdate();
+				logger.info("Session data transfer to database succesful.");
+
+			} catch (SQLException ex) {
+				logger.error(ex.getMessage());
 			}
 
-			if (testClass.equals(sessionClass) && testActivity.equals(sessionActivity)) {
+			// read same data from database
+			logger.info("Initiation session data reading from database.");
+			try {
+				PreparedStatement pstmt = pool.getConnection().prepareStatement(
+						"SELECT study_group, activity FROM el_session WHERE teacher = ?", 
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_UPDATABLE); 
+				pstmt.setString(1, sessionTeacher);
+				ResultSet rs = pstmt.executeQuery();
+				if (!rs.next()) {
+					System.out.println("Empty resultset.");
+				} else { logger.info("Session data reading from database succesful."); }
 
-				// post data to database
-				logger.info("Initiating session data transfer to database");
-				try {
-					PreparedStatement pstmt = pool.getConnection().prepareStatement(
-							"INSERT INTO el_session(teacher, class, activity) VALUES(?,?,?)");
-					pstmt.setString(1, sessionTeacher);
-					pstmt.setArray(2, (Array) testClass);
-					pstmt.setArray(3, (Array) testActivity);
-					pstmt.executeUpdate();
-					logger.info("Session data transfer to database succesful.");
+				// compare source and database session data
+				ArrayList<String> testClassFromDatabase = new ArrayList<String>();
+				ArrayList<String> testActivityFromDatabase = new ArrayList<String>();
 
-				} catch (SQLException ex) {
-					logger.error(ex.getMessage());
+				Array classFromDatabase = rs.getArray("study_group");
+				Array activityFromDatabase = rs.getArray("activity");
+
+				String[] str_classes = (String[])classFromDatabase.getArray();
+				String[] str_activities = (String[])activityFromDatabase.getArray();
+
+				for (int i = 0; i< str_classes.length; i++) {
+					testClassFromDatabase.add(str_classes[i]);
+					testActivityFromDatabase.add(str_activities[i]);
 				}
 
-				// read same data from database
-				logger.info("Initiation session data reading from database.");
-				try {
-					PreparedStatement pstmt = pool.getConnection().prepareStatement(
-							"SELECT class, activity FROM el_session WHERE teacher = ?", 
-							ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_UPDATABLE); 
-					pstmt.setString(1, sessionTeacher);
-					ResultSet rs = pstmt.executeQuery();
-					if (!rs.next()) {
-						System.out.println("Empty resultset.");
-					} else { logger.info("Session data reading from database succesful."); }
-
-					// compare source and database session data
-					rs.previous();
-					
-					ArrayList<String> testClassFromDatabase = new ArrayList();
-					ArrayList<String> testActivityFromDatabase = new ArrayList();
-					
-					while (rs.next()) {
-						String classFromDatabase = rs.getString("class");
-						String activityFromDatabase = rs.getString("activity");
-						testClassFromDatabase.add(classFromDatabase);
-						testActivityFromDatabase.add(activityFromDatabase);
-					}
-					
-					if(testClassFromDatabase.equals(testClass) && 
-							testActivityFromDatabase.equals(testActivity)) {
-						logger.info("Session data comparision succesful.");
-						result = true;
-					}
-
-				} catch (SQLException ex2) {
-					logger.error(ex2.getMessage());
+				if(testClassFromDatabase.equals(sessionClass) && 
+						testActivityFromDatabase.equals(sessionActivity)) {
+					logger.info("Session data comparision succesful.");
+					result = true;
 				}
+
+			} catch (SQLException ex2) {
+				logger.error(ex2.getMessage());
 			}
 
 		} else { Window.alert("Something wrong with session data, writing to database cancelled.");}
@@ -327,5 +300,63 @@ public class DAO {
 	}
 
 
+	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> sessionSubject) {
+
+		boolean result = false;
+
+		logger.info("Initiating subject data transfer to database");
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"INSERT INTO el_subject(teacher, subject_list) VALUES(?,?)", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setString(1, sessionTeacher);
+
+			final String[] subjectDataToSql = sessionSubject.toArray(new String[sessionSubject.size()]);
+			final java.sql.Array subjectSqlArray = pool.getConnection().createArrayOf("text", subjectDataToSql);
+			pstmt.setArray(2, subjectSqlArray);
+			pstmt.executeUpdate();
+			logger.info("Subject data transfer to database succesful.");
+
+		} catch (SQLException ex) {
+			logger.error(ex.getMessage());
+		}
+
+		logger.info("Initiation subject data reading from database.");
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE); 
+			pstmt.setString(1, sessionTeacher);
+			ResultSet rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Empty resultset.");
+			} else { logger.info("Subject data reading from database succesful."); }
+
+			// compare source and database session data
+			ArrayList<String> testSubjectFromDatabase = new ArrayList();
+
+			Array subjectFromDatabase = rs.getArray("subject_list");
+
+			String[] str_subjects = (String[])subjectFromDatabase.getArray();
+
+			for (int i = 0; i< str_subjects.length; i++) {
+				testSubjectFromDatabase.add(str_subjects[i]);
+			}
+
+			if(testSubjectFromDatabase.equals(sessionSubject)) {
+				logger.info("Session data comparision succesful.");
+				result = true;
+			}
+
+		} catch (SQLException ex2) {
+			logger.error(ex2.getMessage());
+		}
+
+		return result;
+	}
 	
 }

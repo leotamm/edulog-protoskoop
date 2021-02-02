@@ -9,7 +9,7 @@ public class Session implements Serializable {
 	 */
 	private static final long serialVersionUID = 4966094476517269040L;
 	private String classUnit;
-	private String activity;
+	private String activityUnit;
 	
 	public String getClassUnit() {
 		return classUnit;
@@ -18,10 +18,10 @@ public class Session implements Serializable {
 		this.classUnit = classUnit;
 	}
 	public String getActivity() {
-		return activity;
+		return activityUnit;
 	}
 	public void setActivity(String activity) {
-		this.activity = activity;
+		this.activityUnit = activity;
 	}
 
 }

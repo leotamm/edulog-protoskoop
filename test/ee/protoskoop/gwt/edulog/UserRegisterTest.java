@@ -5,32 +5,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.TextBox;
-
-import ee.protoskoop.gwt.edulog.client.DatabaseService;
 import ee.protoskoop.gwt.edulog.server.DAO;
-import ee.protoskoop.gwt.edulog.server.DatabaseServiceImpl;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 public class UserRegisterTest {
 
-	// WHAT TO TEST
-	// check methods: 1. do we receive any reply 2. do we receive correct reply 3. does logic work correctly
-	// check exceptions from method definitions
-
-	// TEST METHODOLGY
-	// 1. backend connections, 2. backend data validity, 3. UI
-
-	// TEST EDULOG
-	// hash: saved correctly, hash comparision, login successful, user exists
-
-	// TODO uuele andmebaasiyhendusele esmalt test - kas meetodid kirjutavad ja loevad ??
-
 
 	@BeforeMethod
-
 	public void setUp() {
 		final User testUser = new User();
 		testUser.setEmail("test@user");
@@ -67,7 +48,6 @@ public class UserRegisterTest {
 */
 
 	@AfterMethod
-
 	public void tearDown() {
 
 		User testUser = null;

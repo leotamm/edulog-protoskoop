@@ -1,12 +1,5 @@
 package ee.protoskoop.gwt.edulog.client;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
-
-import org.apache.james.mime4j.field.datetime.DateTime;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -62,7 +55,7 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 			user.setPassword(loginPass);
 
 			// checks if correct password provided
-			// should return true if all correct
+			// returns true if all correct
 			databaseService.checkUserCredentials(user, new AsyncCallback<String>() {
 
 				@Override
@@ -73,11 +66,6 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 
 					if (result.equals("ok")) {
 						Cookies.setCookie("sessionUser", user.getEmail());
-//						Local.sessionStorage.setItem("sessionUser", user.getEmail());
-						
-						
-//						LocalDate sessionEnds = LocalDate.now().plusDays(1);
-//						Cookies.setCookie("sessionEnds", user.getEmail(), sessionEnds);
 						Window.Location.assign("Teacher.html");
 
 					} else {
@@ -99,7 +87,7 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 
 	@Override
 	public void onModuleLoad() {
-		// TODO Auto-generated method stub
+
 		initWidget(uiBinder.createAndBindUi(this)); // uiBinder initiation
 		RootPanel.get().add(this);
 

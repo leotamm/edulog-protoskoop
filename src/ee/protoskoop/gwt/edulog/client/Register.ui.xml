@@ -10,7 +10,7 @@
 		<div class="container">
 			<h1 class="page-header">EduLog</h1>
 			<hr></hr>
-			<p style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;"> Comment: New account registration page for teachers</p>
+			<p style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;"> New account <mark>registration page</mark> for teachers</p>
 
 			<div class="container" style="padding:0">
 				<form>
@@ -34,7 +34,7 @@
 				<br></br>
 				<!-- HTML: <g:Button styleName="{style.important}" ui:field="button">Submit</g:Button> 
 					or perhaps <div class='{style.pretty}'> -->
-				<g:Button ui:field="buttonSubmit">Submit</g:Button>
+				<g:Button ui:field="buttonSubmit" styleName="form-control">Register</g:Button>
 			</div>
 			<div id="myDiv"></div>
 
