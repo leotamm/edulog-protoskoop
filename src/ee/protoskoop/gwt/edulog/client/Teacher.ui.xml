@@ -17,11 +17,11 @@
 			<div class="container" style="padding:0">
 				<form>
 					<div class="form-group">
-						<g:FlexTable ui:field="studyGroupTable"
-							styleName="form-control"></g:FlexTable>
+							<g:FlexTable ui:field="studyGroupTable"
+								styleName="form-control"></g:FlexTable>
 						<label>Select class</label>
-						<g:TextBox ui:field="studyGroupTextBox"
-							styleName="form-control"></g:TextBox>
+						<g:ListBox ui:field="studyGroupListBox"
+							styleName="form-control"></g:ListBox>
 					</div>
 					<br></br>
 					<g:Button ui:field="buttonAddStudyGroup"

@@ -1,6 +1,7 @@
 package ee.protoskoop.gwt.edulog.client;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -10,6 +11,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -18,6 +20,9 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
+import ee.protoskoop.gwt.edulog.server.DAO;
+import ee.protoskoop.gwt.edulog.shared.User;
+
 public class Teacher extends Composite implements EntryPoint{
 
 	private static TeacherUiBinder uiBinder = GWT.create(TeacherUiBinder.class);
@@ -25,11 +30,11 @@ public class Teacher extends Composite implements EntryPoint{
 
 	interface TeacherUiBinder extends UiBinder<Widget, Teacher> {
 	}
-	
+
 	@UiField
 	FlexTable studyGroupTable;
 	@UiField
-	TextBox studyGroupTextBox;
+	ListBox studyGroupListBox;
 	@UiField
 	Button buttonAddStudyGroup;
 	@UiField
@@ -76,12 +81,12 @@ public class Teacher extends Composite implements EntryPoint{
 		// reading user input and outputting it in TextBox
 		selectedClass = listboxClass.getSelectedValue();
 		selectedActivity = listboxActivity.getSelectedValue();
-		
+
 		if (sessionCounter == 0) {
 			sessionTable.clear();
 			sessionTable.removeAllRows();
 		}
-		
+
 		// handling the session list with FlexCell
 		sessionTable.insertRow(sessionCounter);
 
@@ -132,36 +137,73 @@ public class Teacher extends Composite implements EntryPoint{
 
 	@UiHandler("buttonLoadSessions")
 	void onClick3(ClickEvent eventloadSessions) {
-		
+
 		Window.alert("Nothing here yet");
 
 	}
 
+	public void setUpStudyGroupTable() {
+
+		//TODO populate ListBox studyGroupListBox with available class units
+		User allAvailableClasses = new User();
+		allAvailableClasses.setEmail("every_teacher");
+		databaseService.getUserClasses(allAvailableClasses, new AsyncCallback<List<String>>() {
+
+			@Override
+			public void onFailure(Throwable caught) { Window.alert("Get all classes failed!"); }
+			@Override
+			public void onSuccess(List<String> result) { 
+
+				if (result.size()>0) {
+					for (int i = 0; i < result.size(); i++) {
+						studyGroupListBox.addItem(result.get(i));
+					}
+				} else { Window.alert("Retreiving all classes failed");	}
+
+			}});
+
+		User user = new User();
+		user.setEmail(Cookies.getCookie("sessionUser"));
+
+		final List<String> userClasses = new ArrayList<String>();
+
+		//TODO check if teacher has saved classes. we are just checking for saved classes list, 
+		// since we assume the user exists - this page is only accessible through login
+		databaseService.getUserClasses(user, new AsyncCallback<List<String>>() {
+
+			@Override
+			public void onFailure(Throwable caught) { /*Window.alert("Get user classes failed!");*/ }
+			@Override
+			public void onSuccess(List<String> result) { 
+
+				if (result.size() > 0) {
+					for (int i = 0; i < result.size(); i++) {
+						studyGroupTable.insertRow(i + 1);
+						studyGroupTable.setHTML(i, 0, result.get(i));
+					}
+
+				} else {
+					studyGroupTable.insertRow(0);
+					studyGroupTable.setHTML(0, 1, "<h6>Couldn't find any classes</h6><p>Please select "
+							+ "a class below, and push the <kbd>Add class</kbd> button. Repeat to add another class. "
+							+ "Make sure to press <kbd>Save my classes</kbd> button, once you have selected all your classes.</p>");
+				}
+
+			}});
+
+	}
 
 	@Override
 	public void onModuleLoad() {
-		
+
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
-		
+
+		setUpStudyGroupTable();
+
 		sessionTable.insertRow(0);
 		sessionTable.setHTML(0, 1, "<h6>No session data yet...</h6>");
-		
-		studyGroupTable.insertRow(0);
-		studyGroupTable.setHTML(0, 1, "<h6>No classes/courses yet...</h6>");
 
-		//FlexTable initiation
-		//FlexTable sessionTable = new FlexTable();
-
-		//		RootPanel.get().add(sessionTable);
-
-
-		//		sessionTable.getFlexCellFormatter().setColSpan(1, 0, 2);
-
-		//		tableClassInSessionList.setText(0, 0, "Some random class");
-		//		tableActivityInSessionList.setText(0, 0, "Some random activity with a very long description");
-
-		//CellTable initiation
 		/*	    CellTable<Session> sessionLog = new CellTable<Session>();
 	    sessionLog.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
 
@@ -201,3 +243,4 @@ public class Teacher extends Composite implements EntryPoint{
 	}
 
 }
+

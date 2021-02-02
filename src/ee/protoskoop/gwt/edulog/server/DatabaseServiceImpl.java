@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -36,11 +37,8 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	private final String password = "docker";
 
 	
-	public DatabaseServiceImpl () {
-		
+	public DatabaseServiceImpl () {		
 		DAO.getInstance();
-//		System.out.println("DAO getinstance toimib!");
-		
 	}
 
 
@@ -61,7 +59,10 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		return DAO.getInstance().checkUserCredentials(user, hashedPassword);
 	}
 
-
+	@Override
+	public List<String> getUserClasses(User user) {
+		return DAO.getInstance().getUserClasses(user);
+	}
 
 	/*	public Connection connect() {
 		Connection conn = null;
@@ -124,5 +125,6 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		 }
 		 return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 	 }
+
 
 }

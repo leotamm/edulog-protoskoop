@@ -1,6 +1,6 @@
 package ee.protoskoop.gwt.edulog;
 import ee.protoskoop.gwt.edulog.server.DAO;
-
+import ee.protoskoop.gwt.edulog.shared.User;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
@@ -8,16 +8,18 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherTest {
 
 	//private Map<String, Map> expectedSessionData;
 	//private Map<String, String> innerExpectedSessionData;
 
-	final String sessionTeacher = "teacher_two";
+	final String sessionTeacher = "teacher_three";
 	ArrayList<String> sessionClass = new ArrayList<String>();
 	ArrayList<String> sessionActivity = new ArrayList<String>();
 	ArrayList<String> sessionSubject = new ArrayList<String>();
+
 
 
 	@BeforeMethod
@@ -84,6 +86,15 @@ public class TeacherTest {
 
 		boolean subjectDataStored = DAO.getInstance().addSubjectsToDatabase(sessionTeacher, sessionSubject);
 		Assert.assertTrue(subjectDataStored);		
+	}
+	
+	@Test void studyGroupTableIsPopulated () {
+		
+		User userTeacher = new User();
+		userTeacher.setEmail("every_teacher");
+		
+		List<String> listHasValues= DAO.getInstance().getUserClasses(userTeacher);
+		Assert.assertTrue(listHasValues.size()>0);
 	}
 
 

@@ -1,5 +1,7 @@
 package ee.protoskoop.gwt.edulog.client;
 
+import java.util.List;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import ee.protoskoop.gwt.edulog.shared.User;
@@ -19,5 +21,8 @@ public interface DatabaseServiceAsync {
 			throws IllegalArgumentException;
 
 	void checkUserCredentials(User user, AsyncCallback<String> callback) 
+			throws IllegalArgumentException;
+	
+	void getUserClasses(User user, AsyncCallback<List<String>> callback)
 			throws IllegalArgumentException;
 }

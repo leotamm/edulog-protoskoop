@@ -1,5 +1,7 @@
 package ee.protoskoop.gwt.edulog.client;
 
+import java.util.List;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -18,5 +20,7 @@ public interface DatabaseService extends RemoteService {
 	String createNewUser(User user);
 
 	String checkUserCredentials(User user);
+	
+	List<String> getUserClasses(User user);
 
 }

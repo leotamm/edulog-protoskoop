@@ -33,7 +33,6 @@ public class UserRegisterTest {
 		Assert.assertTrue(passwordsAreHash);
 	}
 	
-
 /*	@Test void newUserIsStoredInDatabase (User testUser) {
 
 		final User expectedUser = new User(); 
@@ -47,8 +46,7 @@ public class UserRegisterTest {
 	}
 */
 
-	@AfterMethod
-	public void tearDown() {
+	@AfterMethod	public void tearDown() {
 
 		User testUser = null;
 	}
