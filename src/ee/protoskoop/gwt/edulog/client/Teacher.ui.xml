@@ -10,32 +10,31 @@
 			<hr></hr>
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-				<mark>Class</mark>
-				section for teachers
+				<mark>Teacher's main page</mark>
 			</p>
 
 			<div class="container" style="padding:0">
 				<form>
 					<div class="form-group">
-							<g:FlexTable ui:field="studyGroupTable"
-								styleName="form-control"></g:FlexTable>
-						<label>Select class</label>
-						<g:ListBox ui:field="studyGroupListBox"
-							styleName="form-control"></g:ListBox>
+						<g:Button ui:field="buttonCourses"
+							styleName="form-control">Courses</g:Button>
+						<g:Button ui:field="buttonSubjects"
+							styleName="form-control">Subjects</g:Button>
+						<g:Button ui:field="buttonSessions"
+							styleName="form-control">Sessions</g:Button>
+						<br></br>
+						<g:Button ui:field="buttonLogout"
+							styleName="form-control">Logout</g:Button>
 					</div>
-					<br></br>
-					<g:Button ui:field="buttonAddStudyGroup"
-						styleName="form-control">Add class</g:Button>
-					<g:Button ui:field="saveStudyGroup"
-						styleName="form-control">Save my classes</g:Button>
 				</form>
+
 				<br></br>
 				<br></br>
 				<hr></hr>
 				<p
 					style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-					<mark>Session planing</mark>
-					section for teachers
+					<mark>Please ignore UI from here onwards</mark>
+					Sessions section for teachers
 				</p>
 
 				<form>
@@ -68,9 +67,8 @@
 					<br></br>
 					<br></br>
 
+
 					<!-- OLD SESSION TABLE -->
-
-
 
 					<div class="form-group">
 						<!-- <label>My session</label> -->
@@ -93,15 +91,6 @@
 					<g:Button ui:field="buttonLoadSessions"
 						styleName="form-control">Load session</g:Button>
 
-					<br></br>
-					<br></br>
-
-					<hr></hr>
-					<p
-						style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-						<mark>Subject adding</mark>
-						section for teachers
-					</p>
 				</form>
 			</div>
 		</div>

@@ -87,14 +87,30 @@ public class TeacherTest {
 		boolean subjectDataStored = DAO.getInstance().addSubjectsToDatabase(sessionTeacher, sessionSubject);
 		Assert.assertTrue(subjectDataStored);		
 	}
-	
+
 	@Test void studyGroupTableIsPopulated () {
-		
+
 		User userTeacher = new User();
 		userTeacher.setEmail("every_teacher");
-		
-		List<String> listHasValues= DAO.getInstance().getUserClasses(userTeacher);
-		Assert.assertTrue(listHasValues.size()>0);
+
+		List<String> listHasValues = DAO.getInstance().getUserClasses(userTeacher);
+		Assert.assertTrue(listHasValues.size() > 0);
+	}
+
+	@Test void studyGroupsAreStoredInDatabase () {
+
+		boolean studyGroupsAreStored = DAO.getInstance().addStudyGroupsToDatabase(sessionTeacher, sessionClass);
+		Assert.assertTrue(studyGroupsAreStored);
+
+	}
+
+	@Test void subjectTableIsPopulated () {
+
+		User user = new User();
+		user.setEmail("every_teacher");
+
+		List<String> listHasValues = DAO.getInstance().getUserSubjects(user);
+		Assert.assertTrue(listHasValues.size() > 0);
 	}
 
 

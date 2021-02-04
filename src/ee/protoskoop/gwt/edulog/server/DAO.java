@@ -353,8 +353,7 @@ public class DAO {
 		return result;
 	}
 
-	public List<String> getUserClasses(User user) { // we'll set the return boolean but
-		// change it to ArrayList later
+	public List<String> getUserClasses(User user) {
 
 		List<String> groupsArrayFromDatabase = new ArrayList<String>();
 		String email = user.getEmail();
@@ -383,6 +382,96 @@ public class DAO {
 			logger.error(ex.getMessage());
 		}
 		return groupsArrayFromDatabase;
+	}
+
+	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> sessionClass) {
+		boolean result = false;
+		
+		logger.debug("Initiating teacher classset data transfer to database");
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"INSERT INTO el_study_group(teacher, group_list) VALUES(?,?)", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setString(1, sessionTeacher);
+
+			final String[] classDataToSql = sessionClass.toArray(new String[sessionClass.size()]);
+			final java.sql.Array classSqlArray = pool.getConnection().createArrayOf("text", classDataToSql);
+			pstmt.setArray(2, classSqlArray);
+			pstmt.executeUpdate();
+			logger.debug("Teacher classset data transfer to database succesful.");
+
+		} catch (SQLException ex) {
+			logger.debug(ex.getMessage());
+		}
+		
+		logger.debug("Initiation teacher classset data reading from database.");
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, sessionTeacher);
+			ResultSet rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Empty resultset.");
+			} else {
+				logger.debug("Teacher classset data reading from database succesful.");
+			}
+		
+			// compare source and database session data
+			ArrayList<String> testClasssetFromDatabase = new ArrayList<String>();
+
+			Array classsetFromDatabase = rs.getArray("group_list");
+
+			String[] str_classset = (String[]) classsetFromDatabase.getArray();
+
+			for (int i = 0; i < str_classset.length; i++) {
+				testClasssetFromDatabase.add(str_classset[i]);
+			}
+
+			if (testClasssetFromDatabase.equals(sessionClass)) {
+				logger.info("Teacher classet data comparision succesful.");
+				result = true;
+			}
+
+		} catch (SQLException ex2) {
+			logger.error(ex2.getMessage());
+		}
+			
+		return result;
+	}
+
+	public List<String> getUserSubjects(User user) { // eelmine meetod oli getUserClasses
+
+		List<String> subjectsArrayFromDatabase = new ArrayList<String>();
+		String email = user.getEmail();
+		logger.debug("Initiating user subject check");
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT subject_list FROM el_subject WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				logger.debug("User subject check received empty resultset");
+			} else {
+				logger.debug("User subject check resultset received");
+
+				Array subjectsFromDatabase = rs.getArray("subject_list");
+				String[] str_subjects = (String[]) subjectsFromDatabase.getArray();
+
+				for (int i = 0; i < str_subjects.length; i++) {
+					subjectsArrayFromDatabase.add(str_subjects[i]);
+					logger.debug("User subjects written in return ArrayList");
+				}
+			}
+		} catch (SQLException ex) {
+			logger.error(ex.getMessage());
+		}
+		return subjectsArrayFromDatabase;
+		
 	}
 
 }

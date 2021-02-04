@@ -1,5 +1,6 @@
 package ee.protoskoop.gwt.edulog.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -22,5 +23,11 @@ public interface DatabaseService extends RemoteService {
 	String checkUserCredentials(User user);
 	
 	List<String> getUserClasses(User user);
+	
+	boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> selectedClassList);
+	
+	List<String> getUserSubjects(User user);
+	
+	boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList);
 
 }

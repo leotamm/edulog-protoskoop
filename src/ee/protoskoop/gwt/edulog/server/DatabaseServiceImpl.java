@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Level;
@@ -41,7 +42,6 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		DAO.getInstance();
 	}
 
-
 	@Override
 	public boolean doesUserExist(User user) {
 		return DAO.getInstance().doesUserExist(user);	
@@ -62,6 +62,21 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	@Override
 	public List<String> getUserClasses(User user) {
 		return DAO.getInstance().getUserClasses(user);
+	}
+	
+	@Override
+	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> selectedClassList) {
+		return DAO.getInstance().addStudyGroupsToDatabase(sessionTeacher, selectedClassList);
+	}
+	
+	@Override
+	public List<String> getUserSubjects(User user) {
+		return DAO.getInstance().getUserSubjects(user);
+	}
+	
+	@Override
+	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList) {
+		return DAO.getInstance().addSubjectsToDatabase(sessionTeacher, selectedSubjectList);
 	}
 
 	/*	public Connection connect() {
@@ -125,6 +140,5 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		 }
 		 return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 	 }
-
 
 }

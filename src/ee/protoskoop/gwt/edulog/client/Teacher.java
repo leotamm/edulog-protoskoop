@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import ee.protoskoop.gwt.edulog.server.DAO;
@@ -30,15 +29,15 @@ public class Teacher extends Composite implements EntryPoint{
 
 	interface TeacherUiBinder extends UiBinder<Widget, Teacher> {
 	}
-
+	
 	@UiField
-	FlexTable studyGroupTable;
+	Button buttonCourses;
 	@UiField
-	ListBox studyGroupListBox;
+	Button buttonSubjects;
 	@UiField
-	Button buttonAddStudyGroup;
+	Button buttonSessions;
 	@UiField
-	Button saveStudyGroup;
+	Button buttonLogout;
 
 	@UiField
 	ListBox listboxClass;
@@ -65,7 +64,17 @@ public class Teacher extends Composite implements EntryPoint{
 	@UiField
 	Button buttonLoadSessions;
 
-
+	
+	@UiHandler("buttonCourses")
+	void onClick6(ClickEvent eventRedirectToCourses) {
+		Window.Location.assign("Course.html");
+	}
+	
+	@UiHandler("buttonSubjects")
+	void onClick7(ClickEvent eventRedirectToSubjects) {
+		Window.Location.assign("Subject.html");
+	}
+	
 	private int sessionCounter = 0;
 	private String selectedClass = "";
 	private String selectedActivity = "";
@@ -141,65 +150,20 @@ public class Teacher extends Composite implements EntryPoint{
 		Window.alert("Nothing here yet");
 
 	}
-
-	public void setUpStudyGroupTable() {
-
-		//TODO populate ListBox studyGroupListBox with available class units
-		User allAvailableClasses = new User();
-		allAvailableClasses.setEmail("every_teacher");
-		databaseService.getUserClasses(allAvailableClasses, new AsyncCallback<List<String>>() {
-
-			@Override
-			public void onFailure(Throwable caught) { Window.alert("Get all classes failed!"); }
-			@Override
-			public void onSuccess(List<String> result) { 
-
-				if (result.size()>0) {
-					for (int i = 0; i < result.size(); i++) {
-						studyGroupListBox.addItem(result.get(i));
-					}
-				} else { Window.alert("Retreiving all classes failed");	}
-
-			}});
-
-		User user = new User();
-		user.setEmail(Cookies.getCookie("sessionUser"));
-
-		final List<String> userClasses = new ArrayList<String>();
-
-		//TODO check if teacher has saved classes. we are just checking for saved classes list, 
-		// since we assume the user exists - this page is only accessible through login
-		databaseService.getUserClasses(user, new AsyncCallback<List<String>>() {
-
-			@Override
-			public void onFailure(Throwable caught) { /*Window.alert("Get user classes failed!");*/ }
-			@Override
-			public void onSuccess(List<String> result) { 
-
-				if (result.size() > 0) {
-					for (int i = 0; i < result.size(); i++) {
-						studyGroupTable.insertRow(i + 1);
-						studyGroupTable.setHTML(i, 0, result.get(i));
-					}
-
-				} else {
-					studyGroupTable.insertRow(0);
-					studyGroupTable.setHTML(0, 1, "<h6>Couldn't find any classes</h6><p>Please select "
-							+ "a class below, and push the <kbd>Add class</kbd> button. Repeat to add another class. "
-							+ "Make sure to press <kbd>Save my classes</kbd> button, once you have selected all your classes.</p>");
-				}
-
-			}});
-
+	
+	@UiHandler("buttonLogout")
+	void onClick5(ClickEvent eventLogout) {
+		
+		Cookies.removeCookie("sessionUser");
+		Window.Location.assign("Login.html");
 	}
+
 
 	@Override
 	public void onModuleLoad() {
 
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
-
-		setUpStudyGroupTable();
 
 		sessionTable.insertRow(0);
 		sessionTable.setHTML(0, 1, "<h6>No session data yet...</h6>");
