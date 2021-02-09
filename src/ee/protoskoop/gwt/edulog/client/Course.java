@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import ee.protoskoop.gwt.edulog.server.DAO;
@@ -35,7 +36,8 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 	@UiField
 	FlexTable studyGroupTable;
 	@UiField
-	ListBox studyGroupListBox;
+	TextBox studyGroupTextBox;
+	//ListBox studyGroupListBox;
 	@UiField
 	Button buttonAddStudyGroup;
 	@UiField
@@ -56,34 +58,34 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 		if (classAddingCounter == 0) {
 			studyGroupTable.clear();
 			studyGroupTable.removeAllRows();
-			selectedClass1 = studyGroupListBox.getSelectedItemText();
+			selectedClass1 = studyGroupTextBox.getText();
 			selectedClassList.add(selectedClass1);
 			studyGroupTable.insertRow(classAddingCounter);
 			studyGroupTable.setHTML(classAddingCounter, 0, "<h6>" + selectedClass1 + "</h6>");
 			classAddingCounter ++;
 		} else {
-			selectedClass1 = studyGroupListBox.getSelectedItemText();
+			selectedClass1 = studyGroupTextBox.getText();
 
-			// block adding courses to the ArrayList more than one time
-			boolean alreadyInList = false;
-			for (String item : selectedClassList) {
-				if (item.equals(selectedClass1)) {
-					alreadyInList = true;
-				}			
-			}
+			if (selectedClass1 != "") {
 
-			if (alreadyInList == false) {
-				selectedClassList.add(selectedClass1);
-				studyGroupTable.insertRow(classAddingCounter);
-				studyGroupTable.setHTML(classAddingCounter, 0, "<h6>" + selectedClass1 + "</h6>");
-				classAddingCounter ++;
-			} else {
-				Window.alert("This class is already chosen");
-			}
+				// block adding courses to the ArrayList more than one time
+				boolean alreadyInList = false;
+				for (String item : selectedClassList) {
+					if (item.equals(selectedClass1)) {
+						alreadyInList = true;
+					}			
+				}
+
+				if (alreadyInList == false) {
+					selectedClassList.add(selectedClass1);
+					studyGroupTable.insertRow(classAddingCounter);
+					studyGroupTable.setHTML(classAddingCounter, 0, "<h6>" + selectedClass1 + "</h6>");
+					classAddingCounter ++;
+					studyGroupTextBox.setText("");
+				} else { Window.alert("This class is already chosen"); }
+			} else { Window.alert("Please add a class first"); }
 		}				
 	}
-
-
 
 	@UiHandler("buttonSaveStudyGroup")
 	void onClick1(ClickEvent eventSaveStudyGroup) {
@@ -128,7 +130,7 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 
 	public void setUpStudyGroupTable() {
 
-		User allAvailableClasses = new User();
+		/*		User allAvailableClasses = new User();
 		allAvailableClasses.setEmail("every_teacher");
 		databaseService.getUserClasses(allAvailableClasses, new AsyncCallback<List<String>>() {
 
@@ -138,11 +140,12 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 			public void onSuccess(List<String> result) { 
 				if (result.size()>0) {
 					for (int i = 0; i < result.size(); i++) {
-						studyGroupListBox.addItem(result.get(i));
+						studyGroupTextBox.addItem(result.get(i));
 					}
 				} else { Window.alert("Retreiving all classes failed");	}
 
 			}});
+		 */
 
 		User user = new User();
 		user.setEmail(Cookies.getCookie("sessionUser"));

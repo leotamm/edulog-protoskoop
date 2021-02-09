@@ -23,8 +23,9 @@
 						<g:FlexTable ui:field="subjectTable"
 							styleName="form-control"></g:FlexTable>
 						<label>Select subject</label>
-						<g:ListBox ui:field="subjectListBox"
-							styleName="form-control"></g:ListBox>
+					<!-- 	<g:ListBox ui:field="subjectListBox"
+							styleName="form-control"></g:ListBox> -->
+							<g:TextBox ui:field="subjectTextBox" styleName="form-control"></g:TextBox>
 					</div>
 					<br></br>
 					<g:Button ui:field="buttonAddSubject"

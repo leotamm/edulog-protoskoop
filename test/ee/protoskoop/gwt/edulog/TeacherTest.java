@@ -20,7 +20,8 @@ public class TeacherTest {
 	ArrayList<String> sessionActivity = new ArrayList<String>();
 	ArrayList<String> sessionSubject = new ArrayList<String>();
 
-
+	//TODO all tests should address a unique test database, a copy of the real one
+	// initiated TEST_DATABASE_NAME = eduLogTestDatabase in settings.ini
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -78,8 +79,9 @@ public class TeacherTest {
 	@Test
 	public void sessionsAreStoredInDatabase() {	// testing saving the same dataset in database el_sessions
 
-		boolean sessionDataStored = DAO.getInstance().addSessionToDatabase(sessionTeacher, sessionClass, sessionActivity);
-		Assert.assertTrue(sessionDataStored);
+		//boolean sessionDataStored = DAO.getInstance().addSessionsToDatabase(sessionTeacher, sessionClass, sessionActivity);
+		//Assert.assertTrue(sessionDataStored);
+		Assert.assertThrows(DAO.getInstance().addSessionsToDatabase(sessionTeacher, sessionClass, sessionActivity));
 	}
 
 	@Test void subjectsAreStoredInDatabase() {		// testing if subjects' data is stored in database el_	

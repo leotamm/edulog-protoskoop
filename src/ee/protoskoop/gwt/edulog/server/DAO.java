@@ -11,11 +11,13 @@ import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.testng.Assert.ThrowingRunnable;
 
 import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.i18n.shared.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Window;
 
+import ee.protoskoop.gwt.edulog.shared.Session;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 public class DAO {
@@ -55,8 +57,10 @@ public class DAO {
 		boolean reply = false;
 
 		try {
-			PreparedStatement pstmt = pool.getConnection().prepareStatement("SELECT email, password FROM el_user;",
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT email, password FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
 			ResultSet rs = pstmt.executeQuery();
 
 			rs.first();
@@ -66,10 +70,11 @@ public class DAO {
 
 			if (testUserEmail != "" && testUserPassword != "") {
 				reply = true;
+				rs.close();
 			}
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+
 		return reply;
 	}
 
@@ -79,23 +84,25 @@ public class DAO {
 		boolean reply = false;
 
 		try {
-			PreparedStatement pstmt = pool.getConnection().prepareStatement("SELECT password FROM el_user;",
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT password FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				String storedPassword = rs.getString("password");
+
 				if (storedPassword.length() != 24 && storedPassword.charAt(22) != '='
-						&& storedPassword.charAt(23) != '=') {
-					reply = false;
-				} else {
-					reply = true;
-				}
+						&& storedPassword.charAt(23) != '=') { 
+					reply = false; 
+					rs.close();
+
+				} else { reply = true; }
 			}
 
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+
 		return reply;
 	}
 
@@ -104,28 +111,27 @@ public class DAO {
 		boolean reply = false;
 
 		try {
-			PreparedStatement pstmt = pool.getConnection().prepareStatement("SELECT email FROM el_user;",
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT email FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
 			ResultSet rs = pstmt.executeQuery();
 
-			if (!rs.next()) {
-				System.out.println("Empty resultset");
-			}
+			if (!rs.next()) { System.out.println("Empty resultset"); }
 
 			rs.first();
+
 			while (rs.next()) {
+
 				String email = rs.getString(1);
+
 				if (user.getEmail().equals(email)) {
 					reply = true;
-					System.out.println("User exists!");
-				} else {
-					// System.out.println("No such user!");
-				}
+					rs.close();
+				} 
 			}
 
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 
 		return reply;
 	}
@@ -133,30 +139,30 @@ public class DAO {
 	public String createNewUser(User user, String hashedPassword) {
 
 		String result = "";
-		String SQL = "INSERT INTO el_user(email, password) " + "VALUES(?,?)";
 		long id = 0;
+
 		try {
-			PreparedStatement pstmt = pool.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"INSERT INTO el_user(email, password) " + "VALUES(?,?)", 
+					Statement.RETURN_GENERATED_KEYS);
+
 			pstmt.setString(1, user.getEmail());
 			pstmt.setString(2, hashedPassword);
 			int affectedRows = pstmt.executeUpdate();
-			System.out.println("Created new user successfully!");
 
-			// check the affected rows
 			if (affectedRows > 0) {
-				// get the ID back
+
 				try (ResultSet rs = pstmt.getGeneratedKeys()) {
 					if (rs.next()) {
 						result = "ok";
 						id = rs.getLong(1);
 					}
-				} catch (SQLException ex) {
-					System.out.println(ex.getMessage());
-				}
+
+				} catch (SQLException ex) { logger.error(ex); }
 			}
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+
+		} catch (SQLException ex2) { logger.error(ex2.getMessage()); }
+
 		return result;
 	}
 
@@ -166,33 +172,31 @@ public class DAO {
 
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"SELECT password FROM el_user WHERE email = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					"SELECT password FROM el_user WHERE email = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
+
 			pstmt.setString(1, user.getEmail());
+
 			ResultSet rs = pstmt.executeQuery();
 
-			if (!rs.next()) {
-				System.out.println("Empty resultset, perhaps no user at all...");
-			}
+			if (!rs.next()) { System.out.println("Empty resultset, perhaps no user at all..."); }
 
 			String passwordDatabase = rs.getString("password");
 
 			if (hashedPassword.equals(passwordDatabase)) {
 				result = "ok";
 				System.out.println("Access granted!");
-			} else {
-				System.out.println("Access denied!");
-			}
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+
+			} else { System.out.println("Access denied!"); }
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 
 		return result;
 	}
 
 	// purely for testing purposes
-	public boolean sessionsAreStoredLocally(String sessionTeacher, ArrayList<String> sessionClass,
-			ArrayList<String> sessionActivity) {
+	public boolean sessionsAreStoredLocally(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
 
 		boolean result = false;
 
@@ -203,23 +207,23 @@ public class DAO {
 				&& sessionClass.size() == sessionActivity.size()) {
 
 			for (int i = 0; i < sessionClass.size(); i++) {
-
 				testClass.add(sessionClass.get(i));
 				testActivity.add(sessionActivity.get(i));
 			}
 
-			if (testClass.equals(sessionClass) && testActivity.equals(sessionActivity)) {
+			if (testClass.equals(sessionClass) && testActivity.equals(sessionActivity)) { 
 				result = true;
 			}
-
 		}
+
 		return result;
 	}
 
-	public boolean addSessionToDatabase(String sessionTeacher, ArrayList<String> sessionClass,
-			ArrayList<String> sessionActivity) {
+	// obsolete method - use addSessionToDatabase instead
+	// test is supposed to fail
+	public ThrowingRunnable addSessionsToDatabase(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
 
-		boolean result = false;
+		ThrowingRunnable result = null;
 
 		if (sessionTeacher.length() > 0 && sessionClass.size() > 0 && sessionActivity.size() > 0
 				&& sessionClass.size() == sessionActivity.size()) {
@@ -247,6 +251,7 @@ public class DAO {
 
 			} catch (SQLException ex) {
 				logger.error(ex.getMessage());
+				result = (ThrowingRunnable) ex;
 			}
 
 			// read same data from database
@@ -280,11 +285,12 @@ public class DAO {
 
 				if (testClassFromDatabase.equals(sessionClass) && testActivityFromDatabase.equals(sessionActivity)) {
 					logger.info("Session data comparision succesful.");
-					result = true;
+					//result = true;
 				}
 
 			} catch (SQLException ex2) {
 				logger.error(ex2.getMessage());
+				result = (ThrowingRunnable) ex2;
 			}
 
 		} else {
@@ -302,7 +308,8 @@ public class DAO {
 
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"INSERT INTO el_subject(teacher, subject_list) VALUES(?,?)", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					"INSERT INTO el_subject(teacher, subject_list) VALUES(?,?)", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, sessionTeacher);
@@ -310,25 +317,24 @@ public class DAO {
 			final String[] subjectDataToSql = sessionSubject.toArray(new String[sessionSubject.size()]);
 			final java.sql.Array subjectSqlArray = pool.getConnection().createArrayOf("text", subjectDataToSql);
 			pstmt.setArray(2, subjectSqlArray);
+
 			pstmt.executeUpdate();
 			logger.info("Subject data transfer to database succesful.");
 
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 
 		logger.info("Initiation subject data reading from database.");
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"SELECT subject_list FROM el_subject WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, sessionTeacher);
+
 			ResultSet rs = pstmt.executeQuery();
-			if (!rs.next()) {
-				System.out.println("Empty resultset.");
-			} else {
-				logger.info("Subject data reading from database succesful.");
-			}
+
+			if (!rs.next()) { System.out.println("Empty resultset."); } 
+			else { logger.info("Subject data reading from database succesful."); }
 
 			// compare source and database session data
 			ArrayList<String> testSubjectFromDatabase = new ArrayList<String>();
@@ -346,9 +352,7 @@ public class DAO {
 				result = true;
 			}
 
-		} catch (SQLException ex2) {
-			logger.error(ex2.getMessage());
-		}
+		} catch (SQLException ex2) { logger.error(ex2.getMessage()); }
 
 		return result;
 	}
@@ -361,13 +365,17 @@ public class DAO {
 
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					"SELECT group_list FROM el_study_group WHERE teacher = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
+			
 			pstmt.setString(1, email);
+			
 			ResultSet rs = pstmt.executeQuery();
-			if (!rs.next()) {
-				logger.debug("User class check received empty resultset");
-			} else {
+			
+			if (!rs.next()) { logger.debug("User class check received empty resultset"); } 
+			
+			else {
 				logger.debug("User class check resultset received");
 
 				Array groupsFromDatabase = rs.getArray("group_list");
@@ -378,20 +386,21 @@ public class DAO {
 					logger.debug("User classes written in return ArrayList");
 				}
 			}
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
+			
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+		
 		return groupsArrayFromDatabase;
 	}
 
 	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> sessionClass) {
-		boolean result = false;
 		
+		boolean result = false;
 		logger.debug("Initiating teacher classset data transfer to database");
 
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"INSERT INTO el_study_group(teacher, group_list) VALUES(?,?)", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					"INSERT INTO el_study_group(teacher, group_list) VALUES(?,?)", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, sessionTeacher);
@@ -399,30 +408,30 @@ public class DAO {
 			final String[] classDataToSql = sessionClass.toArray(new String[sessionClass.size()]);
 			final java.sql.Array classSqlArray = pool.getConnection().createArrayOf("text", classDataToSql);
 			pstmt.setArray(2, classSqlArray);
+			
 			pstmt.executeUpdate();
+			pstmt.close();
 			logger.debug("Teacher classset data transfer to database succesful.");
 
-		} catch (SQLException ex) {
-			logger.debug(ex.getMessage());
-		}
-		
+		} catch (SQLException ex) { logger.debug(ex.getMessage()); }
+
 		logger.debug("Initiation teacher classset data reading from database.");
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, sessionTeacher);
+			
 			ResultSet rs = pstmt.executeQuery();
-			if (!rs.next()) {
-				System.out.println("Empty resultset.");
-			} else {
-				logger.debug("Teacher classset data reading from database succesful.");
-			}
-		
+			
+			if (!rs.next()) { System.out.println("Empty resultset."); } 
+			else { logger.debug("Teacher classset data reading from database succesful."); }
+
 			// compare source and database session data
 			ArrayList<String> testClasssetFromDatabase = new ArrayList<String>();
 
 			Array classsetFromDatabase = rs.getArray("group_list");
+			rs.close();
 
 			String[] str_classset = (String[]) classsetFromDatabase.getArray();
 
@@ -435,14 +444,12 @@ public class DAO {
 				result = true;
 			}
 
-		} catch (SQLException ex2) {
-			logger.error(ex2.getMessage());
-		}
-			
+		} catch (SQLException ex2) { logger.error(ex2.getMessage()); }
+
 		return result;
 	}
 
-	public List<String> getUserSubjects(User user) { // eelmine meetod oli getUserClasses
+	public List<String> getUserSubjects(User user) {
 
 		List<String> subjectsArrayFromDatabase = new ArrayList<String>();
 		String email = user.getEmail();
@@ -450,7 +457,9 @@ public class DAO {
 
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"SELECT subject_list FROM el_subject WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
+					ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.FETCH_REVERSE,
 					ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, email);
 			ResultSet rs = pstmt.executeQuery();
@@ -459,7 +468,10 @@ public class DAO {
 			} else {
 				logger.debug("User subject check resultset received");
 
+				rs.last();
 				Array subjectsFromDatabase = rs.getArray("subject_list");
+				rs.close();
+				
 				String[] str_subjects = (String[]) subjectsFromDatabase.getArray();
 
 				for (int i = 0; i < str_subjects.length; i++) {
@@ -467,11 +479,86 @@ public class DAO {
 					logger.debug("User subjects written in return ArrayList");
 				}
 			}
-		} catch (SQLException ex) {
-			logger.error(ex.getMessage());
-		}
-		return subjectsArrayFromDatabase;
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 		
+		return subjectsArrayFromDatabase;
 	}
+
+	public boolean addSessionToDatabase(Session testSession) {
+
+		boolean result = false;
+
+		logger.debug("Session data transfer to database initiated.");
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"INSERT INTO el_session(teacher, study_group, date, subject, topic, goal, activity, "
+							+ "duration, created, planned, finished, feedback, start_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", 
+							ResultSet.TYPE_SCROLL_INSENSITIVE,
+							ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setString(1, testSession.getTeacher());
+			pstmt.setString(2, testSession.getStudyGroup());
+			pstmt.setObject(3, testSession.getSessionDateTime());
+			pstmt.setString(4, testSession.getSubject());
+			pstmt.setString(5, testSession.getTopic());
+			pstmt.setString(6, testSession.getGoal());
+
+			final String[] activityDataToSql = testSession.getActivity().toArray(new String[testSession.getActivity().size()]);
+			final java.sql.Array activitySqlArray = pool.getConnection().createArrayOf("text", activityDataToSql);
+			pstmt.setArray(7, activitySqlArray);
+
+			final Object[] durationDataToSql = testSession.getDuration().toArray(new Object[testSession.getDuration().size()]);
+			final java.sql.Array durationSqlArray = pool.getConnection().createArrayOf("bigint", durationDataToSql);
+			pstmt.setArray(8, durationSqlArray);
+
+			pstmt.setObject(9, testSession.getCreated());
+			pstmt.setObject(10, testSession.getPlanned());
+			pstmt.setObject(11, testSession.getFinished());
+			pstmt.setBoolean(12, testSession.isFeedback());
+			pstmt.setString(13, testSession.getStartCode());
+
+			pstmt.executeUpdate();
+			pstmt.close();
+
+			result = true;
+			logger.debug("Session data transfer to database successful.");
+
+		} catch (SQLException ex) { logger.debug(ex.getMessage()); }
+
+		return result;
+	}
+
+	public boolean getSessionFromDatabase(User testTeacher) {
+
+		boolean result = false;
+		String teacherEmail = testTeacher.getEmail();
+
+		logger.debug("Session data reading from database initiated.");
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT * FROM el_session WHERE teacher = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			pstmt.setObject(1, teacherEmail);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (!rs.next()) {
+				System.out.println("Empty resultset.");
+
+			} else {
+				logger.debug("Session data reading from database successful.");
+				result = true;
+				rs.close();
+			}
+
+		} catch (SQLException ex2) {
+			logger.error(ex2.getMessage());
+		}
+
+		return result;
+	}
+
 
 }

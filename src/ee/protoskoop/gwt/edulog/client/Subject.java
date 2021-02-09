@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import ee.protoskoop.gwt.edulog.shared.User;
@@ -32,7 +33,8 @@ public class Subject extends Composite implements EntryPoint {
 	@UiField
 	FlexTable subjectTable;
 	@UiField 
-	ListBox subjectListBox;
+	//	ListBox subjectListBox;
+	TextBox subjectTextBox;
 	@UiField
 	Button buttonAddSubject;
 	@UiField
@@ -53,33 +55,35 @@ public class Subject extends Composite implements EntryPoint {
 		if (subjectAddingCounter == 0) {
 			subjectTable.clear();
 			subjectTable.removeAllRows();
-			selectedSubject = subjectListBox.getSelectedItemText();
+			selectedSubject = subjectTextBox.getText();
 			selectedSubjectList.add(selectedSubject);
 			subjectTable.insertRow(subjectAddingCounter);
 			subjectTable.setHTML(subjectAddingCounter, 0, "<h6>" + selectedSubject + "</h6>");
 			subjectAddingCounter ++;
 		} else {
-			selectedSubject = subjectListBox.getSelectedItemText();
+			selectedSubject = subjectTextBox.getText();
 
-			// block adding subjects to the ArrayList more than one time
-			boolean alreadyInList = false;
-			for (String item : selectedSubjectList) {
-				if (item.equals(selectedSubject)) {
-					alreadyInList = true;
-				}			
-			}
+			if (selectedSubject != "") {
 
-			if (alreadyInList == false) {
-				selectedSubjectList.add(selectedSubject);
-				subjectTable.insertRow(subjectAddingCounter);
-				subjectTable.setHTML(subjectAddingCounter, 0, "<h6>" + selectedSubject + "</h6>");
-				subjectAddingCounter ++;
-			} else {
-				Window.alert("This subject is already chosen");
-			}
+				// block adding subjects to the ArrayList more than one time
+				boolean alreadyInList = false;
+				for (String item : selectedSubjectList) {
+					if (item.equals(selectedSubject)) {
+						alreadyInList = true;
+					}			
+				}
+
+				if (alreadyInList == false) {
+					selectedSubjectList.add(selectedSubject);
+					subjectTable.insertRow(subjectAddingCounter);
+					subjectTable.setHTML(subjectAddingCounter, 0, "<h6>" + selectedSubject + "</h6>");
+					subjectAddingCounter ++;
+					subjectTextBox.setText("");
+				} else { Window.alert("This subject is already chosen"); }
+			} else { Window.alert("Please add a subject first"); }
 		}	
-
 	}
+	
 	@UiHandler("buttonSaveSubject")
 	void onClick1(ClickEvent eventSaveStudyGroup) {
 
@@ -122,7 +126,7 @@ public class Subject extends Composite implements EntryPoint {
 
 	private void setUpSubjectTable() {
 
-		User allAvailableSubjects = new User();
+		/*		User allAvailableSubjects = new User();
 		allAvailableSubjects.setEmail("every_teacher");
 		//TODO create new method getUserSubjects
 		databaseService.getUserSubjects(allAvailableSubjects, new AsyncCallback<List<String>>() {
@@ -133,11 +137,12 @@ public class Subject extends Composite implements EntryPoint {
 			public void onSuccess(List<String> result) { 
 				if (result.size()>0) {
 					for (int i = 0; i < result.size(); i++) {
-						subjectListBox.addItem(result.get(i));
+						subjectTextBox.addItem(result.get(i));
 					}
 				} else { Window.alert("Retreiving all subjects failed");	}
 
 			}});
+		 */
 
 		User user = new User();
 		user.setEmail(Cookies.getCookie("sessionUser"));

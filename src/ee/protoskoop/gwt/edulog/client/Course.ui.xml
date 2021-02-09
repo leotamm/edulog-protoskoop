@@ -22,8 +22,9 @@
 						<g:FlexTable ui:field="studyGroupTable"
 							styleName="form-control"></g:FlexTable>
 						<label>Select course</label>
-						<g:ListBox ui:field="studyGroupListBox"
-							styleName="form-control"></g:ListBox>
+						<g:TextBox ui:field="studyGroupTextBox" styleName="form-control"></g:TextBox>
+					<!-- 	<g:ListBox ui:field="studyGroupListBox"
+							styleName="form-control"></g:ListBox>  -->
 					</div>
 					<br></br>
 					<g:Button ui:field="buttonAddStudyGroup"
