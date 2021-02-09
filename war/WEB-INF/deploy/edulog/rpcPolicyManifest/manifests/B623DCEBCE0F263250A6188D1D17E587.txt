@@ -1,2 +1,0 @@
-serviceClass: ee.protoskoop.gwt.edulog.client.GreetingService
-path: ACBFC9F8A5CDF9C8CC257C5A8593F8D7.gwt.rpc
