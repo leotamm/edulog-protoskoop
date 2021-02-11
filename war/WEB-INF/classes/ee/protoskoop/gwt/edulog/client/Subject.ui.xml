@@ -22,7 +22,7 @@
 					<div class="form-group">
 						<g:FlexTable ui:field="subjectTable"
 							styleName="form-control"></g:FlexTable>
-						<label>Select subject</label>
+						<label>New subject</label>
 					<!-- 	<g:ListBox ui:field="subjectListBox"
 							styleName="form-control"></g:ListBox> -->
 							<g:TextBox ui:field="subjectTextBox" styleName="form-control"></g:TextBox>

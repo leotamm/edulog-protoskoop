@@ -42,14 +42,14 @@
 					<label>Duration</label>
 					<g:ListBox ui:field="durationListBox"
 						styleName="form-control" visibleItemCount="0">
-						<g:item value="00:05">00:05</g:item>
-						<g:item value="00:10">00:10</g:item>
-						<g:item value="00:15">00:15</g:item>
-						<g:item value="00:20">00:20</g:item>
-						<g:item value="00:25">00:25</g:item>
-						<g:item value="00:30">00:30</g:item>
-						<g:item value="00:35">00:35</g:item>
-						<g:item value="00:40">00:40</g:item>
+						<g:item value="300000">00:05</g:item>
+						<g:item value="600000">00:10</g:item>
+						<g:item value="900000">00:15</g:item>
+						<g:item value="1200000">00:20</g:item>
+						<g:item value="1500000">00:25</g:item>
+						<g:item value="1800000">00:30</g:item>
+						<g:item value="2100000">00:35</g:item>
+						<g:item value="2400000">00:40</g:item>
 					</g:ListBox>
 				</div>
 

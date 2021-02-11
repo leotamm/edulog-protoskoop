@@ -1,5 +1,7 @@
 package ee.protoskoop.gwt.edulog.client;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,25 +60,31 @@ public class Session extends Composite implements EntryPoint{
 	Button buttonBackToMainPage;
 
 
-	private int activityAddingCounter = 0;
-	private String selectedActivity, selectedDuration = "";
-
 	ArrayList<String> selectedActivityList = new ArrayList<String>();
-	ArrayList<String> selectedDurationList = new ArrayList<String>();
+	ArrayList<Long> selectedDurationList = new ArrayList<Long>();
 	
-	private String course, lessonDate, subject, topic, goal;
+	private int activityAddingCounter = 0;
+	private String selectedActivity, course, lessonDate, subject, topic, goal, startCode;
+	private Long selectedDuration, lessonTime, plannedTime, finishedTime;
+	private LocalDateTime localTime;
+	private boolean feedback;
 	
 
 	@UiHandler("buttonAddActivity")
 	void onClick(ClickEvent eventAddactivity) {
+		
+		selectedActivity = "";
+		selectedDuration = (long) 0;
 
 		if (activityAddingCounter == 0) {
 			activityTable.clear();
 			activityTable.removeAllRows();
+			
 			selectedActivity = activityTextBox.getText();
-			selectedDuration = durationListBox.getSelectedValue();
+			selectedDuration = Long.parseLong(durationListBox.getSelectedItemText());
+
 			selectedActivityList.add(selectedActivity);
-			selectedActivityList.add(selectedDuration);
+			selectedDurationList.add(selectedDuration);
 			activityTable.insertRow(activityAddingCounter);
 			activityTable.setHTML(activityAddingCounter, 0, "<h6>" + selectedActivity + "</h6>");
 			activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration + "</h6>");
@@ -84,9 +92,9 @@ public class Session extends Composite implements EntryPoint{
 			activityTextBox.setText("");
 		} else {
 			selectedActivity = activityTextBox.getText();
-			selectedDuration = durationListBox.getSelectedValue();
+			selectedDuration = Long.parseLong(durationListBox.getSelectedItemText());
 
-			if (selectedActivity != "" && selectedDuration != "") {
+			if (selectedActivity != "" && selectedDuration > 0) {
 
 				selectedActivityList.add(selectedActivity);
 				selectedDurationList.add(selectedDuration);
@@ -105,15 +113,21 @@ public class Session extends Composite implements EntryPoint{
 	void onClick1(ClickEvent eventSaveSession) {
 		
 		String sessionTeacher = Cookies.getCookie("sessionUser");
-		Long creatingTime = (long) 1000000;
-		Long lessonTime = (long) 2333111;
 		
+		localTime = LocalDateTime.now();
+		Long creatingTime = localTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		
+		lessonTime = Long.parseLong("0"); 
+		plannedTime = Long.parseLong("0"); 
+		finishedTime = Long.parseLong("0");
 		
 		course = classListBox.getSelectedItemText();
 		lessonDate = lessonDateTextBox.getText();
 		subject = subjectListBox.getSelectedItemText();
 		topic = topicTextBox.getSelectedText();
 		goal = goalTextBox.getSelectedText();
+		feedback = false;
+		startCode = "";
 		
 		if (course != "" && lessonDate != "" && subject != "" && topic != "" && goal != "" && 
 				selectedActivityList.size() > 0 && selectedDurationList.size() > 0) {
@@ -122,17 +136,17 @@ public class Session extends Composite implements EntryPoint{
 			
 			session.setTeacher(sessionTeacher);
 			session.setStudyGroup(course);
-			session.setSessionDateTime(lessonTime); // TODO receives String but expects OffsetDateTime, hard-coded
-			session.setSubject(subject);
+			session.setSessionDateTime(lessonTime);		// TODO receives String but expects OffsetDateTime
+			session.setSubject(subject);				// will keep hard-coded once DatePicker works
 			session.setTopic(topic);
 			session.setGoal(goal);
 			session.setActivity(selectedActivityList);
-			//session.setDuration(selectedDurationList); // TODO receives String but expects long
+			session.setDuration(selectedDurationList);
 			session.setCreated(creatingTime);
-			//session.setPlanned(OffsetDateTime.now().plusHours(3));	won't initiate here
-			//session.setFinished(OffsetDateTime.now().plusDays(2));	won't initiate here
-			//session.setFeedback(false);								won't initiate here
-			//session.setStartCode("RABBIT");							won't initiate here
+			session.setPlanned(plannedTime);			// initiating with 0
+			session.setFinished(finishedTime);			// initiating with 0
+			session.setFeedback(feedback);				// initiating with false
+			session.setStartCode(startCode);			// initiating with empty string
 			
 			databaseService.addSessionToDatabase(session, new AsyncCallback<Boolean>() {
 
