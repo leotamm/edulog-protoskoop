@@ -5,9 +5,10 @@
 	.custom {
 		background-color: WhiteSmoke
 	}
+
 	</ui:style>
 	<g:HTMLPanel>
-		<div class="container {style.custom}">
+		<div class="container" style="padding:0">
 			<h1 class="page-header">EduLog</h1>
 			<hr></hr>
 			<p

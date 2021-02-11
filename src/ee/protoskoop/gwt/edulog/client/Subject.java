@@ -51,7 +51,6 @@ public class Subject extends Composite implements EntryPoint {
 	@UiHandler("buttonAddSubject")
 	void onClick(ClickEvent eventAddSubject) {
 
-		// clear the prompt in subjectTable and process any added subjects
 		if (subjectAddingCounter == 0) {
 			subjectTable.clear();
 			subjectTable.removeAllRows();
@@ -60,12 +59,12 @@ public class Subject extends Composite implements EntryPoint {
 			subjectTable.insertRow(subjectAddingCounter);
 			subjectTable.setHTML(subjectAddingCounter, 0, "<h6>" + selectedSubject + "</h6>");
 			subjectAddingCounter ++;
+			subjectTextBox.setText("");
 		} else {
 			selectedSubject = subjectTextBox.getText();
 
 			if (selectedSubject != "") {
 
-				// block adding subjects to the ArrayList more than one time
 				boolean alreadyInList = false;
 				for (String item : selectedSubjectList) {
 					if (item.equals(selectedSubject)) {
@@ -87,35 +86,34 @@ public class Subject extends Composite implements EntryPoint {
 	@UiHandler("buttonSaveSubject")
 	void onClick1(ClickEvent eventSaveStudyGroup) {
 
-		// write teacher and subjects to el_subject database
 		String sessionTeacher = Cookies.getCookie("sessionUser");
 
 		databaseService.addSubjectsToDatabase(sessionTeacher, selectedSubjectList, new AsyncCallback<Boolean>() {
 
 			@Override
 			public void onSuccess(Boolean result) {
-				// TODO asenda loggeriga
-				System.out.println("KORRAS!");
+				// TODO log with logger
+				subjectTable.clear();
+				subjectTable.removeAllRows();
+				subjectTable.insertRow(0);
+				subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Saving subjects succeeded</h6>");
 
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO asenda loggeriga
-				System.out.println("ERROR!");
+				// TODO log with logger
+				subjectTable.clear();
+				subjectTable.removeAllRows();
+				subjectTable.insertRow(0);
+				subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Saving subjects failed</h6>");
 			}
 		});
 
-		// clear table and all variables
-		Window.alert("Saving subjects successful!");
-		subjectTable.clear();
-		subjectTable.removeAllRows();
 		selectedSubjectList.clear();
 		subjectAddingCounter = 0;
 		selectedSubject = "";
 		sessionTeacher= "";
-
-		//TODO redirect to main teacher page???
 
 	}
 
@@ -126,28 +124,9 @@ public class Subject extends Composite implements EntryPoint {
 
 	private void setUpSubjectTable() {
 
-		/*		User allAvailableSubjects = new User();
-		allAvailableSubjects.setEmail("every_teacher");
-		//TODO create new method getUserSubjects
-		databaseService.getUserSubjects(allAvailableSubjects, new AsyncCallback<List<String>>() {
-
-			@Override
-			public void onFailure(Throwable caught) { Window.alert("Get all subjects failed!"); }
-			@Override
-			public void onSuccess(List<String> result) { 
-				if (result.size()>0) {
-					for (int i = 0; i < result.size(); i++) {
-						subjectTextBox.addItem(result.get(i));
-					}
-				} else { Window.alert("Retreiving all subjects failed");	}
-
-			}});
-		 */
-
 		User user = new User();
 		user.setEmail(Cookies.getCookie("sessionUser"));
 
-		//TODO create new method getUserSubjects
 		databaseService.getUserSubjects(user, new AsyncCallback<List<String>>() {
 
 			@Override
@@ -172,7 +151,6 @@ public class Subject extends Composite implements EntryPoint {
 	}
 
 
-
 	@Override
 	public void onModuleLoad() {
 
@@ -182,7 +160,5 @@ public class Subject extends Composite implements EntryPoint {
 		setUpSubjectTable();
 
 	}
-
-
 
 }

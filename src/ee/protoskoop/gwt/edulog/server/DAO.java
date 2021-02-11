@@ -17,7 +17,7 @@ import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.i18n.shared.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Window;
 
-import ee.protoskoop.gwt.edulog.shared.Session;
+import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 public class DAO {
@@ -378,7 +378,10 @@ public class DAO {
 			else {
 				logger.debug("User class check resultset received");
 
+				rs.last();
 				Array groupsFromDatabase = rs.getArray("group_list");
+				rs.close();
+				
 				String[] str_groups = (String[]) groupsFromDatabase.getArray();
 
 				for (int i = 0; i < str_groups.length; i++) {
@@ -415,7 +418,7 @@ public class DAO {
 
 		} catch (SQLException ex) { logger.debug(ex.getMessage()); }
 
-		logger.debug("Initiation teacher classset data reading from database.");
+		logger.debug("Teacher classset data transfer to database failed.");
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -458,8 +461,8 @@ public class DAO {
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
-					ResultSet.TYPE_SCROLL_SENSITIVE,
-					ResultSet.FETCH_REVERSE,
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					// ResultSet.FETCH_REVERSE,
 					ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, email);
 			ResultSet rs = pstmt.executeQuery();
@@ -484,7 +487,7 @@ public class DAO {
 		return subjectsArrayFromDatabase;
 	}
 
-	public boolean addSessionToDatabase(Session testSession) {
+	public boolean addSessionToDatabase(SessionObject testSession) {
 
 		boolean result = false;
 

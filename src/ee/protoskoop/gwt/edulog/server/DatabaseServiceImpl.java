@@ -3,6 +3,7 @@ package ee.protoskoop.gwt.edulog.server;
 import ee.protoskoop.gwt.edulog.client.DatabaseService;
 import ee.protoskoop.gwt.edulog.client.GreetingService;
 import ee.protoskoop.gwt.edulog.shared.FieldVerifier;
+import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 import java.sql.Connection;
@@ -77,6 +78,11 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	@Override
 	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList) {
 		return DAO.getInstance().addSubjectsToDatabase(sessionTeacher, selectedSubjectList);
+	}
+	
+	@Override
+	public boolean addSessionToDatabase(SessionObject testSession) {
+		return DAO.getInstance().addSessionToDatabase(testSession);
 	}
 
 	/*	public Connection connect() {

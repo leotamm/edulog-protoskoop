@@ -13,86 +13,22 @@
 				<mark>Teacher's main page</mark>
 			</p>
 
-			<div class="container" style="padding:0">
-				<form>
-					<div class="form-group">
-						<g:Button ui:field="buttonCourses"
-							styleName="form-control">Courses</g:Button>
-						<g:Button ui:field="buttonSubjects"
-							styleName="form-control">Subjects</g:Button>
-						<g:Button ui:field="buttonSessions"
-							styleName="form-control">Sessions</g:Button>
-						<br></br>
-						<g:Button ui:field="buttonLogout"
-							styleName="form-control">Logout</g:Button>
-					</div>
-				</form>
-
-				<br></br>
-				<br></br>
-				<hr></hr>
-				<p
-					style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-					<mark>Please ignore UI from here onwards</mark>
-					Sessions section for teachers
-				</p>
-
-				<form>
-					<div class="form-group">
-						<label>Select class</label>
-						<g:ListBox ui:field="listboxClass"
-							styleName="form-control" visibleItemCount="0">
-							<g:item value="1A">Class 1A</g:item>
-							<g:item value="1B">Class 1B</g:item>
-							<g:item value="1C">Class 1C</g:item>
-							<g:item value="2A">Class 2A</g:item>
-							<g:item value="2B">Class 2B</g:item>
-							<g:item value="2C">Class 2C</g:item>
-						</g:ListBox>
-					</div>
-
-					<div class="form-group">
-						<label>Select activity</label>
-						<g:ListBox ui:field="listboxActivity"
-							styleName="form-control" visibleItemCount="0">
-							<g:item value="classroomSession">Classroom study session</g:item>
-							<g:item value="outdoorSession">Outdoor study session</g:item>
-							<g:item value="onlineSession">Online study session</g:item>
-						</g:ListBox>
-					</div>
+			<form>
+				<div class="form-group">
+					<g:Button ui:field="buttonCourses"
+						styleName="form-control">Classes</g:Button>
 					<br></br>
-
-					<g:Button ui:field="buttonAddSession"
-						styleName="form-control">Add to session</g:Button>
+					<g:Button ui:field="buttonSubjects"
+						styleName="form-control">Subjects</g:Button>
 					<br></br>
+					<g:Button ui:field="buttonSessions"
+						styleName="form-control">Sessions</g:Button>
 					<br></br>
+					<g:Button ui:field="buttonLogout" styleName="form-control">Logout
+					</g:Button>
+				</div>
+			</form>
 
-
-					<!-- OLD SESSION TABLE -->
-
-					<div class="form-group">
-						<!-- <label>My session</label> -->
-						<g:FlexTable ui:field="sessionTable"
-							styleName="form-control"></g:FlexTable>
-					</div>
-					<br></br>
-					<!-- <br></br> NEW SESSION TABLE <div class="form-group d-flex "> <table> 
-						<tr class="flex-fill justify-content-between"> <th class="flex-fill" styleName="form-control">Class</th> 
-						<th class="flex-fill" styleName="form-control">Activity</th> <th class="flex-fill" 
-						styleName="form-control"></th> <th class="flex-fill" styleName="form-control"></th> 
-						</tr> <tr class="flex-fill justify-content-between"> <td class="flex-fill" 
-						styleName="form-control"> <g:FlexTable ui:field="tableClassInSessionList" 
-						styleName="form-control"></g:FlexTable> </td> <td> <g:FlexTable ui:field="tableActivityInSessionList" 
-						styleName="form-control"></g:FlexTable> </td> <td> <g:Button ui:field="buttonEditSessionList" 
-						styleName="form-control">Edit</g:Button> </td> <td> <g:Button ui:field="buttonDeleteSessionList" 
-						styleName="form-control">Delete</g:Button> </td> </tr> </table> </div> <br></br> -->
-					<g:Button ui:field="buttonSaveSessionChanges"
-						styleName="form-control">Save session</g:Button>
-					<g:Button ui:field="buttonLoadSessions"
-						styleName="form-control">Load session</g:Button>
-
-				</form>
-			</div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

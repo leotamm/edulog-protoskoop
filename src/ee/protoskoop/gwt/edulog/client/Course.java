@@ -54,7 +54,6 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 	@UiHandler("buttonAddStudyGroup")
 	void onClick(ClickEvent eventAddClass) {
 
-		// clear the prompt in studyGroupTable and process any added courses
 		if (classAddingCounter == 0) {
 			studyGroupTable.clear();
 			studyGroupTable.removeAllRows();
@@ -63,12 +62,12 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 			studyGroupTable.insertRow(classAddingCounter);
 			studyGroupTable.setHTML(classAddingCounter, 0, "<h6>" + selectedClass1 + "</h6>");
 			classAddingCounter ++;
+			studyGroupTextBox.setText("");
 		} else {
 			selectedClass1 = studyGroupTextBox.getText();
 
 			if (selectedClass1 != "") {
 
-				// block adding courses to the ArrayList more than one time
 				boolean alreadyInList = false;
 				for (String item : selectedClassList) {
 					if (item.equals(selectedClass1)) {
@@ -90,36 +89,34 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 	@UiHandler("buttonSaveStudyGroup")
 	void onClick1(ClickEvent eventSaveStudyGroup) {
 
-		// write teacher and courses to el_study_group database
 		String sessionTeacher = Cookies.getCookie("sessionUser");
 
 		databaseService.addStudyGroupsToDatabase(sessionTeacher, selectedClassList, new AsyncCallback<Boolean>() {
 
 			@Override
 			public void onSuccess(Boolean result) {
-				// TODO asenda loggeriga
-				System.out.println("KORRAS!");
+				// TODO log with logger
+				studyGroupTable.clear();
+				studyGroupTable.removeAllRows();
+				studyGroupTable.insertRow(0);
+				studyGroupTable.setHTML(classAddingCounter, 0, "<h6>Info: Saving classes succeeded</h6>");
 
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO asenda loggeriga
-				System.out.println("ERROR!");
+				// TODO log with logger
+				studyGroupTable.clear();
+				studyGroupTable.removeAllRows();
+				studyGroupTable.insertRow(0);
+				studyGroupTable.setHTML(classAddingCounter, 0, "<h6>Info: Saving classes failed</h6>");
 			}
 		});
-
-
-		// clear table and all variables
-		Window.alert("Saving classes successful!");
-		studyGroupTable.clear();
-		studyGroupTable.removeAllRows();
+		
 		selectedClassList.clear();
 		classAddingCounter = 0;
 		selectedClass1 = "";
 		sessionTeacher= "";
-
-		//TODO redirect to main teacher page???
 
 	}
 
@@ -129,23 +126,6 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 	}
 
 	public void setUpStudyGroupTable() {
-
-		/*		User allAvailableClasses = new User();
-		allAvailableClasses.setEmail("every_teacher");
-		databaseService.getUserClasses(allAvailableClasses, new AsyncCallback<List<String>>() {
-
-			@Override
-			public void onFailure(Throwable caught) { Window.alert("Get all classes failed!"); }
-			@Override
-			public void onSuccess(List<String> result) { 
-				if (result.size()>0) {
-					for (int i = 0; i < result.size(); i++) {
-						studyGroupTextBox.addItem(result.get(i));
-					}
-				} else { Window.alert("Retreiving all classes failed");	}
-
-			}});
-		 */
 
 		User user = new User();
 		user.setEmail(Cookies.getCookie("sessionUser"));
@@ -164,10 +144,10 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 					}
 				} else {
 					studyGroupTable.insertRow(0);
-					studyGroupTable.setHTML(0, 1, "<p>Please select a course below, and push the "
-							+ "<kbd>Add course</kbd> button. Repeat for another course. "
-							+ "Make sure to press <kbd>Save my courses</kbd> button, "
-							+ "once you have selected all your courses.</p>");
+					studyGroupTable.setHTML(0, 1, "<p>Please select a class below, and push the "
+							+ "<kbd>Add class</kbd> button. Repeat for another class. "
+							+ "Make sure to press <kbd>Save my classes</kbd> button, "
+							+ "once you have selected all your classes.</p>");
 				}
 			}});
 	}

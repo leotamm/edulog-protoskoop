@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 /**
@@ -29,5 +30,7 @@ public interface DatabaseService extends RemoteService {
 	List<String> getUserSubjects(User user);
 	
 	boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList);
+	
+	boolean addSessionToDatabase(SessionObject testSession);
 
 }

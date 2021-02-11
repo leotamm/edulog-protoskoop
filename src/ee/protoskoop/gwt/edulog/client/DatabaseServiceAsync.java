@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 
@@ -35,5 +36,8 @@ public interface DatabaseServiceAsync {
 
 	void addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList,
 			AsyncCallback<Boolean> asyncCallback)
+	throws IllegalArgumentException;
+	
+	void addSessionToDatabase(SessionObject testSession, AsyncCallback<Boolean> asyncCallback)
 	throws IllegalArgumentException;
 }

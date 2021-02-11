@@ -13,7 +13,7 @@
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
 				Teacher's
-				<mark>courses</mark>
+				<mark>classes</mark>
 				page
 			</p>
 		
@@ -21,17 +21,17 @@
 					<div class="form-group">
 						<g:FlexTable ui:field="studyGroupTable"
 							styleName="form-control"></g:FlexTable>
-						<label>Select course</label>
+						<label>New class</label>
 						<g:TextBox ui:field="studyGroupTextBox" styleName="form-control"></g:TextBox>
 					<!-- 	<g:ListBox ui:field="studyGroupListBox"
 							styleName="form-control"></g:ListBox>  -->
 					</div>
 					<br></br>
 					<g:Button ui:field="buttonAddStudyGroup"
-						styleName="form-control">Add course</g:Button>
+						styleName="form-control">Add class</g:Button>
 					<br></br>
 					<g:Button ui:field="buttonSaveStudyGroup"
-						styleName="form-control">Save my courses</g:Button>
+						styleName="form-control">Save my classes</g:Button>
 					<br></br>
 					<g:Button ui:field="buttonBackToMainPage"
 						styleName="form-control">Back</g:Button>
