@@ -1,2 +1,0 @@
-serviceClass: ee.protoskoop.gwt.edulog.client.DatabaseService
-path: 1CFE19E3661EE9F41347216C469F5B1D.gwt.rpc

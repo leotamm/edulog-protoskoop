@@ -1,2 +1,0 @@
-[2021-01-25 14:44:44,911] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
-[2021-01-25 14:44:50,285] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost/eduLogDatabase

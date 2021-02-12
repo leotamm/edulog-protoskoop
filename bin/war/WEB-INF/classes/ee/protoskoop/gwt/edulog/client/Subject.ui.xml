@@ -1,0 +1,44 @@
+	
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="container" style="padding:0">
+			<h1 class="page-header">EduLog</h1>
+			<hr></hr>
+			<p
+				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
+				Teacher's
+				<mark>subject</mark>
+				page
+			</p>
+
+			<div class="container" style="padding:0">
+				<form>
+					<div class="form-group">
+						<g:FlexTable ui:field="subjectTable"
+							styleName="form-control"></g:FlexTable>
+						<label>New subject</label>
+					<!-- 	<g:ListBox ui:field="subjectListBox"
+							styleName="form-control"></g:ListBox> -->
+							<g:TextBox ui:field="subjectTextBox" styleName="form-control"></g:TextBox>
+					</div>
+					<br></br>
+					<g:Button ui:field="buttonAddSubject"
+						styleName="form-control">Add subject</g:Button>
+					<br></br>
+					<g:Button ui:field="buttonSaveSubject"
+						styleName="form-control">Save my subjects</g:Button>
+					<br></br>
+					<g:Button ui:field="buttonBackToMainPage"
+						styleName="form-control">Back</g:Button>
+				</form>
+			</div>
+
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

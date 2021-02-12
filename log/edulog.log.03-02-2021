@@ -1,0 +1,833 @@
+[2021-02-03 11:25:10,181] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 11:25:10,191] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 11:25:10,426] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 11:25:10,426] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 11:25:10,494] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 11:25:10,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 11:25:10,570] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,570] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,570] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,570] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,570] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,570] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,571] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,572] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 11:25:10,572] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,979] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 12:09:00,981] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 12:09:00,985] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 12:09:00,986] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 12:09:00,991] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,992] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:00,993] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,026] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,028] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,030] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,030] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:09:49,036] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 12:09:49,037] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 12:42:50,663] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 12:42:50,664] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,665] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 12:42:50,671] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 12:42:50,672] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 12:44:18,323] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 12:44:18,325] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 12:44:18,326] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating teacher classset data transfer to database
+[2021-02-03 12:44:18,564] DEBUG ee.protoskoop.gwt.edulog.server.DAO - ERROR: insert or update on table "el_study_group" violates foreign key constraint "el_group_id_fkey"
+  Detail: Key (id)=(23) is not present in table "el_user".
+[2021-02-03 12:44:18,564] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiation teacher classset data reading from database.
+[2021-02-03 12:44:18,583] ERROR ee.protoskoop.gwt.edulog.server.DAO - ResultSet not positioned properly, perhaps you need to call next.
+[2021-02-03 12:46:41,385] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 12:46:41,386] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 12:46:41,387] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating teacher classset data transfer to database
+[2021-02-03 12:46:41,660] DEBUG ee.protoskoop.gwt.edulog.server.DAO - ERROR: insert or update on table "el_study_group" violates foreign key constraint "el_group_id_fkey"
+  Detail: Key (id)=(24) is not present in table "el_user".
+[2021-02-03 12:46:41,661] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiation teacher classset data reading from database.
+[2021-02-03 12:46:41,680] ERROR ee.protoskoop.gwt.edulog.server.DAO - ResultSet not positioned properly, perhaps you need to call next.
+[2021-02-03 13:01:28,866] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 13:01:28,873] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 13:01:28,874] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating teacher classset data transfer to database
+[2021-02-03 13:01:29,024] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Teacher classset data transfer to database succesful.
+[2021-02-03 13:01:29,024] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiation teacher classset data reading from database.
+[2021-02-03 13:01:29,047] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Teacher classset data reading from database succesful.
+[2021-02-03 13:01:29,102] INFO ee.protoskoop.gwt.edulog.server.DAO - Teacher classet data comparision succesful.
+[2021-02-03 13:03:59,095] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 13:03:59,098] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 13:03:59,099] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating teacher classset data transfer to database
+[2021-02-03 13:03:59,283] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Teacher classset data transfer to database succesful.
+[2021-02-03 13:03:59,283] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiation teacher classset data reading from database.
+[2021-02-03 13:03:59,304] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Teacher classset data reading from database succesful.
+[2021-02-03 13:03:59,352] INFO ee.protoskoop.gwt.edulog.server.DAO - Teacher classet data comparision succesful.
+[2021-02-03 13:05:26,015] ERROR ee.protoskoop.gwt.edulog.server.DAO - ResultSet not positioned properly, perhaps you need to call next.
+[2021-02-03 13:05:36,468] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,471] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,472] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,472] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:05:36,494] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:05:36,498] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 13:12:30,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:12:30,988] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:30,989] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:12:31,001] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:12:31,002] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 13:14:24,345] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:14:24,348] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,349] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:14:24,354] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:14:24,355] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 13:56:14,961] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 13:56:14,962] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 13:56:25,981] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:56:26,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 13:56:25,997] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 13:56:26,030] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,151] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,152] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,152] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 13:56:26,152] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:02,401] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 14:02:02,402] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 14:02:15,224] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 14:02:15,232] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 14:02:15,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 14:02:15,250] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 14:02:15,313] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,315] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,315] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,315] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,315] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 14:02:15,316] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:09:53,109] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 15:09:53,110] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 15:10:07,846] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 15:10:07,854] INFO ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 15:10:07,854] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 15:10:07,861] INFO ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,974] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,975] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,975] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:10:07,976] INFO ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 15:20:56,481] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 15:20:56,482] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 19:52:26,580] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 19:52:26,581] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 19:52:26,747] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:52:26,748] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:52:26,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 19:52:26,810] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 19:52:26,923] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,923] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,926] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,927] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,927] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,927] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,927] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,927] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:52:26,927] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,355] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:54:06,356] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 19:54:06,357] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,357] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,357] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,357] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,358] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,359] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,359] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,361] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,362] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:54:06,369] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:54:06,370] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 19:55:14,441] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,443] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,443] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,443] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,443] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,445] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,445] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:55:14,456] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:55:14,457] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 19:56:53,923] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:56:53,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 19:56:53,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,924] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,925] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:56:53,946] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:56:53,950] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 19:58:20,099] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:58:20,100] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 19:58:20,100] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,100] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,100] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,101] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:20,114] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:58:20,115] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 19:58:57,119] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:58:57,120] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,122] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,123] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,123] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,123] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,123] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 19:58:57,142] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 19:58:57,143] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:03:19,889] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:03:19,915] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:03:19,916] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:04:53,825] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,827] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,828] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,828] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:04:53,838] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:04:53,839] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:09:05,501] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,503] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:09:05,537] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:09:05,539] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:14:51,458] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:14:51,459] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:14:51,459] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,459] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,459] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,459] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,460] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:14:51,476] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:14:51,479] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:24:52,730] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 20:24:52,731] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 20:35:16,048] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 20:35:16,049] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 20:35:16,344] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:35:16,357] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:35:16,426] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:35:16,427] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:35:16,564] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,565] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,565] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,565] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,565] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:35:16,569] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,495] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:37:17,498] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:37:17,500] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,500] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,500] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,500] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,500] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,500] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,504] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:17,512] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:37:17,515] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:37:40,801] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,802] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,803] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:37:40,818] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:37:40,820] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 20:44:02,307] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:44:02,309] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,310] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 20:44:02,365] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 20:44:02,368] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 21:04:49,327] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,329] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,330] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,330] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,330] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,330] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:04:49,341] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:04:49,342] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 21:05:35,490] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:05:35,491] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,493] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,509] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,509] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,509] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,509] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:05:35,532] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:05:35,533] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 21:06:32,442] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,444] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:32,454] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:06:32,454] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 21:06:56,889] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:06:56,890] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,891] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,892] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,892] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:06:56,895] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:06:56,897] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 21:07:22,490] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:07:22,491] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 21:07:22,491] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,492] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 21:07:22,505] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 21:07:22,507] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 21:57:26,071] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 21:57:26,072] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 21:57:26,073] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-03 21:57:26,156] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-03 21:57:26,245] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 21:57:26,246] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-03 22:00:01,550] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 22:00:01,553] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 22:00:01,752] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:00:01,762] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:00:01,805] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 22:00:01,813] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,930] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:00:01,931] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,163] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:06:10,165] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 22:06:10,166] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,166] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,166] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,166] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,167] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,167] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,168] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,168] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,168] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,168] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,168] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,169] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,170] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,170] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,170] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,170] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,170] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,170] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:06:10,216] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:06:10,220] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 22:07:15,006] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:07:15,007] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,008] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:07:15,026] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:07:15,027] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 22:12:02,699] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 22:12:02,700] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 22:12:02,869] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:12:02,869] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:12:02,921] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 22:12:02,929] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,987] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:12:02,988] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:46:33,916] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-03 22:46:33,917] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-03 22:47:16,374] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:47:16,379] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 22:47:16,391] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:47:16,394] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset
+[2021-02-03 22:47:16,427] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,428] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,430] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:16,430] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,212] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,213] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,214] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-03 22:47:34,235] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-03 22:47:34,236] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check received empty resultset

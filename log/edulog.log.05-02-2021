@@ -1,0 +1,80 @@
+[2021-02-05 12:21:49,577] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-05 12:21:49,622] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-05 12:21:49,622] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 12:21:49,622] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 12:21:49,622] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 12:23:26,468] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating teacher classset data transfer to database
+[2021-02-05 12:23:26,513] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Teacher classset data transfer to database succesful.
+[2021-02-05 12:23:26,513] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiation teacher classset data reading from database.
+[2021-02-05 12:23:26,514] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Teacher classset data reading from database succesful.
+[2021-02-05 12:23:46,205] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-05 12:23:46,206] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-05 12:23:46,207] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 12:23:46,207] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 12:23:46,207] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 12:37:12,341] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,343] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,384] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-05 12:37:12,385] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-05 12:37:12,385] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,385] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:37:12,385] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:42:00,414] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-05 12:42:00,416] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-05 12:42:00,416] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:42:00,416] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:42:00,416] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:43:28,114] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiating subject data transfer to database
+[2021-02-05 12:43:28,121] INFO ee.protoskoop.gwt.edulog.server.DAO - Subject data transfer to database succesful.
+[2021-02-05 12:43:28,121] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiation subject data reading from database.
+[2021-02-05 12:43:28,122] INFO ee.protoskoop.gwt.edulog.server.DAO - Subject data reading from database succesful.
+[2021-02-05 12:50:06,496] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-05 12:50:06,497] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-05 12:50:06,498] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:50:06,498] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:50:06,498] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:52:09,418] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-05 12:52:09,419] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-05 12:52:09,419] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:52:09,419] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:52:09,419] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:52:38,916] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiating subject data transfer to database
+[2021-02-05 12:52:38,918] INFO ee.protoskoop.gwt.edulog.server.DAO - Subject data transfer to database succesful.
+[2021-02-05 12:52:38,918] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiation subject data reading from database.
+[2021-02-05 12:52:38,919] INFO ee.protoskoop.gwt.edulog.server.DAO - Subject data reading from database succesful.
+[2021-02-05 12:55:09,787] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user subject check
+[2021-02-05 12:55:09,788] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subject check resultset received
+[2021-02-05 12:55:09,789] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:55:09,789] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:55:09,789] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User subjects written in return ArrayList
+[2021-02-05 12:55:27,315] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiating subject data transfer to database
+[2021-02-05 12:55:27,321] INFO ee.protoskoop.gwt.edulog.server.DAO - Subject data transfer to database succesful.
+[2021-02-05 12:55:27,321] INFO ee.protoskoop.gwt.edulog.server.DAO - Initiation subject data reading from database.
+[2021-02-05 12:55:27,322] INFO ee.protoskoop.gwt.edulog.server.DAO - Subject data reading from database succesful.
+[2021-02-05 13:24:14,366] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-05 13:24:14,368] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-05 13:24:14,368] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:24:14,368] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:24:14,368] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:34:44,929] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-05 13:34:44,929] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-05 13:35:18,831] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-05 13:35:18,848] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-05 13:35:18,916] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:35:18,916] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:35:18,916] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:38:46,463] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
+[2021-02-05 13:38:46,464] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
+[2021-02-05 13:39:18,132] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Initiating user class check
+[2021-02-05 13:39:18,139] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User class check resultset received
+[2021-02-05 13:39:18,194] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:39:18,194] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList
+[2021-02-05 13:39:18,194] DEBUG ee.protoskoop.gwt.edulog.server.DAO - User classes written in return ArrayList

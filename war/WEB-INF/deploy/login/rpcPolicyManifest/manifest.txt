@@ -1,3 +1,0 @@
-# Module login
-# RPC service class, partial path of RPC policy file
-ee.protoskoop.gwt.edulog.client.DatabaseService, 1CFE19E3661EE9F41347216C469F5B1D.gwt.rpc
