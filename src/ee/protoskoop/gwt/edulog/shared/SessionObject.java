@@ -3,22 +3,23 @@ package ee.protoskoop.gwt.edulog.shared;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class SessionObject implements Serializable {
 	
 	private static final long serialVersionUID = 4966094476517269040L;
 	
+	/* All time items are defined and handled as <OffsetDateTime> objects initiated as Long <Date> */
+	
 	private String teacher;
 	private String studyGroup;
-	private Long sessionDateTime;
+	private Long sessionHappeningDate;
 	private String subject;
 	private String topic;
 	private String goal;
 	private ArrayList <String> activity;
 	private ArrayList <Long> duration;
-	private Long created;
-	private Long planned;
-	private Long finished;
+	private Long sessionCreatingTime;
+	private Long sessionPlanningDate;
+	private Long sessionFinishingDate;
 	private boolean feedback;
 	private String startCode;
 	
@@ -34,11 +35,11 @@ public class SessionObject implements Serializable {
 	public void setStudyGroup(String studyGroup) {
 		this.studyGroup = studyGroup;
 	}
-	public Long getSessionDateTime() {
-		return sessionDateTime;
+	public Long getSessionHappeningTime() {
+		return sessionHappeningDate;
 	}
-	public void setSessionDateTime(Long sessionDateTime) {
-		this.sessionDateTime = sessionDateTime;
+	public void setSessionHappeningTime(Long sessionHappeningTime) {
+		this.sessionHappeningDate = sessionHappeningTime;
 	}
 	public String getSubject() {
 		return subject;
@@ -70,23 +71,23 @@ public class SessionObject implements Serializable {
 	public void setDuration(ArrayList <Long> duration) {
 		this.duration = duration;
 	}
-	public Long getCreated() {
-		return created;
+	public Long getSessionCreatingTime() {
+		return sessionCreatingTime;
 	}
-	public void setCreated(Long created) {
-		this.created = created;
+	public void setSessionCreatingTime(Long sessionCreatingTime) {
+		this.sessionCreatingTime = sessionCreatingTime;
 	}
-	public Long getPlanned() {
-		return planned;
+	public Long getSessionPlanningDate() {
+		return sessionPlanningDate;
 	}
-	public void setPlanned(Long planned) {
-		this.planned = planned;
+	public void setSessionPlanningDate(Long sessionPlanningDate) {
+		this.sessionPlanningDate = sessionPlanningDate;
 	}
-	public Long getFinished() {
-		return finished;
+	public Long getSessionFinishingDate() {
+		return sessionFinishingDate;
 	}
-	public void setFinished(Long finished) {
-		this.finished = finished;
+	public void setSessionFinishingDate(Long sessionFinishingDate) {
+		this.sessionFinishingDate = sessionFinishingDate;
 	}
 	public boolean isFeedback() {
 		return feedback;

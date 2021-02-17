@@ -386,8 +386,8 @@ public class DAO {
 
 				for (int i = 0; i < str_groups.length; i++) {
 					groupsArrayFromDatabase.add(str_groups[i]);
-					logger.debug("User classes written in return ArrayList");
 				}
+				logger.debug("User classes written in return ArrayList");
 			}
 			
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
@@ -479,8 +479,8 @@ public class DAO {
 
 				for (int i = 0; i < str_subjects.length; i++) {
 					subjectsArrayFromDatabase.add(str_subjects[i]);
-					logger.debug("User subjects written in return ArrayList");
 				}
+				logger.debug("User subjects written in return ArrayList");
 			}
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 		
@@ -502,7 +502,7 @@ public class DAO {
 
 			pstmt.setString(1, testSession.getTeacher());
 			pstmt.setString(2, testSession.getStudyGroup());
-			pstmt.setObject(3, testSession.getSessionDateTime());
+			pstmt.setObject(3, testSession.getSessionHappeningTime());
 			pstmt.setString(4, testSession.getSubject());
 			pstmt.setString(5, testSession.getTopic());
 			pstmt.setString(6, testSession.getGoal());
@@ -515,9 +515,9 @@ public class DAO {
 			final java.sql.Array durationSqlArray = pool.getConnection().createArrayOf("bigint", durationDataToSql);
 			pstmt.setArray(8, durationSqlArray);
 
-			pstmt.setObject(9, testSession.getCreated());
-			pstmt.setObject(10, testSession.getPlanned());
-			pstmt.setObject(11, testSession.getFinished());
+			pstmt.setObject(9, testSession.getSessionCreatingTime());
+			pstmt.setObject(10, testSession.getSessionPlanningDate());
+			pstmt.setObject(11, testSession.getSessionFinishingDate());
 			pstmt.setBoolean(12, testSession.isFeedback());
 			pstmt.setString(13, testSession.getStartCode());
 

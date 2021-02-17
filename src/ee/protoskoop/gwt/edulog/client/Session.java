@@ -1,13 +1,15 @@
 package ee.protoskoop.gwt.edulog.client;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.client.TimeZone;
+import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -64,11 +66,12 @@ public class Session extends Composite implements EntryPoint{
 	ArrayList<Long> selectedDurationList = new ArrayList<Long>();
 	
 	private int activityAddingCounter = 0;
-	private String selectedActivity, course, lessonDate, subject, topic, goal, startCode;
-	private Long selectedDuration, lessonTime, plannedTime, finishedTime;
-	private LocalDateTime localTime;
+	private String selectedActivity, course, date, subject, topic, goal, startCode;
+	private Long selectedDuration, creatingDate, lessonTime, plannedTime, finishedTime;
 	private boolean feedback;
 	
+	DateTimeFormat dtfToSeconds = DateTimeFormat.getFormat("yyyyMMddHHmmss");
+	DateTimeFormat dtfToDays= DateTimeFormat.getFormat("yyyyMMdd");
 
 	@UiHandler("buttonAddActivity")
 	void onClick(ClickEvent eventAddactivity) {
@@ -81,18 +84,18 @@ public class Session extends Composite implements EntryPoint{
 			activityTable.removeAllRows();
 			
 			selectedActivity = activityTextBox.getText();
-			selectedDuration = Long.parseLong(durationListBox.getSelectedItemText());
+			selectedDuration = Long.parseLong(durationListBox.getSelectedValue());
 
 			selectedActivityList.add(selectedActivity);
 			selectedDurationList.add(selectedDuration);
 			activityTable.insertRow(activityAddingCounter);
 			activityTable.setHTML(activityAddingCounter, 0, "<h6>" + selectedActivity + "</h6>");
-			activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration + "</h6>");
+			activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration / 60000 + " minutes</h6>");
 			activityAddingCounter ++;
 			activityTextBox.setText("");
 		} else {
 			selectedActivity = activityTextBox.getText();
-			selectedDuration = Long.parseLong(durationListBox.getSelectedItemText());
+			selectedDuration = Long.parseLong(durationListBox.getSelectedValue());
 
 			if (selectedActivity != "" && selectedDuration > 0) {
 
@@ -100,7 +103,7 @@ public class Session extends Composite implements EntryPoint{
 				selectedDurationList.add(selectedDuration);
 				activityTable.insertRow(activityAddingCounter);
 				activityTable.setHTML(activityAddingCounter, 0, "<h6>" + selectedActivity + "</h6>");
-				activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration + "</h6>");
+				activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration / 60000 + " minutes</h6>");
 				activityAddingCounter ++;
 				activityTextBox.setText("");
 
@@ -114,39 +117,41 @@ public class Session extends Composite implements EntryPoint{
 		
 		String sessionTeacher = Cookies.getCookie("sessionUser");
 		
-		localTime = LocalDateTime.now();
-		Long creatingTime = localTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		Date currentDate = new Date();
+		currentDate.getTime();
+		Long creatingTime = Long.parseLong(dtfToSeconds.format(currentDate, TimeZone.createTimeZone(0)));
+		//Long creatingTime = localTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 		
 		lessonTime = Long.parseLong("0"); 
 		plannedTime = Long.parseLong("0"); 
 		finishedTime = Long.parseLong("0");
 		
-		course = classListBox.getSelectedItemText();
-		lessonDate = lessonDateTextBox.getText();
-		subject = subjectListBox.getSelectedItemText();
-		topic = topicTextBox.getSelectedText();
-		goal = goalTextBox.getSelectedText();
+		course = classListBox.getSelectedValue();
+		date = lessonDateTextBox.getText();
+		subject = subjectListBox.getSelectedValue();
+		topic = topicTextBox.getText();
+		goal = goalTextBox.getText();
 		feedback = false;
 		startCode = "";
 		
-		if (course != "" && lessonDate != "" && subject != "" && topic != "" && goal != "" && 
+		if (/*course != "" && lessonDate != "" && subject != "" && topic != "" && goal != "" && */
 				selectedActivityList.size() > 0 && selectedDurationList.size() > 0) {
 			
 			SessionObject session = new SessionObject();
 			
 			session.setTeacher(sessionTeacher);
 			session.setStudyGroup(course);
-			session.setSessionDateTime(lessonTime);		// TODO receives String but expects OffsetDateTime
-			session.setSubject(subject);				// will keep hard-coded once DatePicker works
+			session.setSessionHappeningTime(lessonTime);	// TODO receives String but expects Long <Date>
+			session.setSubject(subject);					// will keep hard-coded once DatePicker works
 			session.setTopic(topic);
 			session.setGoal(goal);
 			session.setActivity(selectedActivityList);
 			session.setDuration(selectedDurationList);
-			session.setCreated(creatingTime);
-			session.setPlanned(plannedTime);			// initiating with 0
-			session.setFinished(finishedTime);			// initiating with 0
-			session.setFeedback(feedback);				// initiating with false
-			session.setStartCode(startCode);			// initiating with empty string
+			session.setSessionCreatingTime(creatingTime);
+			session.setSessionPlanningDate(plannedTime);	// initiating with 0
+			session.setSessionFinishingDate(finishedTime);	// initiating with 0
+			session.setFeedback(feedback);					// initiating with false
+			session.setStartCode(startCode);				// initiating with empty string
 			
 			databaseService.addSessionToDatabase(session, new AsyncCallback<Boolean>() {
 
