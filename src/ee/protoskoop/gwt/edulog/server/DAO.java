@@ -23,8 +23,7 @@ import ee.protoskoop.gwt.edulog.shared.User;
 public class DAO {
 
 	private static final Logger logger = Logger.getLogger(DAO.class);
-	private DateTimeFormat dtf = new DateTimeFormat("yyyy-mm-dd", new DefaultDateTimeFormatInfo()) {
-	};
+	private DateTimeFormat dtf = new DateTimeFormat("yyyy-mm-dd", new DefaultDateTimeFormatInfo()) {};
 	private static DAO instance;
 	private ConnectionPool pool;
 
@@ -37,7 +36,7 @@ public class DAO {
 
 	public DAO() {
 
-		// Load configuration
+		// load configuration
 		Configuration.loadConfiguration("C:\\Users\\Leo\\eclipse-workspace\\EduLog\\settings.ini");
 		PropertyConfigurator.configure(Configuration.LOG4J_PATH);
 		Logger.getLogger("org.apache.fontbox").setLevel(Level.OFF);
@@ -106,6 +105,26 @@ public class DAO {
 		return reply;
 	}
 
+	public boolean changePassword(User user) {
+		
+		boolean reply = false;
+		
+		try {
+			PreparedStatement updatePassword = pool.getConnection().prepareStatement(
+					"UPDATE el_user SET password = ? WHERE email = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			updatePassword.setString(1, user.getPassword());
+			updatePassword.setString(2, user.getEmail());
+			updatePassword.executeUpdate();
+			
+			reply = true;
+			
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+		
+		return reply;
+	}
+	
 	public boolean doesUserExist(User user) {
 
 		boolean reply = false;
@@ -119,7 +138,7 @@ public class DAO {
 
 			if (!rs.next()) { System.out.println("Empty resultset"); }
 
-			rs.first();
+			rs.beforeFirst();
 
 			while (rs.next()) {
 
@@ -219,8 +238,8 @@ public class DAO {
 		return result;
 	}
 
-	// obsolete method - use addSessionToDatabase instead
-	// test is supposed to fail
+	// deprecated method - use addSessionToDatabase instead
+	// test is now supposed to fail
 	public ThrowingRunnable addSessionsToDatabase(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
 
 		ThrowingRunnable result = null;
@@ -368,20 +387,20 @@ public class DAO {
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
-			
+
 			pstmt.setString(1, email);
-			
+
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			if (!rs.next()) { logger.debug("User class check received empty resultset"); } 
-			
+
 			else {
 				logger.debug("User class check resultset received");
 
 				rs.last();
 				Array groupsFromDatabase = rs.getArray("group_list");
 				rs.close();
-				
+
 				String[] str_groups = (String[]) groupsFromDatabase.getArray();
 
 				for (int i = 0; i < str_groups.length; i++) {
@@ -389,14 +408,14 @@ public class DAO {
 				}
 				logger.debug("User classes written in return ArrayList");
 			}
-			
+
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
-		
+
 		return groupsArrayFromDatabase;
 	}
 
 	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> sessionClass) {
-		
+
 		boolean result = false;
 		logger.debug("Initiating teacher classset data transfer to database");
 
@@ -411,7 +430,7 @@ public class DAO {
 			final String[] classDataToSql = sessionClass.toArray(new String[sessionClass.size()]);
 			final java.sql.Array classSqlArray = pool.getConnection().createArrayOf("text", classDataToSql);
 			pstmt.setArray(2, classSqlArray);
-			
+
 			pstmt.executeUpdate();
 			pstmt.close();
 			logger.debug("Teacher classset data transfer to database succesful.");
@@ -424,9 +443,9 @@ public class DAO {
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, sessionTeacher);
-			
+
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			if (!rs.next()) { System.out.println("Empty resultset."); } 
 			else { logger.debug("Teacher classset data reading from database succesful."); }
 
@@ -474,7 +493,7 @@ public class DAO {
 				rs.last();
 				Array subjectsFromDatabase = rs.getArray("subject_list");
 				rs.close();
-				
+
 				String[] str_subjects = (String[]) subjectsFromDatabase.getArray();
 
 				for (int i = 0; i < str_subjects.length; i++) {
@@ -483,7 +502,7 @@ public class DAO {
 				logger.debug("User subjects written in return ArrayList");
 			}
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
-		
+
 		return subjectsArrayFromDatabase;
 	}
 
@@ -532,9 +551,9 @@ public class DAO {
 		return result;
 	}
 
-	public boolean getSessionFromDatabase(User testTeacher) {
+	public List<SessionObject> getSessionFromDatabase(User testTeacher) {
 
-		boolean result = false;
+		List <SessionObject> returnSessionList = new ArrayList<SessionObject>();
 		String teacherEmail = testTeacher.getEmail();
 
 		logger.debug("Session data reading from database initiated.");
@@ -549,18 +568,84 @@ public class DAO {
 
 			if (!rs.next()) {
 				System.out.println("Empty resultset.");
+				logger.debug("Empty resultset. Session data reading from database failed.");
 
 			} else {
+				
+				int resultListCounter = 0;
+				
+				rs.beforeFirst();
+				
+				while(rs.next()) {
+					ArrayList <String> temporaryActivityList = new ArrayList<String>();
+					ArrayList <Long> temporaryDurationList = new ArrayList<Long>();
+
+					SessionObject returnSession = new SessionObject();
+					
+					Long sessionIdFromDatabase = rs.getLong("id");
+					returnSession.setId(sessionIdFromDatabase);
+					
+					String sessionTeacherFromDatabase = rs.getString("teacher");
+					returnSession.setTeacher(sessionTeacherFromDatabase);
+					
+					String studyGroupFromDatabase = rs.getString("study_group");
+					returnSession.setStudyGroup(studyGroupFromDatabase);
+					
+					Long dateFromDataBase = rs.getLong("date");
+					returnSession.setSessionHappeningTime(dateFromDataBase);
+					
+					String subjectFromDatabase = rs.getString("subject");
+					returnSession.setSubject(subjectFromDatabase);
+					
+					String topicFromDatabase = rs.getString("topic");
+					returnSession.setTopic(topicFromDatabase);
+					
+					String goalFromDatabase = rs.getString("goal");
+					returnSession.setGoal(goalFromDatabase);
+					
+					Array actvitiesFromDatabase = rs.getArray("activity");
+					String[] str_activities = (String[]) actvitiesFromDatabase.getArray();
+					for (int i = 0; i < str_activities.length; i++) {
+						temporaryActivityList.add(str_activities[i]);
+					}
+					returnSession.setActivity(temporaryActivityList);
+					
+					Array durationFromDatabase = rs.getArray("duration");
+					Long[] long_durations = (Long[]) durationFromDatabase.getArray();
+					for (int i = 0; i < long_durations.length; i++) {
+						temporaryDurationList.add(long_durations[i]);
+					}
+					returnSession.setDuration(temporaryDurationList);
+					
+					Long createdFromDatabase = rs.getLong("created");
+					returnSession.setSessionCreatingTime(createdFromDatabase);
+					
+					Long plannedFromDatabase = rs.getLong("planned");
+					returnSession.setSessionPlanningDate(plannedFromDatabase);
+					
+					Long finishedFromDatabase = rs.getLong("finished");
+					returnSession.setSessionFinishingDate(finishedFromDatabase);
+					
+					boolean feedbackFromDatabase = rs.getBoolean("feedback");
+					returnSession.setFeedback(feedbackFromDatabase);
+					
+					String startcodeFromDatabase= rs.getString("start_code");
+					returnSession.setStartCode(startcodeFromDatabase);	
+
+					returnSessionList.add(returnSession);
+					
+					resultListCounter ++;
+
+				}
+
 				logger.debug("Session data reading from database successful.");
-				result = true;
+				logger.debug("Counted " + resultListCounter + " list item(s)");
 				rs.close();
 			}
 
-		} catch (SQLException ex2) {
-			logger.error(ex2.getMessage());
-		}
-
-		return result;
+		} catch (SQLException ex2) { logger.error(ex2.getMessage()); }
+		
+		return returnSessionList;
 	}
 
 

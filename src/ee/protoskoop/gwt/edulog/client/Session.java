@@ -1,6 +1,5 @@
 package ee.protoskoop.gwt.edulog.client;
 
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,13 +26,16 @@ import com.google.gwt.user.client.ui.Widget;
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
-public class Session extends Composite implements EntryPoint{
+public class Session extends Composite implements EntryPoint {
 
 	private static SessionUiBinder uiBinder = GWT.create(SessionUiBinder.class);
 	private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService();
 
 	interface SessionUiBinder extends UiBinder<Widget, Session> {
 	}
+
+	@UiField
+	FlexTable sessionTable;
 
 
 	@UiField
@@ -50,7 +52,7 @@ public class Session extends Composite implements EntryPoint{
 	TextBox activityTextBox;
 	@UiField
 	ListBox durationListBox;
-	
+
 	@UiField
 	FlexTable activityTable;
 
@@ -64,26 +66,27 @@ public class Session extends Composite implements EntryPoint{
 
 	ArrayList<String> selectedActivityList = new ArrayList<String>();
 	ArrayList<Long> selectedDurationList = new ArrayList<Long>();
-	
+
 	private int activityAddingCounter = 0;
+	private int sessionCounter = 0;
 	private String selectedActivity, course, date, subject, topic, goal, startCode;
 	private Long selectedDuration, creatingDate, lessonTime, plannedTime, finishedTime;
 	private boolean feedback;
-	
+
 	DateTimeFormat dtfToSeconds = DateTimeFormat.getFormat("yyyyMMddHHmmss");
 	DateTimeFormat dtfToDays= DateTimeFormat.getFormat("yyyyMMdd");
 
 	@UiHandler("buttonAddActivity")
 	void onClick(ClickEvent eventAddactivity) {
-		
-		selectedActivity = "";
+
+		selectedActivity = activityTextBox.getText();
 		selectedDuration = (long) 0;
 
-		if (activityAddingCounter == 0) {
+		if (activityAddingCounter == 0 & selectedActivity != "") {
 			activityTable.clear();
 			activityTable.removeAllRows();
+
 			
-			selectedActivity = activityTextBox.getText();
 			selectedDuration = Long.parseLong(durationListBox.getSelectedValue());
 
 			selectedActivityList.add(selectedActivity);
@@ -93,8 +96,11 @@ public class Session extends Composite implements EntryPoint{
 			activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration / 60000 + " minutes</h6>");
 			activityAddingCounter ++;
 			activityTextBox.setText("");
+			
+			buttonSaveSession.setEnabled(true);
+			
 		} else {
-			selectedActivity = activityTextBox.getText();
+			
 			selectedDuration = Long.parseLong(durationListBox.getSelectedValue());
 
 			if (selectedActivity != "" && selectedDuration > 0) {
@@ -114,18 +120,18 @@ public class Session extends Composite implements EntryPoint{
 
 	@UiHandler("buttonSaveSession")
 	void onClick1(ClickEvent eventSaveSession) {
-		
+
 		String sessionTeacher = Cookies.getCookie("sessionUser");
-		
+
 		Date currentDate = new Date();
 		currentDate.getTime();
 		Long creatingTime = Long.parseLong(dtfToSeconds.format(currentDate, TimeZone.createTimeZone(0)));
 		//Long creatingTime = localTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-		
+
 		lessonTime = Long.parseLong("0"); 
 		plannedTime = Long.parseLong("0"); 
 		finishedTime = Long.parseLong("0");
-		
+
 		course = classListBox.getSelectedValue();
 		date = lessonDateTextBox.getText();
 		subject = subjectListBox.getSelectedValue();
@@ -133,15 +139,15 @@ public class Session extends Composite implements EntryPoint{
 		goal = goalTextBox.getText();
 		feedback = false;
 		startCode = "";
-		
+
 		if (/*course != "" && lessonDate != "" && subject != "" && topic != "" && goal != "" && */
 				selectedActivityList.size() > 0 && selectedDurationList.size() > 0) {
-			
+
 			SessionObject session = new SessionObject();
-			
+
 			session.setTeacher(sessionTeacher);
 			session.setStudyGroup(course);
-			session.setSessionHappeningTime(lessonTime);	// TODO receives String but expects Long <Date>
+			session.setSessionHappeningTime(lessonTime);	// TODO needs to collect Long (Epoch Date), not String
 			session.setSubject(subject);					// will keep hard-coded once DatePicker works
 			session.setTopic(topic);
 			session.setGoal(goal);
@@ -152,29 +158,36 @@ public class Session extends Composite implements EntryPoint{
 			session.setSessionFinishingDate(finishedTime);	// initiating with 0
 			session.setFeedback(feedback);					// initiating with false
 			session.setStartCode(startCode);				// initiating with empty string
-			
+
 			databaseService.addSessionToDatabase(session, new AsyncCallback<Boolean>() {
 
 				@Override
 				public void onSuccess(Boolean result) {
 					// TODO log with logger
-					 Window.alert("Session succesfully saved");
-					
 					lessonDateTextBox.setText("");
 					topicTextBox.setText("");
 					goalTextBox.setText("");
 					activityTextBox.setText("");
 					activityTable.clear();
-
+					activityTable.removeAllRows();
+					activityTable.insertRow(0);
+					activityTable.setHTML(0, 0, "<p>No session activities</p>");
+					
+					sessionTable.clear();
+					sessionTable.removeAllRows();
+					sessionTable.insertRow(0);
+					sessionTable.setHTML(0, 0, "<h6>Info: Your session is saved</h6>");
+					
+					buttonSaveSession.setEnabled(false);
 				}
 
 				@Override
 				public void onFailure(Throwable caught) {
 					// TODO log with logger
-					 Window.alert("Session save failed");
+					Window.alert("Session save failed");
 				}
 			});
-			
+
 		} else { Window.alert("All fields must be filled"); }
 
 	}
@@ -184,6 +197,56 @@ public class Session extends Composite implements EntryPoint{
 		Window.Location.assign("Teacher.html");
 	}
 
+
+	private void setUpSessionFlexTable() {
+
+		User user = new User();
+		user.setEmail(Cookies.getCookie("sessionUser"));
+
+		databaseService.getSessionFromDatabase(user, new AsyncCallback<List<SessionObject>>() {
+
+			@Override
+			public void onFailure(Throwable caught) { /*Window.alert("Get user sessions failed!");*/ }
+			@Override
+			public void onSuccess(List<SessionObject> sessionListFromDatabase) { 
+
+				if (sessionListFromDatabase.size() > 0) {
+					sessionTable.clear();
+					sessionTable.removeAllRows();
+
+					for(SessionObject session : sessionListFromDatabase) {
+						String date = String.valueOf(session.getSessionPlanningDate());
+						String studyGroup = session.getStudyGroup();
+						String subject = session.getSubject();
+						String topic = session.getTopic();
+
+						sessionTable.insertRow(sessionCounter);
+						sessionTable.setHTML(sessionCounter, 0, "<h6>Session " + String.valueOf(sessionCounter + 1) + ": </h6>");
+						sessionTable.setHTML(sessionCounter, 1, "<h6>" + date + "</h6>");
+						sessionTable.setHTML(sessionCounter, 2, "<h6>" + studyGroup + "</h6>");
+						sessionTable.setHTML(sessionCounter, 3, "<h6>" + subject + "</h6>");
+						sessionTable.setHTML(sessionCounter, 4, "<h6>" + topic + "</h6>");
+
+						sessionCounter ++;
+					}
+
+				} else { 
+					sessionTable.insertRow(0);
+					sessionTable.setHTML(0, 0, "<p>Please select your session course, date, "
+							+ "subject, topic and goal below. Then prepare activities list by "
+							+ "listing an activity and pressing <kbd>Add subject</kbd> button. "
+							+ "Once you session is complete, save it by pressing "
+							+ "<kbd>Save my subjects</kbd> button</p>");
+					
+					activityTable.insertRow(0);
+					activityTable.setHTML(0, 0, "<p>No session activities</p>");
+					
+				}
+			}
+		});
+
+	}
+	
 
 	private void setUpClassListBox() {
 
@@ -196,7 +259,7 @@ public class Session extends Composite implements EntryPoint{
 			public void onFailure(Throwable caught) { /*Window.alert("Get user classes failed!");*/ }
 			@Override
 			public void onSuccess(List<String> result) { 
-				
+
 				if (result.size() > 0) {
 					for (int i = 0; i < result.size(); i++) {
 						classListBox.addItem(result.get(i));
@@ -218,7 +281,7 @@ public class Session extends Composite implements EntryPoint{
 			public void onFailure(Throwable caught) { /*Window.alert("Get user subjects failed!");*/ }
 			@Override
 			public void onSuccess(List<String> result) { 
-				
+
 				if (result.size() > 0) {
 					for (int i = 0; i < result.size(); i++) {
 						subjectListBox.addItem(result.get(i));
@@ -227,19 +290,21 @@ public class Session extends Composite implements EntryPoint{
 			}});
 	}
 
-	
+
 	@Override
 	public void onModuleLoad() {
 
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
 
+		setUpSessionFlexTable();
 		setUpSubjectListBox();
-
 		setUpClassListBox();
-
+		
+		buttonSaveSession.setEnabled(false);
+		
 		activityTable.insertRow(0);
-		activityTable.setHTML(0, 0, "<h6>No activities yet...</h6>");
+		activityTable.setHTML(0, 0, "<p>No session activities</p>");
 
 	}
 

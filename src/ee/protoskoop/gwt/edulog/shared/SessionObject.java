@@ -9,6 +9,7 @@ public class SessionObject implements Serializable {
 	
 	/* All time items are defined and handled as <OffsetDateTime> objects initiated as Long <Date> */
 	
+	private Long id;
 	private String teacher;
 	private String studyGroup;
 	private Long sessionHappeningDate;
@@ -23,6 +24,12 @@ public class SessionObject implements Serializable {
 	private boolean feedback;
 	private String startCode;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getTeacher() {
 		return teacher;
 	}

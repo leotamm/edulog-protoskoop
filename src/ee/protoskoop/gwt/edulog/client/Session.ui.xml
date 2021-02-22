@@ -11,13 +11,23 @@
 			<hr></hr>
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-				Teacher's
-				<mark>session planning</mark>
-				page
+				My
+				<mark>saved</mark>
+				sessions
 			</p>
-
 			<form>
 				<div class="form-group">
+
+					<g:FlexTable ui:field="sessionTable"
+						styleName="form-control"></g:FlexTable>
+					<br></br>
+					<hr></hr>
+					<p
+						style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
+						Create
+						<mark>new</mark>
+						session
+					</p>
 					<label>Pick a course</label>
 					<g:ListBox ui:field="classListBox"
 						styleName="form-control"></g:ListBox>
@@ -27,19 +37,19 @@
 					<label>Pick a subject</label>
 					<g:ListBox ui:field="subjectListBox"
 						styleName="form-control"></g:ListBox>
-					<label>Lesson's topic</label>
+					<label>Subjects' topic</label>
 					<g:TextBox ui:field="topicTextBox"
 						styleName="form-control"></g:TextBox>
-					<label>What do I want to learn from this session?</label>
+					<label>Session's goal</label>
 					<g:TextBox ui:field="goalTextBox"
 						styleName="form-control"></g:TextBox>
 					<br></br>
 					<g:FlexTable ui:field="activityTable"
 						styleName="form-control"></g:FlexTable>
-					<label>Activity</label>
+					<label>New activity</label>
 					<g:TextBox ui:field="activityTextBox"
 						styleName="form-control"></g:TextBox>
-					<label>Duration</label>
+					<label>Activity's duration</label>
 					<g:ListBox ui:field="durationListBox"
 						styleName="form-control" visibleItemCount="0">
 						<g:item value="300000">5 minutes</g:item>
@@ -52,19 +62,16 @@
 						<g:item value="2400000">40 minutes</g:item>
 					</g:ListBox>
 				</div>
-
 			</form>
-
 			<br></br>
 			<g:Button ui:field="buttonAddActivity"
-				styleName="form-control">Add activity</g:Button>
+				styleName="form-control">Add activity to session</g:Button>
 			<br></br>
 			<g:Button ui:field="buttonSaveSession"
-				styleName="form-control">Save session</g:Button>
+				styleName="form-control">Save my session</g:Button>
 			<br></br>
 			<g:Button ui:field="buttonBackToMainPage"
 				styleName="form-control">Back</g:Button>
-
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

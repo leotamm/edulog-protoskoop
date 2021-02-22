@@ -15,12 +15,10 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import ee.protoskoop.gwt.edulog.server.DAO;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 public class Course<HoverEvent> extends Composite implements EntryPoint {
@@ -37,7 +35,6 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 	FlexTable studyGroupTable;
 	@UiField
 	TextBox studyGroupTextBox;
-	//ListBox studyGroupListBox;
 	@UiField
 	Button buttonAddStudyGroup;
 	@UiField
@@ -53,18 +50,20 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 
 	@UiHandler("buttonAddStudyGroup")
 	void onClick(ClickEvent eventAddClass) {
+		
+		selectedClass1 = studyGroupTextBox.getText();
 
-		if (classAddingCounter == 0) {
+		if (classAddingCounter == 0 && selectedClass1 != "") {
 			studyGroupTable.clear();
 			studyGroupTable.removeAllRows();
-			selectedClass1 = studyGroupTextBox.getText();
+			
 			selectedClassList.add(selectedClass1);
 			studyGroupTable.insertRow(classAddingCounter);
 			studyGroupTable.setHTML(classAddingCounter, 0, "<h6>" + selectedClass1 + "</h6>");
 			classAddingCounter ++;
 			studyGroupTextBox.setText("");
+			buttonSaveStudyGroup.setEnabled(true);
 		} else {
-			selectedClass1 = studyGroupTextBox.getText();
 
 			if (selectedClass1 != "") {
 
@@ -89,34 +88,39 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 	@UiHandler("buttonSaveStudyGroup")
 	void onClick1(ClickEvent eventSaveStudyGroup) {
 
-		String sessionTeacher = Cookies.getCookie("sessionUser");
+		if (!selectedClassList.isEmpty()) {
 
-		databaseService.addStudyGroupsToDatabase(sessionTeacher, selectedClassList, new AsyncCallback<Boolean>() {
+			String sessionTeacher = Cookies.getCookie("sessionUser");
 
-			@Override
-			public void onSuccess(Boolean result) {
-				// TODO log with logger
-				studyGroupTable.clear();
-				studyGroupTable.removeAllRows();
-				studyGroupTable.insertRow(0);
-				studyGroupTable.setHTML(classAddingCounter, 0, "<h6>Info: Saving classes succeeded</h6>");
+			databaseService.addStudyGroupsToDatabase(sessionTeacher, selectedClassList, new AsyncCallback<Boolean>() {
 
-			}
+				@Override
+				public void onSuccess(Boolean result) {
+					// TODO log with logger
+					studyGroupTable.clear();
+					studyGroupTable.removeAllRows();
+					studyGroupTable.insertRow(0);
+					studyGroupTable.setHTML(0, 0, "<h6>Info: Your new classes are saved</h6>");
+					
+					buttonSaveStudyGroup.setEnabled(false);
+				}
 
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO log with logger
-				studyGroupTable.clear();
-				studyGroupTable.removeAllRows();
-				studyGroupTable.insertRow(0);
-				studyGroupTable.setHTML(classAddingCounter, 0, "<h6>Info: Saving classes failed</h6>");
-			}
-		});
-		
-		selectedClassList.clear();
-		classAddingCounter = 0;
-		selectedClass1 = "";
-		sessionTeacher= "";
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO log with logger
+					studyGroupTable.clear();
+					studyGroupTable.removeAllRows();
+					studyGroupTable.insertRow(0);
+					studyGroupTable.setHTML(classAddingCounter, 0, "<h6>Info: Saving classes failed</h6>");
+				}
+			});
+
+			selectedClassList.clear();
+			classAddingCounter = 0;
+			selectedClass1 = "";
+			sessionTeacher= "";
+
+		} else { Window.alert("Please add class(es) first"); }
 
 	}
 
@@ -147,7 +151,7 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 					studyGroupTable.setHTML(0, 1, "<p>Please select a class below, and push the "
 							+ "<kbd>Add class</kbd> button. Repeat for another class. "
 							+ "Make sure to press <kbd>Save my classes</kbd> button, "
-							+ "once you have selected all your classes.</p>");
+							+ "once your class list is complete.</p>");
 				}
 			}});
 	}
@@ -159,6 +163,8 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 		RootPanel.get().add(this);
 
 		setUpStudyGroupTable();
+		
+		buttonSaveStudyGroup.setEnabled(false);
 
 	}
 

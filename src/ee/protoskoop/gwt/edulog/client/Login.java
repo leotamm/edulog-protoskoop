@@ -35,27 +35,28 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 	TextBox textLoginPass;
 	@UiField
 	Button buttonLogin;
+	@UiField
+	Button buttonForgotPassword;
+	@UiField
+	Button buttonNewUser;
+
 
 	User user;
+	User user1;
 
 	@UiHandler("buttonLogin")
 	void onClick(ClickEvent e) {
 
 		String loginEmail = textLoginEmail.getValue();
 		String loginPass = textLoginPass.getValue();
-
-		// TODO: check if form fields were filled -> alert, reload page			COMPLETED
-		// TODO: check credentials -> alert, reload page						COMPLETED
-		// TODO: redirect to main page											IN PROGRESS			
-		// TODO: write unit tests												NOT STARTED
-
-		if(loginEmail !="" && loginPass !="") {
+		
+		// check if name and password provided
+		if (loginEmail !="" && loginPass !="") {
 			user = new User();
 			user.setEmail(loginEmail);
 			user.setPassword(loginPass);
 
-			// checks if correct password provided
-			// returns true if all correct
+			// check if valid password 
 			databaseService.checkUserCredentials(user, new AsyncCallback<String>() {
 
 				@Override
@@ -84,6 +85,55 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 		}
 
 	}
+
+	@UiHandler("buttonForgotPassword")
+	void onClick1(ClickEvent e) {
+
+		String loginEmail1 = textLoginEmail.getValue();
+		final User user1 = new User();
+		user1.setEmail(loginEmail1);
+
+		// check if email provided
+		if (loginEmail1 != "") {
+
+			// continue if user exists
+			databaseService.doesUserExist(user1, new AsyncCallback <Boolean> () {
+
+				@Override
+				public void onFailure(Throwable caught) { Window.alert("Checking user failed"); }
+				@Override
+				public void onSuccess(Boolean userExists) { 
+
+					if (userExists) {
+						
+						// generate random password, update this in database and send this to user email
+						databaseService.forgotPassword(user1, new AsyncCallback <Boolean> () {
+
+							@Override
+							public void onFailure(Throwable caught) { Window.alert("Creating new password failed"); }
+							@Override
+							public void onSuccess(Boolean passwordChanged) { 
+
+								if (passwordChanged) { Window.alert("New password was sent to your email"); }
+
+							}
+						});
+
+					} else { Window.alert("Unknown user"); }
+
+				}
+			});
+
+		} else { Window.alert("Please enter your email!"); }
+	}
+	
+	@UiHandler("buttonNewUser")
+	void onClick2(ClickEvent e) {
+		
+		// redirect to new user register page
+		Window.Location.assign("Register.html");
+	}
+
 
 	@Override
 	public void onModuleLoad() {

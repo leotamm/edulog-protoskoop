@@ -15,7 +15,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -33,7 +32,6 @@ public class Subject extends Composite implements EntryPoint {
 	@UiField
 	FlexTable subjectTable;
 	@UiField 
-	//	ListBox subjectListBox;
 	TextBox subjectTextBox;
 	@UiField
 	Button buttonAddSubject;
@@ -50,18 +48,20 @@ public class Subject extends Composite implements EntryPoint {
 
 	@UiHandler("buttonAddSubject")
 	void onClick(ClickEvent eventAddSubject) {
+		
+		selectedSubject = subjectTextBox.getText();
 
-		if (subjectAddingCounter == 0) {
+		if (subjectAddingCounter == 0 && selectedSubject != "") {
 			subjectTable.clear();
 			subjectTable.removeAllRows();
-			selectedSubject = subjectTextBox.getText();
+			
 			selectedSubjectList.add(selectedSubject);
 			subjectTable.insertRow(subjectAddingCounter);
 			subjectTable.setHTML(subjectAddingCounter, 0, "<h6>" + selectedSubject + "</h6>");
 			subjectAddingCounter ++;
 			subjectTextBox.setText("");
+			buttonSaveSubject.setEnabled(true);
 		} else {
-			selectedSubject = subjectTextBox.getText();
 
 			if (selectedSubject != "") {
 
@@ -82,38 +82,39 @@ public class Subject extends Composite implements EntryPoint {
 			} else { Window.alert("Please add a subject first"); }
 		}	
 	}
-	
+
 	@UiHandler("buttonSaveSubject")
 	void onClick1(ClickEvent eventSaveStudyGroup) {
 
-		String sessionTeacher = Cookies.getCookie("sessionUser");
+			String sessionTeacher = Cookies.getCookie("sessionUser");
 
-		databaseService.addSubjectsToDatabase(sessionTeacher, selectedSubjectList, new AsyncCallback<Boolean>() {
+			databaseService.addSubjectsToDatabase(sessionTeacher, selectedSubjectList, new AsyncCallback<Boolean>() {
 
-			@Override
-			public void onSuccess(Boolean result) {
-				// TODO log with logger
-				subjectTable.clear();
-				subjectTable.removeAllRows();
-				subjectTable.insertRow(0);
-				subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Saving subjects succeeded</h6>");
+				@Override
+				public void onSuccess(Boolean result) {
+					// TODO log with logger
+					subjectTable.clear();
+					subjectTable.removeAllRows();
+					subjectTable.insertRow(0);
+					subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Your new subjects are saved</h6>");
+					buttonSaveSubject.setEnabled(false);
+					
+				}
 
-			}
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO log with logger
+					subjectTable.clear();
+					subjectTable.removeAllRows();
+					subjectTable.insertRow(0);
+					subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Saving subjects failed</h6>");
+				}
+			});
 
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO log with logger
-				subjectTable.clear();
-				subjectTable.removeAllRows();
-				subjectTable.insertRow(0);
-				subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Saving subjects failed</h6>");
-			}
-		});
-
-		selectedSubjectList.clear();
-		subjectAddingCounter = 0;
-		selectedSubject = "";
-		sessionTeacher= "";
+			selectedSubjectList.clear();
+			subjectAddingCounter = 0;
+			selectedSubject = "";
+			sessionTeacher= "";
 
 	}
 
@@ -144,7 +145,7 @@ public class Subject extends Composite implements EntryPoint {
 					subjectTable.setHTML(0, 1, "<p>Please select a subject below, and push the "
 							+ "<kbd>Add subject</kbd> button. Repeat for another subject. "
 							+ "Make sure to press <kbd>Save my subjects</kbd> button, "
-							+ "once you have selected all your subjects.</p>");
+							+ "once youre subjects' list is complete.</p>");
 				}
 			}});
 
@@ -158,6 +159,8 @@ public class Subject extends Composite implements EntryPoint {
 		RootPanel.get().add(this);
 
 		setUpSubjectTable();
+		
+		buttonSaveSubject.setEnabled(false);
 
 	}
 

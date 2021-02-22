@@ -1,25 +1,14 @@
 package ee.protoskoop.gwt.edulog.server;
 
 import ee.protoskoop.gwt.edulog.client.DatabaseService;
-import ee.protoskoop.gwt.edulog.client.GreetingService;
+
 import ee.protoskoop.gwt.edulog.shared.FieldVerifier;
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.Base64Utils;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.util.tools.shared.Md5Utils;
@@ -34,11 +23,12 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	/**
 	 * Connect to the PostgreSQL database and return a Connection object
 	 */
-	private final String url = "jdbc:postgresql://localhost/eduLogDatabase";
-	private final String user = "postgres";
-	private final String password = "docker";
-
 	
+	// this connection is deprecated with the use of settings.ini 
+	// private final String url = "jdbc:postgresql://localhost/eduLogDatabase";
+	// private final String user = "postgres";
+	//private final String password = "docker";
+
 	public DatabaseServiceImpl () {		
 		DAO.getInstance();
 	}
@@ -59,54 +49,86 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		String hashedPassword = hashPassword(user);
 		return DAO.getInstance().checkUserCredentials(user, hashedPassword);
 	}
+	
+	@Override
+	public boolean changePassword(User user) {
+		return DAO.getInstance().changePassword(user);
+	}
+
+	public boolean forgotPassword(User userIn) {
+		
+		boolean result = false;
+		boolean passwordChangedInDatabase = false;
+		boolean passwordSentToEmail = false;
+		
+		// generate new random 8-digit password string
+		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+		StringBuilder password = new StringBuilder();
+		
+		while (password.length() < 8) {
+			int randomIndex = (int) (Math.random() * SALTCHARS.length()) + 1 ;
+			password.append(SALTCHARS.charAt(randomIndex));
+		}
+		
+		String newStringPassword = password.toString();
+		userIn.setPassword(newStringPassword);
+		
+		// call a method for sending user an email with new string password
+		passwordSentToEmail = (SendEmailTLS.sendNewPassword(userIn));
+		
+		String newHashPassword = hashPassword(userIn);
+		userIn.setPassword(newHashPassword);
+		
+		// call a method for updating hashed password in database -> changePassword(User user)
+		passwordChangedInDatabase = changePassword(userIn);
+		
+		if (passwordSentToEmail & passwordChangedInDatabase) { result = true; }
+				
+		return result;
+	}
 
 	@Override
 	public List<String> getUserClasses(User user) {
 		return DAO.getInstance().getUserClasses(user);
 	}
-	
+
 	@Override
 	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> selectedClassList) {
 		return DAO.getInstance().addStudyGroupsToDatabase(sessionTeacher, selectedClassList);
 	}
-	
+
 	@Override
 	public List<String> getUserSubjects(User user) {
 		return DAO.getInstance().getUserSubjects(user);
 	}
-	
+
 	@Override
 	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList) {
 		return DAO.getInstance().addSubjectsToDatabase(sessionTeacher, selectedSubjectList);
 	}
-	
+
 	@Override
 	public boolean addSessionToDatabase(SessionObject testSession) {
 		return DAO.getInstance().addSessionToDatabase(testSession);
 	}
 
-	/*	public Connection connect() {
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection(url, user, password);
-			System.out.println("Connected to the PostgreSQL server successfully.");
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return conn;
+	@Override
+	public List<SessionObject> getSessionFromDatabase(User testTeacher) {
+		return DAO.getInstance().getSessionFromDatabase(testTeacher);
 	}
-	 */
 
 	public String hashPassword(User user) {
 
 		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 		StringBuilder salt = new StringBuilder();
 
-		while (salt.length() < 10) { // length of the random string.
+		// generate hash form user email + password + 10-digit salt using Md5
+		while (salt.length() < 10) {
+			// TODO fix random which always returns second char or 'B'
 			int randomIndex = (int) Math.random() * SALTCHARS.length() + 1 ;
 			salt.append(SALTCHARS.charAt(randomIndex));
 		}
-		
+
 		String saltStr = salt.toString();
 		String s = user.getEmail() + user.getPassword() + saltStr;
 		String hashedPassword =  Base64Utils.toBase64(Md5Utils.getMd5Digest(s.getBytes()));

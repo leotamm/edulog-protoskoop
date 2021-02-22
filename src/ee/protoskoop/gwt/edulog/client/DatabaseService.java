@@ -14,7 +14,7 @@ import ee.protoskoop.gwt.edulog.shared.User;
  */
 @RemoteServiceRelativePath("database") // "greet" asemel uus syntaks, peab kattuma web.xmliga!
 public interface DatabaseService extends RemoteService {
-	
+
 	String greetServer(String name) throws IllegalArgumentException;
 
 	boolean doesUserExist(User user);
@@ -23,14 +23,20 @@ public interface DatabaseService extends RemoteService {
 
 	String checkUserCredentials(User user);
 	
+	public boolean changePassword(User user);
+
 	List<String> getUserClasses(User user);
-	
+
 	boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> selectedClassList);
-	
+
 	List<String> getUserSubjects(User user);
-	
+
 	boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList);
-	
+
 	boolean addSessionToDatabase(SessionObject testSession);
+
+	List<SessionObject> getSessionFromDatabase(User user);
+
+	boolean forgotPassword(User user);
 
 }

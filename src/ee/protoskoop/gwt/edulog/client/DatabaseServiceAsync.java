@@ -16,7 +16,7 @@ public interface DatabaseServiceAsync {
 	void greetServer(String input, AsyncCallback<String> callback) 
 			throws IllegalArgumentException;
 
-	void doesUserExist(User user, AsyncCallback<Boolean> callback)
+	void doesUserExist(User user, AsyncCallback<Boolean> asyncCallback)
 			throws IllegalArgumentException;
 
 	void createNewUser(User user, AsyncCallback<String> callback) 
@@ -25,9 +25,12 @@ public interface DatabaseServiceAsync {
 	void checkUserCredentials(User user, AsyncCallback<String> callback) 
 			throws IllegalArgumentException;
 	
+	void changePassword(User user, AsyncCallback<Boolean> asyncCallback)
+			throws IllegalArgumentException;
+
 	void getUserClasses(User user, AsyncCallback<List<String>> callback)
 			throws IllegalArgumentException;
-	
+
 	void addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> selectedClassList, AsyncCallback<Boolean> callback)
 			throws IllegalArgumentException;
 
@@ -36,8 +39,15 @@ public interface DatabaseServiceAsync {
 
 	void addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList,
 			AsyncCallback<Boolean> asyncCallback)
-	throws IllegalArgumentException;
-	
+					throws IllegalArgumentException;
+
 	void addSessionToDatabase(SessionObject testSession, AsyncCallback<Boolean> asyncCallback)
-	throws IllegalArgumentException;
+			throws IllegalArgumentException;
+
+	void getSessionFromDatabase(User testTeacher, AsyncCallback<List<SessionObject>> asyncCallback)
+			throws IllegalArgumentException;
+
+	void forgotPassword(User user, AsyncCallback<Boolean> asyncCallback)
+			throws IllegalArgumentException;
+
 }

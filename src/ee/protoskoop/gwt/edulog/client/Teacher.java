@@ -27,8 +27,7 @@ public class Teacher extends Composite implements EntryPoint{
 	private static TeacherUiBinder uiBinder = GWT.create(TeacherUiBinder.class);
 	private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
 
-	interface TeacherUiBinder extends UiBinder<Widget, Teacher> {
-	}
+	interface TeacherUiBinder extends UiBinder<Widget, Teacher> { }
 
 
 	@UiField
@@ -38,6 +37,8 @@ public class Teacher extends Composite implements EntryPoint{
 	@UiField
 	Button buttonSessions;
 	@UiField
+	Button buttonStartSession;
+	@UiField
 	Button buttonLogout;
 
 
@@ -45,21 +46,18 @@ public class Teacher extends Composite implements EntryPoint{
 	void onClick1(ClickEvent eventRedirectToCourses) {
 
 		Window.Location.assign("Course.html");
-
 	}
 
 	@UiHandler("buttonSubjects")
 	void onClick2(ClickEvent eventRedirectToSubjects) {
 
 		Window.Location.assign("Subject.html");
-
 	}
 
 	@UiHandler("buttonSessions")
 	void onClick3(ClickEvent eventRedirectToSessions) {
 
 		Window.Location.assign("Session.html");
-
 	}
 
 	@UiHandler("buttonLogout")
@@ -67,7 +65,6 @@ public class Teacher extends Composite implements EntryPoint{
 
 		Cookies.removeCookie("sessionUser");
 		Window.Location.assign("Login.html");
-
 	}
 
 
@@ -76,7 +73,8 @@ public class Teacher extends Composite implements EntryPoint{
 
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
-
+		
+		buttonStartSession.setEnabled(false);
 	}
 
 }

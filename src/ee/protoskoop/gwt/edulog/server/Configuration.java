@@ -14,6 +14,8 @@ public class Configuration {
 	public static String DB_USER;
 	public static String DB_PASS;
 	public static String LOG4J_PATH;
+	public static String EMAIL_USER;
+	public static String EMAIL_PASS;
 
 	public static boolean loadConfiguration(String iniFile) {
 		try {
@@ -26,6 +28,9 @@ public class Configuration {
 			DB_PASS = getOrDefault(section.get("DATABASE_PASSWORD"), "docker");
 			section = ini.get("log");
 			LOG4J_PATH = getOrDefault(section.get("LOG4J_PATH"), "log4j.conf");
+			section = ini.get("emailService");
+			EMAIL_USER = getOrDefault(section.get("EMAIL_USER"), "");
+			EMAIL_PASS = getOrDefault(section.get("EMAIL_PASS"), "");
 
 			return true;
 		}

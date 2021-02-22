@@ -14,7 +14,7 @@
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
 				<mark>Login page</mark>
-				for teachers (and some css testing)
+				for teachers
 			</p>
 
 			<div class="container" style="padding:0">
@@ -32,6 +32,10 @@
 				</form>
 				<br></br>
 				<g:Button ui:field="buttonLogin" styleName="form-control">Login</g:Button>
+				<br></br>
+				<g:Button ui:field="buttonForgotPassword" styleName="form-control">Forgot password</g:Button>
+				<br></br>
+				<g:Button ui:field="buttonNewUser" styleName="form-control">New user</g:Button>
 			</div>
 		</div>
 	</g:HTMLPanel>

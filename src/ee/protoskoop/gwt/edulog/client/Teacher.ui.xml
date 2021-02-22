@@ -24,6 +24,9 @@
 					<g:Button ui:field="buttonSessions"
 						styleName="form-control">Sessions</g:Button>
 					<br></br>
+					<g:Button ui:field="buttonStartSession"
+						styleName="form-control">Start session</g:Button>
+					<br></br>
 					<g:Button ui:field="buttonLogout" styleName="form-control">Logout
 					</g:Button>
 				</div>
