@@ -16,13 +16,19 @@
 			</p>
 			<form>
 				<div class="form-group">
-				<!-- 	<label>Join the class</label>  -->
+					<!-- <label>Join the class</label> -->
 					<g:TextBox ui:field="joinTheClassTextBox"
 						styleName="form-control"></g:TextBox>
 				</div>
 				<br></br>
 				<g:Button ui:field="buttonJoinTheClass"
 					styleName="form-control">Join</g:Button>
+				<br></br>
+				<hr></hr>
+				<p
+					style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
+					Rate the activity
+				</p>
 			</form>
 		</div>
 	</g:HTMLPanel>
