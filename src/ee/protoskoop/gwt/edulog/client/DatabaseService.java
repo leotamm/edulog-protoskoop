@@ -38,5 +38,11 @@ public interface DatabaseService extends RemoteService {
 	List<SessionObject> getSessionFromDatabase(User user);
 
 	boolean forgotPassword(User user);
+	
+	String getRandomStartCode();
+
+	ArrayList<String> getExistingStartCodes();
+
+	boolean loadWordToDatabase(Integer integer, String word);
 
 }

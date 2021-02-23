@@ -106,9 +106,9 @@ public class DAO {
 	}
 
 	public boolean changePassword(User user) {
-		
+
 		boolean reply = false;
-		
+
 		try {
 			PreparedStatement updatePassword = pool.getConnection().prepareStatement(
 					"UPDATE el_user SET password = ? WHERE email = ?", 
@@ -117,14 +117,14 @@ public class DAO {
 			updatePassword.setString(1, user.getPassword());
 			updatePassword.setString(2, user.getEmail());
 			updatePassword.executeUpdate();
-			
+
 			reply = true;
-			
+
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
-		
+
 		return reply;
 	}
-	
+
 	public boolean doesUserExist(User user) {
 
 		boolean reply = false;
@@ -508,6 +508,8 @@ public class DAO {
 
 	public boolean addSessionToDatabase(SessionObject testSession) {
 
+		// string küsida random sõna start_code'iks ja lisada see resultset'i
+
 		boolean result = false;
 
 		logger.debug("Session data transfer to database initiated.");
@@ -571,69 +573,69 @@ public class DAO {
 				logger.debug("Empty resultset. Session data reading from database failed.");
 
 			} else {
-				
+
 				int resultListCounter = 0;
-				
+
 				rs.beforeFirst();
-				
+
 				while(rs.next()) {
 					ArrayList <String> temporaryActivityList = new ArrayList<String>();
 					ArrayList <Long> temporaryDurationList = new ArrayList<Long>();
 
 					SessionObject returnSession = new SessionObject();
-					
+
 					Long sessionIdFromDatabase = rs.getLong("id");
 					returnSession.setId(sessionIdFromDatabase);
-					
+
 					String sessionTeacherFromDatabase = rs.getString("teacher");
 					returnSession.setTeacher(sessionTeacherFromDatabase);
-					
+
 					String studyGroupFromDatabase = rs.getString("study_group");
 					returnSession.setStudyGroup(studyGroupFromDatabase);
-					
+
 					Long dateFromDataBase = rs.getLong("date");
 					returnSession.setSessionHappeningTime(dateFromDataBase);
-					
+
 					String subjectFromDatabase = rs.getString("subject");
 					returnSession.setSubject(subjectFromDatabase);
-					
+
 					String topicFromDatabase = rs.getString("topic");
 					returnSession.setTopic(topicFromDatabase);
-					
+
 					String goalFromDatabase = rs.getString("goal");
 					returnSession.setGoal(goalFromDatabase);
-					
+
 					Array actvitiesFromDatabase = rs.getArray("activity");
 					String[] str_activities = (String[]) actvitiesFromDatabase.getArray();
 					for (int i = 0; i < str_activities.length; i++) {
 						temporaryActivityList.add(str_activities[i]);
 					}
 					returnSession.setActivity(temporaryActivityList);
-					
+
 					Array durationFromDatabase = rs.getArray("duration");
 					Long[] long_durations = (Long[]) durationFromDatabase.getArray();
 					for (int i = 0; i < long_durations.length; i++) {
 						temporaryDurationList.add(long_durations[i]);
 					}
 					returnSession.setDuration(temporaryDurationList);
-					
+
 					Long createdFromDatabase = rs.getLong("created");
 					returnSession.setSessionCreatingTime(createdFromDatabase);
-					
+
 					Long plannedFromDatabase = rs.getLong("planned");
 					returnSession.setSessionPlanningDate(plannedFromDatabase);
-					
+
 					Long finishedFromDatabase = rs.getLong("finished");
 					returnSession.setSessionFinishingDate(finishedFromDatabase);
-					
+
 					boolean feedbackFromDatabase = rs.getBoolean("feedback");
 					returnSession.setFeedback(feedbackFromDatabase);
-					
-					String startcodeFromDatabase= rs.getString("start_code");
+
+					String startcodeFromDatabase = rs.getString("start_code");
 					returnSession.setStartCode(startcodeFromDatabase);	
 
 					returnSessionList.add(returnSession);
-					
+
 					resultListCounter ++;
 
 				}
@@ -644,9 +646,91 @@ public class DAO {
 			}
 
 		} catch (SQLException ex2) { logger.error(ex2.getMessage()); }
-		
+
 		return returnSessionList;
 	}
 
 
+	public ArrayList<String> getExistingStartCodes() {
+
+		logger.debug("Reading existing start codes started");
+
+		ArrayList<String> storedStartcodes = new ArrayList<String>();
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT start_code FROM el_session", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (!rs.next()) {
+				System.out.println("Empty resultset.");
+				logger.debug("Reading exisiting start codes failed");
+
+			} else {
+				rs.beforeFirst();
+				while(rs.next()) { 
+					storedStartcodes.add(rs.getString("start_code")); 
+				}
+
+				logger.debug("Reading exisiting start codes success");
+			}
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+
+		return storedStartcodes;
+
+	}
+
+	public boolean loadWordToDatabase(Integer integer, String word) {
+
+		boolean result = false;
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"INSERT INTO el_word (id, word) values (?,?)",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setLong(1, integer);
+			pstmt.setString(2, word);
+			pstmt.executeUpdate();
+
+			result = true;
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+
+		return result;
+	}
+
+	public String getRandomWordFromDatabase(Integer integer) {
+
+		logger.debug("Reading random start code started");
+
+		String startCode = "";
+
+		try {
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT word FROM el_word WHERE id = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setLong(1, integer);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (!rs.next()) {
+				System.out.println("Empty resultset.");
+				logger.debug("Reading random start code failed");
+
+			} else {
+				//rs.beforeFirst();
+				startCode = rs.getString(1);		
+			}
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); }
+
+		return startCode;
+	}
 }
+
+

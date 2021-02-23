@@ -8,7 +8,6 @@ import javax.mail.internet.MimeMessage;
 
 import ee.protoskoop.gwt.edulog.shared.User;
 
-
 public class SendEmailTLS {
 
 	public static boolean sendNewPassword(User user) {
@@ -38,7 +37,8 @@ public class SendEmailTLS {
 					);
 			message.setSubject("Resetting Edulog password");
 			message.setText("Dear Edulog user,"
-					+ "\n\n your new password is: " + user.getPassword());
+					+ "\n\n your new password is: " + user.getPassword() + 
+					"\n\n Try logging in again!");
 
 			Transport.send(message);
 

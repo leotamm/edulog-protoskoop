@@ -6,9 +6,13 @@ import ee.protoskoop.gwt.edulog.shared.FieldVerifier;
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.server.Base64Utils;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.util.tools.shared.Md5Utils;
@@ -23,11 +27,6 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	/**
 	 * Connect to the PostgreSQL database and return a Connection object
 	 */
-	
-	// this connection is deprecated with the use of settings.ini 
-	// private final String url = "jdbc:postgresql://localhost/eduLogDatabase";
-	// private final String user = "postgres";
-	//private final String password = "docker";
 
 	public DatabaseServiceImpl () {		
 		DAO.getInstance();
@@ -49,41 +48,41 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		String hashedPassword = hashPassword(user);
 		return DAO.getInstance().checkUserCredentials(user, hashedPassword);
 	}
-	
+
 	@Override
 	public boolean changePassword(User user) {
 		return DAO.getInstance().changePassword(user);
 	}
 
 	public boolean forgotPassword(User userIn) {
-		
+
 		boolean result = false;
 		boolean passwordChangedInDatabase = false;
 		boolean passwordSentToEmail = false;
-		
+
 		// generate new random 8-digit password string
 		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 		StringBuilder password = new StringBuilder();
-		
+
 		while (password.length() < 8) {
 			int randomIndex = (int) (Math.random() * SALTCHARS.length()) + 1 ;
 			password.append(SALTCHARS.charAt(randomIndex));
 		}
-		
+
 		String newStringPassword = password.toString();
 		userIn.setPassword(newStringPassword);
-		
+
 		// call a method for sending user an email with new string password
 		passwordSentToEmail = (SendEmailTLS.sendNewPassword(userIn));
-		
+
 		String newHashPassword = hashPassword(userIn);
 		userIn.setPassword(newHashPassword);
-		
+
 		// call a method for updating hashed password in database -> changePassword(User user)
 		passwordChangedInDatabase = changePassword(userIn);
-		
+
 		if (passwordSentToEmail & passwordChangedInDatabase) { result = true; }
-				
+
 		return result;
 	}
 
@@ -135,6 +134,79 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 
 		return hashedPassword;
 	}
+
+
+	@Override
+	public ArrayList<String> getExistingStartCodes() {
+		return DAO.getInstance().getExistingStartCodes();
+	}
+
+	public String getRandomStartCode() {
+
+		String startCode = "";
+		
+/*		ArrayList<String> storedStartcodes = new ArrayList<String>();
+
+		// read existing start codes from el_session
+		storedStartcodes = getExistingStartCodes();
+
+		boolean codeAlreadyPresent = false;
+
+		while (codeAlreadyPresent) {
+*/
+			// read a word from el_word database by random integer key
+
+			int randomIndex = (int) (Math.random() * 17133);
+			startCode = DAO.getInstance().getRandomWordFromDatabase(randomIndex);
+/*
+			// check if new code not in use		
+			for (String code : storedStartcodes) {
+
+				GWT.log("Checking random code with database codes");
+
+				if (!startCode.equals(code)) { 
+
+					codeAlreadyPresent = true; GWT.log("Confirmed code: " + String.valueOf(startCode)); 
+
+				}
+			}
+
+		} storedStartcodes.clear(); 
+*/		
+		return startCode;
+	}
+
+
+	@Override
+	public boolean loadWordToDatabase(Integer integer, String word) {
+
+		Boolean result = false;
+		GWT.log("Starting loading words");
+
+		try {
+
+			String wordFromFile = "";
+			File file = new File("C:\\Users\\Leo\\eclipse-workspace\\EduLog\\english_words.txt");
+			Scanner scanner = new Scanner(file);
+			Integer x = 17133;
+
+			//for (int i = 1; i<5001; i++) {
+			while (scanner.hasNext()) {
+				wordFromFile = scanner.nextLine().toUpperCase();
+				GWT.log("Reading word: " + wordFromFile);
+				DAO.getInstance().loadWordToDatabase(x, wordFromFile);
+				x++;
+			}
+
+			scanner.close();
+
+			result = true;
+
+		} catch (FileNotFoundException e) { e.printStackTrace(); GWT.log("File not found");}
+
+		return result;
+	}
+
 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 

@@ -1,8 +1,5 @@
 package ee.protoskoop.gwt.edulog.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -14,13 +11,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import ee.protoskoop.gwt.edulog.server.DAO;
-import ee.protoskoop.gwt.edulog.shared.User;
 
 public class Teacher extends Composite implements EntryPoint{
 
@@ -40,6 +33,8 @@ public class Teacher extends Composite implements EntryPoint{
 	Button buttonStartSession;
 	@UiField
 	Button buttonLogout;
+	@UiField
+	Button buttonLoadWords;
 
 
 	@UiHandler("buttonCourses")
@@ -67,14 +62,39 @@ public class Teacher extends Composite implements EntryPoint{
 		Window.Location.assign("Login.html");
 	}
 
+	@UiHandler("buttonLoadWords")
+	void onClick5(ClickEvent eventLoadWords) {
+
+		// call the method
+		Window.alert("Starting load...");
+		String junk = "junk";
+		Integer x = 1;
+
+		databaseService.loadWordToDatabase(x, junk, new AsyncCallback<Boolean>() {
+
+			@Override
+			public void onFailure(Throwable caught) { Window.alert("Load word to database failed!"); }
+
+			@Override
+			public void onSuccess(Boolean result) { Window.alert("Load word to database successful!"); }
+
+		});
+	}
+
 
 	@Override
 	public void onModuleLoad() {
 
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
-		
+
 		buttonStartSession.setEnabled(false);
+		buttonLoadWords.setEnabled(false);	
+
+		String user = Cookies.getCookie("sessionUser");
+		if (user.equals("leo.tamm@gmail.com")) {
+			buttonLoadWords.setEnabled(true);
+		}
 	}
 
 }

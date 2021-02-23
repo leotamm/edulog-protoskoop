@@ -49,5 +49,14 @@ public interface DatabaseServiceAsync {
 
 	void forgotPassword(User user, AsyncCallback<Boolean> asyncCallback)
 			throws IllegalArgumentException;
-
+	
+	void getExistingStartCodes(AsyncCallback <ArrayList<String>> asyncCallback)
+			throws IllegalArgumentException;
+	
+	void getRandomStartCode(AsyncCallback<String> asyncCallback)
+			throws IllegalArgumentException;
+		
+	void loadWordToDatabase(Integer integer, String word, AsyncCallback<Boolean> asyncCallback)
+			throws IllegalArgumentException;
+	
 }

@@ -68,6 +68,7 @@ public class Login extends Composite implements EntryPoint { // siin oli varem H
 					if (result.equals("ok")) {
 						Cookies.setCookie("sessionUser", user.getEmail());
 						Window.Location.assign("Teacher.html");
+						
 
 					} else {
 						Window.alert("Login failed");
