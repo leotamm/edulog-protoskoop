@@ -30,8 +30,7 @@
 					<g:Button ui:field="buttonLogout" styleName="form-control">Logout
 					</g:Button>
 					<br></br>
-					<g:Button ui:field="buttonLoadWords" styleName="form-control">Set up words database
-					</g:Button>
+				<!-- <g:Button ui:field="buttonLoadWords" styleName="form-control">Set up words database</g:Button>  -->	
 				</div>
 			</form>
 
