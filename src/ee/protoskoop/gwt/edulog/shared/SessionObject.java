@@ -21,7 +21,7 @@ public class SessionObject implements Serializable {
 	private Long sessionCreatingTime;
 	private Long sessionPlanningDate;
 	private Long sessionFinishingDate;
-	private boolean feedback;
+	private ArrayList <Boolean> feedback;
 	private String startCode;
 	
 	public Long getId() {
@@ -96,10 +96,10 @@ public class SessionObject implements Serializable {
 	public void setSessionFinishingDate(Long sessionFinishingDate) {
 		this.sessionFinishingDate = sessionFinishingDate;
 	}
-	public boolean isFeedback() {
+	public ArrayList <Boolean> isFeedback() {
 		return feedback;
 	}
-	public void setFeedback(boolean feedback) {
+	public void setFeedback(ArrayList <Boolean> feedback) {
 		this.feedback = feedback;
 	}
 	public String getStartCode() {

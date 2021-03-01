@@ -32,8 +32,8 @@
 					<g:ListBox ui:field="classListBox"
 						styleName="form-control"></g:ListBox>
 					<label>Lesson date</label>
-					<g:TextBox ui:field="lessonDateTextBox"
-						styleName="form-control"></g:TextBox>
+					<g:ListBox ui:field="dateListBox"
+						styleName="form-control"></g:ListBox>
 					<label>Pick a subject</label>
 					<g:ListBox ui:field="subjectListBox"
 						styleName="form-control"></g:ListBox>
@@ -60,6 +60,12 @@
 						<g:item value="1800000">30 minutes</g:item>
 						<g:item value="2100000">35 minutes</g:item>
 						<g:item value="2400000">40 minutes</g:item>
+					</g:ListBox>
+					<label>Request feedback</label>
+					<g:ListBox ui:field="feedbackListBox"
+					styleName="form-control" visibleItemCount="1">
+						<g:item value="true">Yes</g:item>
+						<g:item value="false">No</g:item>
 					</g:ListBox>
 				</div>
 			</form>

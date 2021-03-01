@@ -59,4 +59,7 @@ public interface DatabaseServiceAsync {
 	void loadWordToDatabase(Integer integer, String word, AsyncCallback<Boolean> asyncCallback)
 			throws IllegalArgumentException;
 	
+	void dateToString(Long dateInLong, AsyncCallback<String> asyncCallback)
+			throws IllegalArgumentException;
+	
 }

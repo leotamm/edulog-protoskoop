@@ -1,0 +1,19 @@
+-- Table: public.el_subject
+
+-- DROP TABLE public.el_subject;
+
+CREATE TABLE public.el_subject
+(
+    id bigint NOT NULL DEFAULT nextval('el_subject_id_seq'::regclass),
+    teacher text COLLATE pg_catalog."default",
+    subject_list text[] COLLATE pg_catalog."default",
+    CONSTRAINT el_subject_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.el_subject
+    OWNER to postgres;
+
+COMMENT ON TABLE public.el_subject
+    IS 'this database holds information about subjects in columns id and teacher and subject_list';

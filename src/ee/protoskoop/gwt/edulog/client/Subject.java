@@ -93,10 +93,9 @@ public class Subject extends Composite implements EntryPoint {
 				@Override
 				public void onSuccess(Boolean result) {
 					// TODO log with logger
-					subjectTable.clear();
-					subjectTable.removeAllRows();
-					subjectTable.insertRow(0);
-					subjectTable.setHTML(subjectAddingCounter, 0, "<h6>Info: Your new subjects are saved</h6>");
+
+					Window.alert("Your courses are saved");	
+					
 					buttonSaveSubject.setEnabled(false);
 					
 				}

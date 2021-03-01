@@ -10,7 +10,7 @@
 			<hr></hr>
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-				<mark>Teacher's main page</mark>
+				<mark>Prepare sessions</mark>
 			</p>
 
 			<form>
@@ -24,13 +24,27 @@
 					<g:Button ui:field="buttonSessions"
 						styleName="form-control">Sessions</g:Button>
 					<br></br>
+					<hr></hr>
+					<p
+						style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
+						<mark>Collect feedback</mark>
+					</p>
 					<g:Button ui:field="buttonStartSession"
-						styleName="form-control">Start session</g:Button>
+						styleName="form-control">Start</g:Button>
 					<br></br>
+					<g:Button ui:field="buttonSessionResults"
+						styleName="form-control">Results</g:Button>
+					<br></br>
+					<hr></hr>
+					<p
+						style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
+						<mark>Exit Edulog</mark>
+					</p>
 					<g:Button ui:field="buttonLogout" styleName="form-control">Logout
 					</g:Button>
 					<br></br>
-				<!-- <g:Button ui:field="buttonLoadWords" styleName="form-control">Set up words database</g:Button>  -->	
+					<!-- <g:Button ui:field="buttonLoadWords" styleName="form-control">Set 
+						up words database</g:Button> -->
 				</div>
 			</form>
 

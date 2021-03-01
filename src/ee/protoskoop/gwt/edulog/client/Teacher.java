@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class Teacher extends Composite implements EntryPoint{
 
 	private static TeacherUiBinder uiBinder = GWT.create(TeacherUiBinder.class);
-	private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
+	// private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
 
 	interface TeacherUiBinder extends UiBinder<Widget, Teacher> { }
 
@@ -30,6 +30,8 @@ public class Teacher extends Composite implements EntryPoint{
 	Button buttonSessions;
 	@UiField
 	Button buttonStartSession;
+	@UiField
+	Button buttonSessionResults;
 	@UiField
 	Button buttonLogout;
 //	@UiField
@@ -53,16 +55,30 @@ public class Teacher extends Composite implements EntryPoint{
 
 		Window.Location.assign("Session.html");
 	}
+	
+	@UiHandler("buttonStartSession")
+	void onClick4(ClickEvent eventStartSession) {
+
+		Window.Location.assign("Main.html");
+	}
+	
+	@UiHandler("buttonSessionResults")
+	void onClick5(ClickEvent eventSessionResults) {
+
+		Window.alert("Nothing here yet...");
+	}
 
 	@UiHandler("buttonLogout")
-	void onClick4(ClickEvent eventLogout) {
+	void onClick6(ClickEvent eventLogout) {
 
 		Cookies.removeCookie("sessionUser");
 		Window.Location.assign("Login.html");
 	}
 	
 	/**
-	 * hidden component for quick el_word database setup
+	 * hidden component for quick el_word setup
+	 * with a push of a button writes words from file to database
+	 * 
 	 * 1. above, uncomment buttonLoadWords
 	 * 2. below, uncomment buttonLoadWords setEnabled
 	
@@ -93,7 +109,7 @@ public class Teacher extends Composite implements EntryPoint{
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
 
-		buttonStartSession.setEnabled(false);
+		// buttonStartSession.setEnabled(false);
 		
 		/**
 		buttonLoadWords.setEnabled(false);	

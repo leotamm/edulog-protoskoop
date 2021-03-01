@@ -11,11 +11,9 @@ import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.testng.Assert.ThrowingRunnable;
 
-import com.google.gwt.i18n.shared.DateTimeFormat;
-import com.google.gwt.i18n.shared.DefaultDateTimeFormatInfo;
-import com.google.gwt.user.client.Window;
+//import com.google.gwt.i18n.shared.DateTimeFormat;
+//import com.google.gwt.i18n.shared.DefaultDateTimeFormatInfo;
 
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
@@ -23,7 +21,7 @@ import ee.protoskoop.gwt.edulog.shared.User;
 public class DAO {
 
 	private static final Logger logger = Logger.getLogger(DAO.class);
-	private DateTimeFormat dtf = new DateTimeFormat("yyyy-mm-dd", new DefaultDateTimeFormatInfo()) {};
+	// private DateTimeFormat dtf = new DateTimeFormat("yyyy-mm-dd", new DefaultDateTimeFormatInfo()) {};
 	private static DAO instance;
 	private ConnectionPool pool;
 
@@ -158,7 +156,7 @@ public class DAO {
 	public String createNewUser(User user, String hashedPassword) {
 
 		String result = "";
-		long id = 0;
+		//long id = 0;
 
 		try {
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
@@ -174,7 +172,7 @@ public class DAO {
 				try (ResultSet rs = pstmt.getGeneratedKeys()) {
 					if (rs.next()) {
 						result = "ok";
-						id = rs.getLong(1);
+						//id = rs.getLong(1);
 					}
 
 				} catch (SQLException ex) { logger.error(ex); }
@@ -237,7 +235,7 @@ public class DAO {
 
 		return result;
 	}
-
+/*
 	// deprecated method - use addSessionToDatabase instead
 	// test is now supposed to fail
 	public ThrowingRunnable addSessionsToDatabase(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
@@ -318,7 +316,7 @@ public class DAO {
 
 		return result;
 	}
-
+*/
 	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> sessionSubject) {
 
 		boolean result = false;
@@ -375,6 +373,7 @@ public class DAO {
 
 		return result;
 	}
+
 
 	public List<String> getUserClasses(User user) {
 
@@ -539,7 +538,11 @@ public class DAO {
 			pstmt.setObject(9, testSession.getSessionCreatingTime());
 			pstmt.setObject(10, testSession.getSessionPlanningDate());
 			pstmt.setObject(11, testSession.getSessionFinishingDate());
-			pstmt.setBoolean(12, testSession.isFeedback());
+
+			final Object[] feedbackDataToSql = testSession.isFeedback().toArray(new Object[testSession.isFeedback().size()]);
+			final java.sql.Array feedbackSqlArray = pool.getConnection().createArrayOf("boolean", feedbackDataToSql);
+			pstmt.setArray(12, feedbackSqlArray);
+
 			pstmt.setString(13, testSession.getStartCode());
 
 			pstmt.executeUpdate();
@@ -569,7 +572,6 @@ public class DAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (!rs.next()) {
-				System.out.println("Empty resultset.");
 				logger.debug("Empty resultset. Session data reading from database failed.");
 
 			} else {
@@ -581,6 +583,7 @@ public class DAO {
 				while(rs.next()) {
 					ArrayList <String> temporaryActivityList = new ArrayList<String>();
 					ArrayList <Long> temporaryDurationList = new ArrayList<Long>();
+					ArrayList <Boolean> temporaryFeedbackList = new ArrayList<Boolean>();
 
 					SessionObject returnSession = new SessionObject();
 
@@ -628,8 +631,12 @@ public class DAO {
 					Long finishedFromDatabase = rs.getLong("finished");
 					returnSession.setSessionFinishingDate(finishedFromDatabase);
 
-					boolean feedbackFromDatabase = rs.getBoolean("feedback");
-					returnSession.setFeedback(feedbackFromDatabase);
+					Array feedbackFromDatabase = rs.getArray("feedback");
+					Boolean[] boolean_feedback = (Boolean[]) feedbackFromDatabase.getArray();
+					for (int i = 0; i < boolean_feedback.length; i++) {
+						temporaryFeedbackList.add(boolean_feedback[i]);
+					}
+					returnSession.setFeedback(temporaryFeedbackList);
 
 					String startcodeFromDatabase = rs.getString("start_code");
 					returnSession.setStartCode(startcodeFromDatabase);	

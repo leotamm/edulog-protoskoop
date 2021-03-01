@@ -7,7 +7,6 @@ import java.util.List;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.TimeZone;
 import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -41,7 +40,7 @@ public class Session extends Composite implements EntryPoint {
 	@UiField
 	ListBox classListBox;
 	@UiField
-	TextBox lessonDateTextBox;
+	ListBox dateListBox;
 	@UiField
 	ListBox subjectListBox;
 	@UiField
@@ -52,6 +51,8 @@ public class Session extends Composite implements EntryPoint {
 	TextBox activityTextBox;
 	@UiField
 	ListBox durationListBox;
+	@UiField
+	ListBox feedbackListBox;
 
 	@UiField
 	FlexTable activityTable;
@@ -66,29 +67,30 @@ public class Session extends Composite implements EntryPoint {
 
 	ArrayList<String> selectedActivityList = new ArrayList<String>();
 	ArrayList<Long> selectedDurationList = new ArrayList<Long>();
+	ArrayList<Boolean> selectedFeedbackList = new ArrayList<Boolean>();
 
 	private int activityAddingCounter = 0;
 	private int sessionCounter = 0;
-	private String selectedActivity, course, date, subject, topic, goal;
-	private Long selectedDuration, creatingDate, lessonTime, plannedTime, finishedTime;
-	private boolean feedback;
+	private String selectedActivity, course, subject, topic, goal;
+	private Long selectedDuration, lessonTime, plannedDate, finishedDate;
+	private boolean selectedFeedback;
 
-	DateTimeFormat dtfToSeconds = DateTimeFormat.getFormat("yyyyMMddHHmmss");
-	DateTimeFormat dtfToDays= DateTimeFormat.getFormat("yyyyMMdd");
-	
+	DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd/MM");
+
 	String startCode = "";
-	
+
 
 	@UiHandler("buttonAddActivity")
 	void onClick(ClickEvent eventAddactivity) {
 
 		selectedActivity = activityTextBox.getText();
 		selectedDuration = (long) 0;
+		selectedFeedback = Boolean.valueOf(feedbackListBox.getSelectedValue());
 
 		if (activityAddingCounter == 0 & selectedActivity != "") {
 			activityTable.clear();
 			activityTable.removeAllRows();
-			
+
 			databaseService.getRandomStartCode(new AsyncCallback<String>() {
 
 				@Override
@@ -96,32 +98,38 @@ public class Session extends Composite implements EntryPoint {
 
 				@Override
 				public void onSuccess(String result) { startCode = result; }
-				
+
 			});
-			
+
 			selectedDuration = Long.parseLong(durationListBox.getSelectedValue());
 
 			selectedActivityList.add(selectedActivity);
 			selectedDurationList.add(selectedDuration);
+			selectedFeedbackList.add(selectedFeedback);
 			activityTable.insertRow(activityAddingCounter);
 			activityTable.setHTML(activityAddingCounter, 0, "<h6>" + selectedActivity + "</h6>");
-			activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration / 60000 + " minutes</h6>");
+			activityTable.setHTML(activityAddingCounter, 1, "<h6>(" + selectedDuration / 60000 + " minutes)</h6>");
+
+			if(selectedFeedback) { activityTable.setHTML(activityAddingCounter, 2, "<h6>Get feedback</h6>"); }
 			activityAddingCounter ++;
 			activityTextBox.setText("");
-			
+
 			buttonSaveSession.setEnabled(true);
-			
+
 		} else {
-			
+
 			selectedDuration = Long.parseLong(durationListBox.getSelectedValue());
 
 			if (selectedActivity != "" && selectedDuration > 0) {
 
 				selectedActivityList.add(selectedActivity);
 				selectedDurationList.add(selectedDuration);
+				selectedFeedbackList.add(selectedFeedback);
 				activityTable.insertRow(activityAddingCounter);
 				activityTable.setHTML(activityAddingCounter, 0, "<h6>" + selectedActivity + "</h6>");
-				activityTable.setHTML(activityAddingCounter, 1, "<h6>" + selectedDuration / 60000 + " minutes</h6>");
+				activityTable.setHTML(activityAddingCounter, 1, "<h6>(" + selectedDuration / 60000 + " minutes)</h6>");
+
+				if(selectedFeedback) { activityTable.setHTML(activityAddingCounter, 2, "<h6>Get feedback</h6>"); }
 				activityAddingCounter ++;
 				activityTextBox.setText("");
 
@@ -135,70 +143,54 @@ public class Session extends Composite implements EntryPoint {
 
 		String sessionTeacher = Cookies.getCookie("sessionUser");
 
-		Date currentDate = new Date();
-		currentDate.getTime();
-		Long creatingTime = Long.parseLong(dtfToSeconds.format(currentDate, TimeZone.createTimeZone(0)));
-		//Long creatingTime = localTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		Date time = new Date();
+		Long creatingTime = time.getTime();
 
-		lessonTime = Long.parseLong("0"); 
-		plannedTime = Long.parseLong("0"); 
-		finishedTime = Long.parseLong("0");
+		String lessonTimeAsString = dateListBox.getSelectedValue();
+		lessonTime = Long.valueOf(lessonTimeAsString);
+		plannedDate = Long.parseLong("0"); 
+		finishedDate = Long.parseLong("0");
 
 		course = classListBox.getSelectedValue();
-		date = lessonDateTextBox.getText();
 		subject = subjectListBox.getSelectedValue();
 		topic = topicTextBox.getText();
 		goal = goalTextBox.getText();
-		feedback = false;
-		// get start code value from newStartCode string
-		
 
-		if (/*course != "" && lessonDate != "" && subject != "" && topic != "" && goal != "" && */
+		if (course != "" && lessonTime > 0 && subject != "" && topic != "" && goal != "" &&
 				selectedActivityList.size() > 0 && selectedDurationList.size() > 0) {
 
 			SessionObject session = new SessionObject();
 
 			session.setTeacher(sessionTeacher);
 			session.setStudyGroup(course);
-			session.setSessionHappeningTime(lessonTime);	// TODO needs to collect Long (Epoch Date), not String
-			session.setSubject(subject);					// will keep hard-coded once DatePicker works
+			session.setSessionHappeningTime(lessonTime);
+			session.setSubject(subject);
 			session.setTopic(topic);
 			session.setGoal(goal);
 			session.setActivity(selectedActivityList);
 			session.setDuration(selectedDurationList);
 			session.setSessionCreatingTime(creatingTime);
-			session.setSessionPlanningDate(plannedTime);	// initiating with 0
-			session.setSessionFinishingDate(finishedTime);	// initiating with 0
-			session.setFeedback(feedback);					// initiating with false
+			session.setSessionPlanningDate(plannedDate);	// initiating with Long (0)
+			session.setSessionFinishingDate(finishedDate);	// initiating with Long (0)
+			session.setFeedback(selectedFeedbackList);
 			session.setStartCode(startCode);				// generated by databaseService.getRandomStartCode()
 
 			databaseService.addSessionToDatabase(session, new AsyncCallback<Boolean>() {
 
 				@Override
 				public void onSuccess(Boolean result) {
-					// TODO log with logger
-					lessonDateTextBox.setText("");
-					topicTextBox.setText("");
-					goalTextBox.setText("");
-					activityTextBox.setText("");
-					activityTable.clear();
-					activityTable.removeAllRows();
-					activityTable.insertRow(0);
-					activityTable.setHTML(0, 0, "<p>No session activities</p>");
-					
-					sessionTable.clear();
-					sessionTable.removeAllRows();
-					sessionTable.insertRow(0);
-					sessionTable.setHTML(0, 0, "<h6>Info: Your session is saved</h6>");
-					
+
+					sessionCounter = 0;
+					setUpSessionFlexTable();
 					buttonSaveSession.setEnabled(false);
+
+					Window.alert("Your session is saved");
+
 				}
 
 				@Override
-				public void onFailure(Throwable caught) {
-					// TODO log with logger
-					Window.alert("Session save failed");
-				}
+				public void onFailure(Throwable caught) { Window.alert("Session save failed"); }
+				
 			});
 
 		} else { Window.alert("All fields must be filled"); }
@@ -220,6 +212,7 @@ public class Session extends Composite implements EntryPoint {
 
 			@Override
 			public void onFailure(Throwable caught) { /*Window.alert("Get user sessions failed!");*/ }
+
 			@Override
 			public void onSuccess(List<SessionObject> sessionListFromDatabase) { 
 
@@ -228,17 +221,21 @@ public class Session extends Composite implements EntryPoint {
 					sessionTable.removeAllRows();
 
 					for(SessionObject session : sessionListFromDatabase) {
-						String date = String.valueOf(session.getSessionPlanningDate());
+
+						Long showSessionDate = session.getSessionHappeningTime();
+
+						Date convertSessionDate = new Date (showSessionDate);
+						String thisSessionString = dateFormat.format(convertSessionDate);
+
 						String studyGroup = session.getStudyGroup();
 						String subject = session.getSubject();
 						String topic = session.getTopic();
 
 						sessionTable.insertRow(sessionCounter);
-						sessionTable.setHTML(sessionCounter, 0, "<h6>Session " + String.valueOf(sessionCounter + 1) + ": </h6>");
-						sessionTable.setHTML(sessionCounter, 1, "<h6>" + date + "</h6>");
-						sessionTable.setHTML(sessionCounter, 2, "<h6>" + studyGroup + "</h6>");
-						sessionTable.setHTML(sessionCounter, 3, "<h6>" + subject + "</h6>");
-						sessionTable.setHTML(sessionCounter, 4, "<h6>" + topic + "</h6>");
+						sessionTable.setHTML(sessionCounter, 0, "<h6>" + thisSessionString + "</h6>");
+						sessionTable.setHTML(sessionCounter, 1, "<h6>" + studyGroup + "</h6>");
+						sessionTable.setHTML(sessionCounter, 2, "<h6>" + subject + "</h6>");
+						sessionTable.setHTML(sessionCounter, 3, "<h6>" + topic + "</h6>");
 
 						sessionCounter ++;
 					}
@@ -250,16 +247,41 @@ public class Session extends Composite implements EntryPoint {
 							+ "listing an activity and pressing <kbd>Add subject</kbd> button. "
 							+ "Once you session is complete, save it by pressing "
 							+ "<kbd>Save my subjects</kbd> button</p>");
-					
-					activityTable.insertRow(0);
-					activityTable.setHTML(0, 0, "<p>No session activities</p>");
-					
+
 				}
 			}
 		});
 
 	}
-	
+
+
+	private void setUpDateListBox() {
+
+		// input is a Date in long format
+		// we will calculate time in long and
+		// display in dateListBox as String
+
+		Date setupTime = new Date();
+		Long timeInLong = setupTime.getTime();
+
+		int daysToDisplay = 10;
+		Long oneDay = (long) (24*60*60*1000);
+
+		for (int i = 0; i < daysToDisplay; i++) {
+
+			Date convertDate = new Date (timeInLong);
+			String thisDateItem = dateFormat.format(convertDate);
+
+			String thisDateValue = String.valueOf(timeInLong);
+
+			dateListBox.addItem(thisDateItem, thisDateValue );
+
+			timeInLong = timeInLong + oneDay;
+
+		}
+
+	}
+
 
 	private void setUpClassListBox() {
 
@@ -270,13 +292,16 @@ public class Session extends Composite implements EntryPoint {
 
 			@Override
 			public void onFailure(Throwable caught) { /*Window.alert("Get user classes failed!");*/ }
+
 			@Override
 			public void onSuccess(List<String> result) { 
 
 				if (result.size() > 0) {
+
 					for (int i = 0; i < result.size(); i++) {
 						classListBox.addItem(result.get(i));
 					}
+
 				} else { classListBox.addItem("Failed to load your classes"); }
 			}
 		});
@@ -292,14 +317,18 @@ public class Session extends Composite implements EntryPoint {
 
 			@Override
 			public void onFailure(Throwable caught) { /*Window.alert("Get user subjects failed!");*/ }
+
 			@Override
 			public void onSuccess(List<String> result) { 
 
 				if (result.size() > 0) {
+
 					for (int i = 0; i < result.size(); i++) {
 						subjectListBox.addItem(result.get(i));
 					}
+
 				} else { subjectListBox.addItem("Failed to load your subjects"); }
+
 			}});
 	}
 
@@ -311,11 +340,14 @@ public class Session extends Composite implements EntryPoint {
 		RootPanel.get().add(this);
 
 		setUpSessionFlexTable();
-		setUpSubjectListBox();
 		setUpClassListBox();
-		
+		setUpSubjectListBox();
+		setUpDateListBox();
+
+
+
 		buttonSaveSession.setEnabled(false);
-		
+
 		activityTable.insertRow(0);
 		activityTable.setHTML(0, 0, "<p>No session activities</p>");
 

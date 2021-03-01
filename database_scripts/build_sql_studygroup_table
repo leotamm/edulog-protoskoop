@@ -1,0 +1,20 @@
+-- Table: public.el_study_group
+
+-- DROP TABLE public.el_study_group;
+
+CREATE TABLE public.el_study_group
+(
+    id bigint NOT NULL DEFAULT nextval('el_group_id_seq'::regclass),
+    teacher text COLLATE pg_catalog."default",
+    group_list text[] COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.el_study_group
+    OWNER to postgres;
+
+COMMENT ON TABLE public.el_study_group
+    IS 'this database holds information about edulog user study classes/courses in columns id and teacher and group_list
+
+every_teacher row contains a hardcoded list of all available courses in a school ';

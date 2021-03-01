@@ -9,8 +9,10 @@ import ee.protoskoop.gwt.edulog.shared.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.server.Base64Utils;
@@ -188,9 +190,9 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 			String wordFromFile = "";
 			File file = new File("C:\\Users\\Leo\\eclipse-workspace\\EduLog\\english_words.txt");
 			Scanner scanner = new Scanner(file);
-			Integer x = 17133;
+			Integer x = 0;
 
-			//for (int i = 1; i<5001; i++) {
+			//for (int i = 1; i<5001; i++) {		currently 17133 words uploaded to database
 			while (scanner.hasNext()) {
 				wordFromFile = scanner.nextLine().toUpperCase();
 				GWT.log("Reading word: " + wordFromFile);
@@ -225,8 +227,28 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo + ".<br><br>It looks like you are using:<br>"
 		+ userAgent;
+	
 	}
 
+	// UI excepts only date as time object
+	// we will convert it to Calendar, extract day month and year and the return formatted String
+	public String dateToString(Long dateInLong) {
+		
+		String dateAsString = "";
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(dateInLong);
+		
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int year = calendar.get(Calendar.YEAR);
+
+		dateAsString = day + "/" + month + "/" + year;
+		
+		return dateAsString;
+	}
+	
+	
 	/**
 	 * Escape an html string. Escaping data received from the client helps to
 	 * prevent cross-site script vulnerabilities.

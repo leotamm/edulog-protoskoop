@@ -97,11 +97,8 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 				@Override
 				public void onSuccess(Boolean result) {
 					// TODO log with logger
-					studyGroupTable.clear();
-					studyGroupTable.removeAllRows();
-					studyGroupTable.insertRow(0);
-					studyGroupTable.setHTML(0, 0, "<h6>Info: Your new classes are saved</h6>");
-					
+
+					Window.alert("Your classes are saved");	
 					buttonSaveStudyGroup.setEnabled(false);
 				}
 

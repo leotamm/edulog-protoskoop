@@ -1,0 +1,18 @@
+-- Table: public.el_word
+
+-- DROP TABLE public.el_word;
+
+CREATE TABLE public.el_word
+(
+    id bigint NOT NULL,
+    word text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT el_word_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.el_word
+    OWNER to postgres;
+
+COMMENT ON TABLE public.el_word
+    IS 'el_word database contains 17000+ english words for generating random session codes in columns id (bigint) PK not null, word (text) not null';

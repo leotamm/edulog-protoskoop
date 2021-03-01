@@ -44,5 +44,7 @@ public interface DatabaseService extends RemoteService {
 	ArrayList<String> getExistingStartCodes();
 
 	boolean loadWordToDatabase(Integer integer, String word);
+	
+	String dateToString(Long dateInLong);
 
 }

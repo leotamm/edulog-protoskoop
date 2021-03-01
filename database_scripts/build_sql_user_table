@@ -1,0 +1,22 @@
+-- Table: public.el_user
+
+-- DROP TABLE public.el_user;
+
+CREATE TABLE public.el_user
+(
+    id bigint NOT NULL DEFAULT nextval('el_user_id_seq'::regclass),
+    name text COLLATE pg_catalog."default",
+    email text COLLATE pg_catalog."default" NOT NULL,
+    password text COLLATE pg_catalog."default" NOT NULL,
+    active boolean,
+    created text COLLATE pg_catalog."default",
+    CONSTRAINT el_user_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.el_user
+    OWNER to postgres;
+
+COMMENT ON TABLE public.el_user
+    IS 'this bottom level user database holds information each edulog user in columns: id, name, email, password, active, created';

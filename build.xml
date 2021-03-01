@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project name="edulog" basedir="." default="deploy">
+
+	<target name="build_war">
+	    <war basedir="war" destfile="edulog.war" webxml="war/WEB-INF/web.xml"/>
+	</target>
+	
+	<target name="deploy">
+		<scp sftp="true" trust="true" file="edulog.war" remoteTofile="ubuntu@90.190.182.41:/opt/tomcat/webapps/edulog.war" port="2222" password="!ylisalajane!"/>
+	</target>
+
+</project>
