@@ -62,4 +62,10 @@ public interface DatabaseServiceAsync {
 	void dateToString(Long dateInLong, AsyncCallback<String> asyncCallback)
 			throws IllegalArgumentException;
 	
+	void addStartTimeToSession(SessionObject session, AsyncCallback<Boolean> asyncCallback)
+			throws IllegalArgumentException;
+	
+	void addEndTimeToSession(SessionObject session, AsyncCallback<Boolean> asyncCallback)
+			throws IllegalArgumentException;
+	
 }

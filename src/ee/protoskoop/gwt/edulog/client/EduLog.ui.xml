@@ -12,23 +12,42 @@
 			<hr></hr>
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-				Join the class
+				Let's give feedback about our studies!
 			</p>
 			<form>
 				<div class="form-group">
-					<!-- <label>Join the class</label> -->
-					<g:TextBox ui:field="joinTheClassTextBox"
+					<label>Enter start code</label>
+					<g:TextBox ui:field="startCodeTextBox"
 						styleName="form-control"></g:TextBox>
 				</div>
 				<br></br>
-				<g:Button ui:field="buttonJoinTheClass"
-					styleName="form-control">Join</g:Button>
+				<g:Button ui:field="buttonStartFeedbackSession"
+					styleName="form-control">Start</g:Button>
 				<br></br>
 				<hr></hr>
 				<p
 					style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
 					Rate the activity
 				</p>
+				<g:TextBox ui:field="rateActivityTextBox"
+					styleName="form-control"></g:TextBox>
+				<br></br>
+				<form>
+					<div class="form-group">
+						<label>By the end of this activity ...</label>
+						<g:ListBox ui:field="ratingListBox"
+							styleName="form-control">
+							<g:item value="2">... I did't understand anything</g:item>
+							<g:item value="3">... I understood just a little</g:item>
+							<g:item value="4">... I understood the most</g:item>
+							<g:item value="5">... I understood everything</g:item>
+						</g:ListBox>
+					</div>
+				</form>
+				<br></br>
+				<g:Button ui:field="buttonSubmit" styleName="form-control">Rate
+				</g:Button>
+
 			</form>
 		</div>
 	</g:HTMLPanel>

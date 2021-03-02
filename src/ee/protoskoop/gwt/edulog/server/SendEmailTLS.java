@@ -36,18 +36,16 @@ public class SendEmailTLS {
 					InternetAddress.parse(user.getEmail())
 					);
 			message.setSubject("Resetting Edulog password");
-			message.setText("Dear Edulog user,"
-					+ "\n\n your new password is: " + user.getPassword() + 
-					"\n\n Try logging in again!");
+			message.setText("Dear Edulog user," +
+					"n\n your new password is: " + user.getPassword() + 
+					"\n\n Try logging in again!" +
+					"\n\n This is an automated message - please do not reply");
 
 			Transport.send(message);
 
 			reply = true;
 
-		} catch (MessagingException e) {
-			e.printStackTrace();
-
-		}
+		} catch (MessagingException e) { e.printStackTrace(); }
 
 		return reply;
 

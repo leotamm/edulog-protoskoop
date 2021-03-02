@@ -1,5 +1,7 @@
 -- Table: public.el_session
 
+-- Table: public.el_session
+
 -- DROP TABLE public.el_session;
 
 CREATE TABLE public.el_session
@@ -7,15 +9,15 @@ CREATE TABLE public.el_session
     id bigint NOT NULL DEFAULT nextval('el_session_id_seq'::regclass),
     teacher text COLLATE pg_catalog."default",
     study_group text COLLATE pg_catalog."default",
-    date bigint,
+    planned_time bigint,
     subject text COLLATE pg_catalog."default",
     topic text COLLATE pg_catalog."default",
     goal text COLLATE pg_catalog."default",
     activity text[] COLLATE pg_catalog."default",
     duration bigint[],
-    created bigint,
-    planned bigint,
-    finished bigint,
+    created_time bigint,
+    started_time bigint,
+    finished_time bigint,
     feedback boolean[],
     start_code text COLLATE pg_catalog."default",
     CONSTRAINT el_session_pkey PRIMARY KEY (id)
@@ -27,4 +29,4 @@ ALTER TABLE public.el_session
     OWNER to postgres;
 
 COMMENT ON TABLE public.el_session
-    IS 'this database holds information about sessions created by teachers in columns id - bigserial (PK, NOTNULL), teacher - text, study_group - text, date - bigint, subject - text, topic - text, goal - text, activity - text[], duration - bigint[],  created - bigint, planned - bigint, finished - bigint, feedback - boolean[], start_code - text';
+    IS 'this database holds information about sessions created by teachers in columns id - bigserial (PK, NOTNULL), teacher - text, study_group - text, planned_time - bigint, subject - text, topic - text, goal - text, activity - text[], duration - bigint[],  created_time - bigint, started_time- bigint, finished_time - bigint, feedback - boolean[], start_code - text';

@@ -26,10 +26,13 @@ public class DAO {
 	private ConnectionPool pool;
 
 	public static DAO getInstance() {
+		
 		if (instance == null) {
 			instance = new DAO();
 		}
+		
 		return instance;
+		
 	}
 
 	public DAO() {
@@ -54,6 +57,7 @@ public class DAO {
 		boolean reply = false;
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT email, password FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -81,6 +85,7 @@ public class DAO {
 		boolean reply = false;
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT password FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -108,6 +113,7 @@ public class DAO {
 		boolean reply = false;
 
 		try {
+			
 			PreparedStatement updatePassword = pool.getConnection().prepareStatement(
 					"UPDATE el_user SET password = ? WHERE email = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -128,6 +134,7 @@ public class DAO {
 		boolean reply = false;
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT email FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -159,6 +166,7 @@ public class DAO {
 		//long id = 0;
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_user(email, password) " + "VALUES(?,?)", 
 					Statement.RETURN_GENERATED_KEYS);
@@ -188,6 +196,7 @@ public class DAO {
 		String result = "";
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT password FROM el_user WHERE email = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -235,7 +244,7 @@ public class DAO {
 
 		return result;
 	}
-/*
+	/*
 	// deprecated method - use addSessionToDatabase instead
 	// test is now supposed to fail
 	public ThrowingRunnable addSessionsToDatabase(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
@@ -316,7 +325,7 @@ public class DAO {
 
 		return result;
 	}
-*/
+	 */
 	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> sessionSubject) {
 
 		boolean result = false;
@@ -324,6 +333,7 @@ public class DAO {
 		logger.info("Initiating subject data transfer to database");
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_subject(teacher, subject_list) VALUES(?,?)", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -341,7 +351,10 @@ public class DAO {
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 
 		logger.info("Initiation subject data reading from database.");
+		
+		
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -382,6 +395,7 @@ public class DAO {
 		logger.debug("Initiating user class check");
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -405,7 +419,9 @@ public class DAO {
 				for (int i = 0; i < str_groups.length; i++) {
 					groupsArrayFromDatabase.add(str_groups[i]);
 				}
+				
 				logger.debug("User classes written in return ArrayList");
+				
 			}
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
@@ -419,6 +435,7 @@ public class DAO {
 		logger.debug("Initiating teacher classset data transfer to database");
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_study_group(teacher, group_list) VALUES(?,?)", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -437,7 +454,9 @@ public class DAO {
 		} catch (SQLException ex) { logger.debug(ex.getMessage()); }
 
 		logger.debug("Teacher classset data transfer to database failed.");
+		
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
@@ -477,6 +496,7 @@ public class DAO {
 		logger.debug("Initiating user subject check");
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -514,9 +534,10 @@ public class DAO {
 		logger.debug("Session data transfer to database initiated.");
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"INSERT INTO el_session(teacher, study_group, date, subject, topic, goal, activity, "
-							+ "duration, created, planned, finished, feedback, start_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", 
+					"INSERT INTO el_session(teacher, study_group, planned_time, subject, topic, goal, activity, "
+							+ "duration, created_time, started_time, finished_time, feedback, start_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", 
 							ResultSet.TYPE_SCROLL_INSENSITIVE,
 							ResultSet.CONCUR_UPDATABLE);
 
@@ -564,6 +585,7 @@ public class DAO {
 		logger.debug("Session data reading from database initiated.");
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT * FROM el_session WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -596,7 +618,7 @@ public class DAO {
 					String studyGroupFromDatabase = rs.getString("study_group");
 					returnSession.setStudyGroup(studyGroupFromDatabase);
 
-					Long dateFromDataBase = rs.getLong("date");
+					Long dateFromDataBase = rs.getLong("planned_time");
 					returnSession.setSessionHappeningTime(dateFromDataBase);
 
 					String subjectFromDatabase = rs.getString("subject");
@@ -622,13 +644,13 @@ public class DAO {
 					}
 					returnSession.setDuration(temporaryDurationList);
 
-					Long createdFromDatabase = rs.getLong("created");
+					Long createdFromDatabase = rs.getLong("created_time");
 					returnSession.setSessionCreatingTime(createdFromDatabase);
 
-					Long plannedFromDatabase = rs.getLong("planned");
+					Long plannedFromDatabase = rs.getLong("started_time");
 					returnSession.setSessionPlanningDate(plannedFromDatabase);
 
-					Long finishedFromDatabase = rs.getLong("finished");
+					Long finishedFromDatabase = rs.getLong("finished_time");
 					returnSession.setSessionFinishingDate(finishedFromDatabase);
 
 					Array feedbackFromDatabase = rs.getArray("feedback");
@@ -647,8 +669,7 @@ public class DAO {
 
 				}
 
-				logger.debug("Session data reading from database successful.");
-				logger.debug("Counted " + resultListCounter + " list item(s)");
+				logger.debug("Session data reading from database successful. Counted " + resultListCounter  + " list item(s)");
 				rs.close();
 			}
 
@@ -665,6 +686,7 @@ public class DAO {
 		ArrayList<String> storedStartcodes = new ArrayList<String>();
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT start_code FROM el_session", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -695,6 +717,7 @@ public class DAO {
 		boolean result = false;
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_word (id, word) values (?,?)",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -717,6 +740,7 @@ public class DAO {
 		String startCode = "";
 
 		try {
+			
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT word FROM el_word WHERE id = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -738,6 +762,60 @@ public class DAO {
 
 		return startCode;
 	}
+
+	public boolean addStartTimeToSession(SessionObject session) {
+
+		logger.debug("Adding start time to session started");
+
+		boolean result = false;
+
+		try {
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"UPDATE el_session SET started_time = ? where id = ?",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setLong(1, session.getSessionPlanningDate());
+			pstmt.setLong(2, session.getId());
+			pstmt.executeUpdate();
+
+			result = true;
+			
+			logger.debug("Adding start time to session succeeded");
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding start time to session failed"); }
+
+		return result;
+	}
+	
+	
+	public boolean addEndTimeToSession(SessionObject session) {
+
+		logger.debug("Adding end time to session started");
+
+		boolean result = false;
+
+		try {
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"UPDATE el_session SET finished_time = ? where id = ?",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setLong(1, session.getSessionFinishingDate());
+			pstmt.setLong(2, session.getId());
+			pstmt.executeUpdate();
+
+			result = true;
+			
+			logger.debug("Adding end time to session succeeded");
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding end time to session failed"); }
+
+		return result;
+	}
+	
+	
+	
 }
 
 

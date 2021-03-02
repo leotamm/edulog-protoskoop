@@ -7,7 +7,7 @@ public class SessionObject implements Serializable {
 	
 	private static final long serialVersionUID = 4966094476517269040L;
 	
-	/* All time items are defined and handled as <OffsetDateTime> objects initiated as Long <Date> */
+	// All time items are defined and handled as Long type objects initiated by Date
 	
 	private Long id;
 	private String teacher;

@@ -232,9 +232,9 @@ public class Session extends Composite implements EntryPoint {
 						String topic = session.getTopic();
 
 						sessionTable.insertRow(sessionCounter);
-						sessionTable.setHTML(sessionCounter, 0, "<h6>" + thisSessionString + "</h6>");
-						sessionTable.setHTML(sessionCounter, 1, "<h6>" + studyGroup + "</h6>");
-						sessionTable.setHTML(sessionCounter, 2, "<h6>" + subject + "</h6>");
+						sessionTable.setHTML(sessionCounter, 0, "<h6>" + thisSessionString + " - </h6>");
+						sessionTable.setHTML(sessionCounter, 1, "<h6>" + studyGroup + " - </h6>");
+						sessionTable.setHTML(sessionCounter, 2, "<h6>" + subject + " - </h6>");
 						sessionTable.setHTML(sessionCounter, 3, "<h6>" + topic + "</h6>");
 
 						sessionCounter ++;

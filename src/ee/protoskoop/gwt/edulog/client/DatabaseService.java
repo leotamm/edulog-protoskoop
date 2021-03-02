@@ -47,4 +47,8 @@ public interface DatabaseService extends RemoteService {
 	
 	String dateToString(Long dateInLong);
 
+	boolean addStartTimeToSession(SessionObject session);
+	
+	boolean addEndTimeToSession(SessionObject session);
+
 }

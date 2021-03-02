@@ -17,7 +17,9 @@ public class Configuration {
 	public static String EMAIL_USER;
 	public static String EMAIL_PASS;
 
+	
 	public static boolean loadConfiguration(String iniFile) {
+		
 		try {
 			Ini ini = new Ini(new FileReader(iniFile));
 			Ini.Section section = ini.get("databaseDefault");
@@ -29,24 +31,27 @@ public class Configuration {
 			section = ini.get("log");
 			LOG4J_PATH = getOrDefault(section.get("LOG4J_PATH"), "log4j.conf");
 			section = ini.get("emailService");
-			EMAIL_USER = getOrDefault(section.get("EMAIL_USER"), "");
-			EMAIL_PASS = getOrDefault(section.get("EMAIL_PASS"), "");
+			EMAIL_USER = getOrDefault(section.get("EMAIL_USER"), "edulog835@gmail.com");
+			EMAIL_PASS = getOrDefault(section.get("EMAIL_PASS"), "2MhMv1020");
 
 			return true;
 		}
+		
 		catch (Exception e) {
 			logger.error("Error reading configuration file");
+			
 			return false;
 		}
+	
 	}
 
+	
 	private static String getOrDefault(String value, String defValue) {
-		if (value != null) {
-			return value;
-		}
-		else {
-			return defValue;
-		}
+		
+		if (value != null) { return value; }
+		
+		else { return defValue; }
+	
 	}
 
 }

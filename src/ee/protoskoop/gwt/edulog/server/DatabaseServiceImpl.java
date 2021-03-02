@@ -34,27 +34,32 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		DAO.getInstance();
 	}
 
+	
 	@Override
 	public boolean doesUserExist(User user) {
 		return DAO.getInstance().doesUserExist(user);	
 	}
+	
 
 	@Override
 	public String createNewUser(User user) {
 		String hashedPassword = hashPassword(user);
 		return DAO.getInstance().createNewUser(user, hashedPassword);
 	}
+	
 
 	@Override
 	public String checkUserCredentials(User user) {
 		String hashedPassword = hashPassword(user);
 		return DAO.getInstance().checkUserCredentials(user, hashedPassword);
 	}
+	
 
 	@Override
 	public boolean changePassword(User user) {
 		return DAO.getInstance().changePassword(user);
 	}
+	
 
 	public boolean forgotPassword(User userIn) {
 
@@ -88,36 +93,43 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		return result;
 	}
 
+	
 	@Override
 	public List<String> getUserClasses(User user) {
 		return DAO.getInstance().getUserClasses(user);
 	}
+	
 
 	@Override
 	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> selectedClassList) {
 		return DAO.getInstance().addStudyGroupsToDatabase(sessionTeacher, selectedClassList);
 	}
 
+	
 	@Override
 	public List<String> getUserSubjects(User user) {
 		return DAO.getInstance().getUserSubjects(user);
 	}
 
+	
 	@Override
 	public boolean addSubjectsToDatabase(String sessionTeacher, ArrayList<String> selectedSubjectList) {
 		return DAO.getInstance().addSubjectsToDatabase(sessionTeacher, selectedSubjectList);
 	}
 
+	
 	@Override
 	public boolean addSessionToDatabase(SessionObject testSession) {
 		return DAO.getInstance().addSessionToDatabase(testSession);
 	}
 
+	
 	@Override
 	public List<SessionObject> getSessionFromDatabase(User testTeacher) {
 		return DAO.getInstance().getSessionFromDatabase(testTeacher);
 	}
 
+	
 	public String hashPassword(User user) {
 
 		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
@@ -137,12 +149,13 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		return hashedPassword;
 	}
 
-
+	
 	@Override
 	public ArrayList<String> getExistingStartCodes() {
 		return DAO.getInstance().getExistingStartCodes();
 	}
 
+	
 	public String getRandomStartCode() {
 
 		String startCode = "";
@@ -208,7 +221,19 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 
 		return result;
 	}
+	
+	
+	@Override
+	public boolean addStartTimeToSession(SessionObject session) {
+		return DAO.getInstance().addStartTimeToSession(session);
+	}
 
+	
+	@Override
+	public boolean addEndTimeToSession(SessionObject session) {
+		return DAO.getInstance().addEndTimeToSession(session);
+	}
+	
 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
@@ -230,6 +255,7 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	
 	}
 
+	
 	// UI excepts only date as time object
 	// we will convert it to Calendar, extract day month and year and the return formatted String
 	public String dateToString(Long dateInLong) {

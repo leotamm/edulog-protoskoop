@@ -43,8 +43,19 @@
 				<mark>Request</mark>
 				feedback
 			</p>
+			<label>Start code</label>
+			<g:TextBox ui:field="startCodeTextBox"
+				styleName="form-control"></g:TextBox>
+			<br></br>
 			<g:Button ui:field="buttonStartFeedback"
 				styleName="form-control">Start now</g:Button>
+			<br></br>
+			<label>Feedback progress</label>
+			<g:TextBox ui:field="feedbackProgressTextBox"
+				styleName="form-control"></g:TextBox>
+			<br></br>
+			<g:Button ui:field="buttonEndFeedback"
+				styleName="form-control">End now</g:Button>
 			<br></br>
 			<g:Button ui:field="buttonBack" styleName="form-control">Back</g:Button>
 		</div>
