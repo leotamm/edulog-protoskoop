@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.ListBox;
@@ -14,20 +15,22 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
+import ee.protoskoop.gwt.edulog.shared.FeedbackObject;
+
 /**
- * EduLog is an student engagement measuring web application
+ * EduLog is a student engagement measuring web application
  * developed by Leo Tamm as an vali-it.ee Java development course project
  * during protoskoop.ee internship 
  */
 
 public class EduLog extends Composite implements EntryPoint {
-	
+
 	private static SessionUiBinder uiBinder = GWT.create(SessionUiBinder.class);
-	//private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService();
-	
+	private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService();
+
 	interface SessionUiBinder extends UiBinder<Widget, EduLog> { }
-	
-	
+
+
 	@UiField
 	TextBox startCodeTextBox;
 	@UiField
@@ -38,30 +41,82 @@ public class EduLog extends Composite implements EntryPoint {
 	ListBox ratingListBox;
 	@UiField
 	Button buttonSubmit;
+
+	String requiredStartCode;
+	String activity;
+	String providedStartCode;
 	
-	
+	Long feedbackId;
+
+	FeedbackObject feedbackObject;
+
+
 	@UiHandler("buttonStartFeedbackSession")
 	void OnClick1(ClickEvent eventButtonStartFeedbackSession) {
-		
-		String providedStartCode = startCodeTextBox.getText();
-		
+
+		providedStartCode = startCodeTextBox.getText().toUpperCase();
+
 		if (providedStartCode != "") {
-			
-			// continue
-			
+
+			databaseService.getFeedbackDataFromDatabase(providedStartCode, new AsyncCallback<FeedbackObject>() {
+
+				@Override
+				public void onFailure(Throwable caught) { Window.alert("Getting feedback object from database failed"); }
+
+				@Override
+				public void onSuccess(FeedbackObject result) { 
+
+					feedbackObject = result;
+					
+					feedbackId = feedbackObject.getId();
+					activity = feedbackObject.getActivity();
+					requiredStartCode = feedbackObject.getStartCode();
+					
+					// Window.alert("Received id: " + id + ", activity: " + activity + ", start code; " + requiredStartCode);
+
+					if (providedStartCode.equalsIgnoreCase(requiredStartCode)) {
+
+						rateActivityTextBox.setText(activity);
+
+						buttonStartFeedbackSession.setEnabled(false);
+						buttonSubmit.setEnabled(true);
+
+					} else { Window.alert("Start code invalid"); }
+
+				}
+
+			});
+
 		} else { Window.alert("Start code is required"); }
-		
-		//Window.alert(providedStartCode);
-		
+
 	}
 	
+	
+	@UiHandler("buttonSubmit")
+	void OnClick2(ClickEvent eventButtonSubmit) {
+		
+		String rating = ratingListBox.getSelectedValue();
+		int ratingInt = Integer.parseInt(rating);
+		
+		// send feedback id and ratingInt to Main class
+		Main.gatherFeedback(feedbackId, ratingInt);
+		
+		Window.alert("Sending value " + String.valueOf(ratingInt) + " for feedback id " + String.valueOf(feedbackId));
+		
+		buttonSubmit.setEnabled(false);
+		
+		rateActivityTextBox.setText("");
+		startCodeTextBox.setText("Thank you!");
+				
+	}
+
 
 	@Override
 	public void onModuleLoad() {
-		
+
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
-		
+
 		buttonSubmit.setEnabled(false);
 
 	}

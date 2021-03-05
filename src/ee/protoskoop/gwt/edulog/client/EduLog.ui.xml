@@ -12,7 +12,7 @@
 			<hr></hr>
 			<p
 				style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-				Let's give feedback about our studies!
+				Let's give feedback about your studies!
 			</p>
 			<form>
 				<div class="form-group">
@@ -27,7 +27,7 @@
 				<hr></hr>
 				<p
 					style="color:#858585; text-align: center; font-size: 1.2em; font-style: italic;">
-					Rate the activity
+					Rate this activity
 				</p>
 				<g:TextBox ui:field="rateActivityTextBox"
 					styleName="form-control"></g:TextBox>
@@ -37,10 +37,10 @@
 						<label>By the end of this activity ...</label>
 						<g:ListBox ui:field="ratingListBox"
 							styleName="form-control">
-							<g:item value="2">... I did't understand anything</g:item>
-							<g:item value="3">... I understood just a little</g:item>
-							<g:item value="4">... I understood the most</g:item>
 							<g:item value="5">... I understood everything</g:item>
+							<g:item value="4">... I mostly understood</g:item>
+							<g:item value="3">... I understood just a little</g:item>
+							<g:item value="2">... I did't understand anything</g:item>							
 						</g:ListBox>
 					</div>
 				</form>

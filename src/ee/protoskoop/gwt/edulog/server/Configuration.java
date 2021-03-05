@@ -31,8 +31,8 @@ public class Configuration {
 			section = ini.get("log");
 			LOG4J_PATH = getOrDefault(section.get("LOG4J_PATH"), "log4j.conf");
 			section = ini.get("emailService");
-			EMAIL_USER = getOrDefault(section.get("EMAIL_USER"), "edulog835@gmail.com");
-			EMAIL_PASS = getOrDefault(section.get("EMAIL_PASS"), "2MhMv1020");
+			EMAIL_USER = getOrDefault(section.get("EMAIL_USER"), "");
+			EMAIL_PASS = getOrDefault(section.get("EMAIL_PASS"), "");
 
 			return true;
 		}

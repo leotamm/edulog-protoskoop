@@ -12,8 +12,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-//import com.google.gwt.i18n.shared.DateTimeFormat;
-//import com.google.gwt.i18n.shared.DefaultDateTimeFormatInfo;
+import ee.protoskoop.gwt.edulog.shared.FeedbackObject;
 
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
@@ -26,19 +25,19 @@ public class DAO {
 	private ConnectionPool pool;
 
 	public static DAO getInstance() {
-		
+
 		if (instance == null) {
 			instance = new DAO();
 		}
-		
+
 		return instance;
-		
 	}
 
+	
 	public DAO() {
 
 		// load configuration
-		Configuration.loadConfiguration("C:\\Users\\Leo\\eclipse-workspace\\EduLog\\settings.ini");
+		Configuration.loadConfiguration("C:\\Users\\Leo\\eclipse-workspace2\\EduLog\\settings.ini");
 		PropertyConfigurator.configure(Configuration.LOG4J_PATH);
 		Logger.getLogger("org.apache.fontbox").setLevel(Level.OFF);
 
@@ -46,18 +45,20 @@ public class DAO {
 		pool.start();
 	}
 
+	
 	// purely for testing purposes
 	public boolean connectionCheck() {
 		return pool.isConnected();
 	}
 
+	
 	// purely for testing purposes
 	public boolean isAnyUserDataInDatabase() {
 
 		boolean reply = false;
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT email, password FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -79,13 +80,14 @@ public class DAO {
 		return reply;
 	}
 
+	
 	// purely for testing purposes
 	public boolean passwordsAreHash() {
 
 		boolean reply = false;
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT password FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -108,12 +110,13 @@ public class DAO {
 		return reply;
 	}
 
+	
 	public boolean changePassword(User user) {
 
 		boolean reply = false;
 
 		try {
-			
+
 			PreparedStatement updatePassword = pool.getConnection().prepareStatement(
 					"UPDATE el_user SET password = ? WHERE email = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -129,12 +132,13 @@ public class DAO {
 		return reply;
 	}
 
+	
 	public boolean doesUserExist(User user) {
 
 		boolean reply = false;
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT email FROM el_user;",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -160,13 +164,14 @@ public class DAO {
 		return reply;
 	}
 
+	
 	public String createNewUser(User user, String hashedPassword) {
 
 		String result = "";
 		//long id = 0;
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_user(email, password) " + "VALUES(?,?)", 
 					Statement.RETURN_GENERATED_KEYS);
@@ -191,12 +196,13 @@ public class DAO {
 		return result;
 	}
 
+	
 	public String checkUserCredentials(User user, String hashedPassword) {
 
 		String result = "";
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT password FROM el_user WHERE email = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -221,6 +227,7 @@ public class DAO {
 		return result;
 	}
 
+	
 	// purely for testing purposes
 	public boolean sessionsAreStoredLocally(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
 
@@ -333,7 +340,7 @@ public class DAO {
 		logger.info("Initiating subject data transfer to database");
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_subject(teacher, subject_list) VALUES(?,?)", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -351,10 +358,10 @@ public class DAO {
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 
 		logger.info("Initiation subject data reading from database.");
-		
-		
+
+
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -395,7 +402,7 @@ public class DAO {
 		logger.debug("Initiating user class check");
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -419,9 +426,9 @@ public class DAO {
 				for (int i = 0; i < str_groups.length; i++) {
 					groupsArrayFromDatabase.add(str_groups[i]);
 				}
-				
+
 				logger.debug("User classes written in return ArrayList");
-				
+
 			}
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
@@ -429,13 +436,14 @@ public class DAO {
 		return groupsArrayFromDatabase;
 	}
 
+	
 	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> sessionClass) {
 
 		boolean result = false;
 		logger.debug("Initiating teacher classset data transfer to database");
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_study_group(teacher, group_list) VALUES(?,?)", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -454,9 +462,9 @@ public class DAO {
 		} catch (SQLException ex) { logger.debug(ex.getMessage()); }
 
 		logger.debug("Teacher classset data transfer to database failed.");
-		
+
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT group_list FROM el_study_group WHERE teacher = ?", ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
@@ -489,6 +497,7 @@ public class DAO {
 		return result;
 	}
 
+	
 	public List<String> getUserSubjects(User user) {
 
 		List<String> subjectsArrayFromDatabase = new ArrayList<String>();
@@ -496,7 +505,7 @@ public class DAO {
 		logger.debug("Initiating user subject check");
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT subject_list FROM el_subject WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -525,6 +534,7 @@ public class DAO {
 		return subjectsArrayFromDatabase;
 	}
 
+	
 	public boolean addSessionToDatabase(SessionObject testSession) {
 
 		// string küsida random sõna start_code'iks ja lisada see resultset'i
@@ -534,7 +544,7 @@ public class DAO {
 		logger.debug("Session data transfer to database initiated.");
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_session(teacher, study_group, planned_time, subject, topic, goal, activity, "
 							+ "duration, created_time, started_time, finished_time, feedback, start_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", 
@@ -577,6 +587,7 @@ public class DAO {
 		return result;
 	}
 
+	
 	public List<SessionObject> getSessionFromDatabase(User testTeacher) {
 
 		List <SessionObject> returnSessionList = new ArrayList<SessionObject>();
@@ -585,7 +596,7 @@ public class DAO {
 		logger.debug("Session data reading from database initiated.");
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT * FROM el_session WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -686,7 +697,7 @@ public class DAO {
 		ArrayList<String> storedStartcodes = new ArrayList<String>();
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT start_code FROM el_session", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -709,15 +720,15 @@ public class DAO {
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
 
 		return storedStartcodes;
-
 	}
 
+	
 	public boolean loadWordToDatabase(Integer integer, String word) {
 
 		boolean result = false;
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"INSERT INTO el_word (id, word) values (?,?)",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -740,7 +751,7 @@ public class DAO {
 		String startCode = "";
 
 		try {
-			
+
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
 					"SELECT word FROM el_word WHERE id = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -763,6 +774,7 @@ public class DAO {
 		return startCode;
 	}
 
+	
 	public boolean addStartTimeToSession(SessionObject session) {
 
 		logger.debug("Adding start time to session started");
@@ -780,15 +792,15 @@ public class DAO {
 			pstmt.executeUpdate();
 
 			result = true;
-			
+
 			logger.debug("Adding start time to session succeeded");
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding start time to session failed"); }
 
 		return result;
 	}
-	
-	
+
+
 	public boolean addEndTimeToSession(SessionObject session) {
 
 		logger.debug("Adding end time to session started");
@@ -806,16 +818,115 @@ public class DAO {
 			pstmt.executeUpdate();
 
 			result = true;
-			
+
 			logger.debug("Adding end time to session succeeded");
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding end time to session failed"); }
 
 		return result;
 	}
+
+
+	public Long addFeedbackDataToDatabase(FeedbackObject feedbackObject) {
+
+		logger.debug("Adding feedback data to database started");
+
+		Long id = (long) 0;
+
+		try {
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"INSERT INTO el_feedback (session_id, teacher, start_code, activity) values (?,?,?,?) RETURNING id",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setLong(1, feedbackObject.getSessionId());
+			pstmt.setString(2, feedbackObject.getTeacher());
+			pstmt.setString(3, feedbackObject.getStartCode());
+			pstmt.setString(4, feedbackObject.getActivity());
+			ResultSet rs = pstmt.executeQuery();
+			
+			rs.next();
+			id = rs.getLong(1);
+			
+			logger.debug("Adding feedback data to database success");
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding feedback data to database fail"); }
+
+		return id;
+	}
 	
 	
+	public FeedbackObject getFeedbackDataFromDatabase(String startCode) {
+		
+		logger.debug("Getting feedback object from database started");
+		
+		FeedbackObject feedbackObject = new FeedbackObject();
+		Long id;
+		String activityBack;
+		String startCodeBack;
+		
+		try {
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"SELECT id, activity, start_code FROM el_feedback WHERE start_code = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setString(1, startCode);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (!rs.next()) {
+				logger.debug("Empty resultset. Getting feedback object from database success");
+
+			} else {
+				rs.last();
+				id = rs.getLong(1);
+				activityBack = rs.getString(2);
+				startCodeBack = rs.getString(3);
+				feedbackObject.setId(id);
+				feedbackObject.setActivity(activityBack);
+				feedbackObject.setStartCode(startCodeBack);
+				
+				logger.debug("Getting feedback object from database success");
+			}
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Getting feedback object from database failed"); }
+		
+		return feedbackObject;
+	}
+
 	
+	public boolean addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject) {
+		
+		logger.debug("Adding end time and feedback to database started");
+		
+		boolean result = false;
+		
+		try {	//"UPDATE el_session SET finished_time = ? where id = ?"
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"UPDATE el_feedback SET feedback = ?, finished_time = ? WHERE id = ?",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			
+			final Object[] feedbackDataToSql = feedbackObject.getFeedback().toArray(new Object[feedbackObject.getFeedback().size()]);
+			final java.sql.Array feedbackSqlArray = pool.getConnection().createArrayOf("integer", feedbackDataToSql);
+			
+			pstmt.setArray(1, feedbackSqlArray);
+			pstmt.setLong(2, feedbackObject.getFinishedTime());
+			pstmt.setLong(3, feedbackId);
+
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			result = true;
+			
+			logger.debug("Adding end time and feedback to database success");
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding end time and feedback to database fail"); }
+		
+		return result;
+	}
+
 }
 
 

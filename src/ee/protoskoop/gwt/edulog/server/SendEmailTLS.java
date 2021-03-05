@@ -24,6 +24,7 @@ public class SendEmailTLS {
 				new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(Configuration.EMAIL_USER, Configuration.EMAIL_PASS);
+	
 			}
 		});
 
@@ -37,9 +38,8 @@ public class SendEmailTLS {
 					);
 			message.setSubject("Resetting Edulog password");
 			message.setText("Dear Edulog user," +
-					"n\n your new password is: " + user.getPassword() + 
-					"\n\n Try logging in again!" +
-					"\n\n This is an automated message - please do not reply");
+					"\n\n Try logging in with your new password: " + user.getPassword() + 
+					"\n\n This is an automated message - please do not reply!");
 
 			Transport.send(message);
 

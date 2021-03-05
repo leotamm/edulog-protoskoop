@@ -3,11 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry kind="con" path="com.gwtplugins.gwt.eclipse.core.GWT_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_271">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/org.springframework.security.crypto.password"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.17.jar"/>
@@ -15,8 +10,13 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/postgresql-42.2.18.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-gwt.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/javax.mail-1.6.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javax.mail-1.6.2.jar" sourcepath="war/WEB-INF/lib/javax.mail-1.6.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/javaee-api-8.0.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/activation-1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

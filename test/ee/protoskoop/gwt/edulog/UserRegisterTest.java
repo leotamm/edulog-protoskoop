@@ -5,7 +5,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import ee.protoskoop.gwt.edulog.client.DatabaseService;
 import ee.protoskoop.gwt.edulog.server.DAO;
 import ee.protoskoop.gwt.edulog.shared.User;
 
@@ -36,7 +35,7 @@ public class UserRegisterTest {
 	
 	@AfterMethod	public void tearDown() {
 
-		User testUser = null;
+		// User testUser = null;
 	}
 
 }

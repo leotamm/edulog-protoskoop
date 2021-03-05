@@ -1,7 +1,7 @@
 package ee.protoskoop.gwt.edulog.server;
 
 import ee.protoskoop.gwt.edulog.client.DatabaseService;
-
+import ee.protoskoop.gwt.edulog.shared.FeedbackObject;
 import ee.protoskoop.gwt.edulog.shared.FieldVerifier;
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
-import java.util.TimeZone;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.server.Base64Utils;
@@ -137,7 +136,7 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 
 		// generate hash form user email + password + 10-digit salt using Md5
 		while (salt.length() < 10) {
-			// TODO fix random which always returns second char or 'B'
+
 			int randomIndex = (int) Math.random() * SALTCHARS.length() + 1 ;
 			salt.append(SALTCHARS.charAt(randomIndex));
 		}
@@ -234,6 +233,24 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		return DAO.getInstance().addEndTimeToSession(session);
 	}
 	
+	
+	@Override
+	public Long addFeedbackDataToDatabase(FeedbackObject feedbackObject) {
+		return DAO.getInstance().addFeedbackDataToDatabase(feedbackObject);
+	}
+	
+	
+	@Override
+	public FeedbackObject getFeedbackDataFromDatabase(String startCode) {
+		return DAO.getInstance().getFeedbackDataFromDatabase(startCode);
+	}
+	
+	
+	@Override
+	public boolean addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject) {
+		return DAO.getInstance().addEndtimeAndFeedbackToDatabase(feedbackId, feedbackObject);
+	}
+	
 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
@@ -252,7 +269,6 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo + ".<br><br>It looks like you are using:<br>"
 		+ userAgent;
-	
 	}
 
 	
@@ -273,15 +289,8 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		
 		return dateAsString;
 	}
+
 	
-	
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
-	 */;
 	 private String escapeHtml(String html) {
 		 if (html == null) {
 			 return null;

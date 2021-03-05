@@ -20,6 +20,7 @@ public class SessionTest {
 	User testTeacher;
 	ArrayList <String> testActivity;
 	ArrayList <Long> testDuration;
+	ArrayList <Boolean> testFeedback;
 	SessionObject testSession;
 	
 	Long lessonLong, createLong, planLong, finishLong, lessonLong2, createLong2, finishLong2, planLong2;
@@ -36,6 +37,7 @@ public class SessionTest {
 		testTeacher = new User();
 		testActivity = new ArrayList<String>();
 		testDuration = new ArrayList<Long>();
+		testFeedback = new ArrayList<Boolean>();
 		testSession = new SessionObject();
 		
 		//dtfToSeconds = DateTimeFormat.getFormat("yyyyMMddHHmmss");
@@ -66,6 +68,10 @@ public class SessionTest {
 		testActivity.add("testActivity reading");
 		testActivity.add("testActivity discussion");
 		testActivity.add("testActivity test");
+		
+		testFeedback.add(false);
+		testFeedback.add(true);
+		testFeedback.add(false);
 
 		testDuration.add((long) (10*60*1000));
 		testDuration.add((long) (25*60*1000));
@@ -82,7 +88,7 @@ public class SessionTest {
 		testSession.setSessionCreatingTime(createLong2); // returns 00:00:00 at current date
 		testSession.setSessionPlanningDate(planLong2);
 		testSession.setSessionFinishingDate(finishLong2);
-		testSession.setFeedback(false);
+		testSession.setFeedback(testFeedback);
 		testSession.setStartCode("RABBIT");
 
 	}

@@ -53,6 +53,7 @@ public class Main extends Composite implements EntryPoint {
 	@UiField
 	Button buttonBack;
 
+	
 	ArrayList <SessionObject> allSessionsFromDatabase = new ArrayList<SessionObject>();
 	ArrayList <String> selectedSessionActivities = new ArrayList<String>();
 	ArrayList <Boolean> selectedSessionFeedback = new ArrayList<Boolean>();
@@ -65,9 +66,13 @@ public class Main extends Composite implements EntryPoint {
 
 	int selectedSessionIndex;
 
-	String sessionStartCode;
+	static String sessionStartCode;
+	static String sessionSubject;
+	static String selectedActivity;
+	
+	static ArrayList<Integer> collectedFeedback = new ArrayList<Integer>();
 
-
+	
 	@UiHandler("buttonSelectSession")
 	void onClick1(ClickEvent eventButtonSelectSession) {
 
@@ -79,8 +84,6 @@ public class Main extends Composite implements EntryPoint {
 
 		selectedSessionIndex = listBoxSelectSession.getSelectedIndex();
 
-		// Window.alert("You selected session number: " + selectedSessionIndex);
-
 		int selectedSessionCounter = 0;
 
 		for(SessionObject session : allSessionsFromDatabase) {
@@ -91,11 +94,11 @@ public class Main extends Composite implements EntryPoint {
 				selectedSessionFeedback = session.isFeedback();
 				selectedSessionActivities = session.getActivity();
 				sessionStartCode = session.getStartCode();
+				sessionSubject = session.getSubject();
 
 				feedbackObject.setSessionId(session.getId());
 				feedbackObject.setTeacher(Cookies.getCookie("sessionUser"));
-
-				// Window.alert("Session start code is: " + sessionStartCode);
+				feedbackObject.setStartCode(sessionStartCode);
 
 				int activityCounter = 0;
 
@@ -107,43 +110,42 @@ public class Main extends Composite implements EntryPoint {
 
 						listBoxSelectActivity.insertItem(activity, activityCounter);
 
-						// Window.alert("You selected activity: " + activity);
-
-
-
 						buttonSelectActivity.setEnabled(true);
 					}
-
+					
 					activityCounter ++;
-
 				}
-
 			}
-
+			
 			selectedSessionCounter ++;
-
 		}
-
 	}
 
 
 	@UiHandler("buttonSelectActivity")
 	void onClick2(ClickEvent eventButtonSelectActivity) {
 
-		String selectedActivity = listBoxSelectActivity.getSelectedValue();
+		selectedActivity = listBoxSelectActivity.getSelectedValue();
 		feedbackActivities.add(selectedActivity);
+		
+		String selectedTopicAndActivity = sessionSubject + " - " + selectedActivity;
+		
+		feedbackObject.setActivity(selectedTopicAndActivity);
 
 		startCodeTextBox.setText(sessionStartCode);
 
 		buttonStartFeedback.setEnabled(true);
-
 	}
 
+	
+	static Long feedbackId;
 
 	@UiHandler("buttonStartFeedback")
 	void onClick3(ClickEvent eventButtonStartFeedback) {
+		
+		//collectedFeedback = new ArrayList<Integer>();
 
-		feedbackProgressTextBox.setText("Feedback collection started...");
+		feedbackProgressTextBox.setText("Collection started...");
 
 		buttonEndFeedback.setEnabled(true);
 
@@ -165,19 +167,32 @@ public class Main extends Composite implements EntryPoint {
 			@Override
 			public void onSuccess(Boolean result) { 
 
-				// continue code
+				databaseService.addFeedbackDataToDatabase(feedbackObject, new AsyncCallback<Long>() {
 
+					@Override
+					public void onFailure(Throwable caught) { Window.alert("Sending feedback to database failed"); }
+
+					@Override
+					public void onSuccess(Long id) { 
+
+						feedbackId = id;
+					}
+				});
 			}
-
 		});
-
 	}
 
+	
+	static Long feedbackSessionId;
+	static int testScore;
+	static int replies;
 
 	@UiHandler("buttonEndFeedback")
 	void onClick4(ClickEvent eventButtonEndFeedback) {
+		
+		replies = collectedFeedback.size();
 
-		feedbackProgressTextBox.setText("Feedback collection ended with x replies");
+		feedbackProgressTextBox.setText("Collection ended with " + String.valueOf(replies) + " replies");
 
 		buttonSelectActivity.setEnabled(false);
 		buttonStartFeedback.setEnabled(false);
@@ -190,7 +205,7 @@ public class Main extends Composite implements EntryPoint {
 		Long sessionEndTimeInLong = sessionEndTime.getTime();
 		sendEndTimeToDatabase.setSessionFinishingDate(sessionEndTimeInLong);
 
-		Long feedbackSessionId = feedbackObject.getSessionId();
+		feedbackSessionId = feedbackObject.getSessionId();
 		sendEndTimeToDatabase.setId(feedbackSessionId);
 
 		databaseService.addEndTimeToSession(sendEndTimeToDatabase, new AsyncCallback<Boolean>() {
@@ -201,21 +216,50 @@ public class Main extends Composite implements EntryPoint {
 			@Override
 			public void onSuccess(Boolean result) { 
 
-				// contiune code
+				// send end time and collected feedback to el_feedback
+				FeedbackObject endtimeAndFeedback = new FeedbackObject();
+				
+				Date feedbackFinishTime = new Date();
+				Long feedbackFinishTimeInLong = feedbackFinishTime.getTime();
+				
+				endtimeAndFeedback.setFeedback(collectedFeedback);
+				endtimeAndFeedback.setFinishedTime(feedbackFinishTimeInLong);
+				
+				//testScore = collectedFeedback.get(0);
+	
+				databaseService.addEndtimeAndFeedbackToDatabase(feedbackId, endtimeAndFeedback, new AsyncCallback<Boolean>() {
 
+					@Override
+					public void onFailure(Throwable caught) { Window.alert("Adding end time and feedback to database failed"); }
+
+					@Override
+					public void onSuccess(Boolean result) { 
+
+						// decompose the collectedFeedback Arraylist 
+						collectedFeedback.clear();
+						
+						// prompt on success
+						Window.alert("Feedback successfully collected from " + replies + " replies");
+					}
+				});
 			}
-
 		});
+	}
+	
+	
+	
+	
+	public static void gatherFeedback(Long returnedId, Integer feedbackInt) {
 
-
+		if (returnedId.equals(feedbackId)) { 
+			
+			collectedFeedback.add(feedbackInt); 
+			Window.alert("Main classs received feedback " + String.valueOf(feedbackInt)); }	
 	}
 
 
 	@UiHandler("buttonBack")
-	void onClick5(ClickEvent eventButtonBack) {
-
-		Window.Location.assign("Teacher.html");
-	}
+	void onClick5(ClickEvent eventButtonBack) { Window.Location.assign("Teacher.html"); }
 
 
 	public void setUpSessionAndActivitySelection() {
@@ -253,15 +297,12 @@ public class Main extends Composite implements EntryPoint {
 
 						sessionCounter ++;
 					}
-
+					
 				} else { Window.alert("Unable to read user session data"); }
-
 			}
-
 		});
-
 	}
-
+	
 
 	@Override
 	public void onModuleLoad() {

@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import ee.protoskoop.gwt.edulog.shared.FeedbackObject;
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
@@ -50,5 +51,11 @@ public interface DatabaseService extends RemoteService {
 	boolean addStartTimeToSession(SessionObject session);
 	
 	boolean addEndTimeToSession(SessionObject session);
+	
+	Long addFeedbackDataToDatabase(FeedbackObject feedbackObject);
+	
+	FeedbackObject getFeedbackDataFromDatabase(String startCode);
+	
+	boolean addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject);
 
 }

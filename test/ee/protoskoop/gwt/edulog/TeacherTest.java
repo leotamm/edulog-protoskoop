@@ -1,5 +1,6 @@
 package ee.protoskoop.gwt.edulog;
 import ee.protoskoop.gwt.edulog.server.DAO;
+import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
 import org.testng.annotations.Test;
@@ -15,10 +16,12 @@ public class TeacherTest {
 	//private Map<String, Map> expectedSessionData;
 	//private Map<String, String> innerExpectedSessionData;
 
-	final String sessionTeacher = "teacher_three";
+	String sessionTeacher = "teacher_three";
 	ArrayList<String> sessionClass = new ArrayList<String>();
 	ArrayList<String> sessionActivity = new ArrayList<String>();
 	ArrayList<String> sessionSubject = new ArrayList<String>();
+	
+	SessionObject testSession = new SessionObject();
 
 	//TODO all tests should address a unique test database, a copy of the real one
 	// initiated TEST_DATABASE_NAME = eduLogTestDatabase in settings.ini
@@ -66,6 +69,11 @@ public class TeacherTest {
 		sessionSubject.add("Arts");
 		sessionSubject.add("PE");
 		sessionSubject.add("Music");
+		
+		testSession.setTeacher(sessionTeacher);
+		testSession.setStudyGroup("1C");
+		testSession.setActivity(sessionActivity);
+		testSession.setSubject("Nature");
 
 	}
 
@@ -81,7 +89,7 @@ public class TeacherTest {
 
 		//boolean sessionDataStored = DAO.getInstance().addSessionsToDatabase(sessionTeacher, sessionClass, sessionActivity);
 		//Assert.assertTrue(sessionDataStored);
-		Assert.assertThrows(DAO.getInstance().addSessionsToDatabase(sessionTeacher, sessionClass, sessionActivity));
+		Assert.assertTrue(DAO.getInstance().addSessionToDatabase(testSession));
 	}
 
 	@Test void subjectsAreStoredInDatabase() {		// testing if subjects' data is stored in database el_	
@@ -122,6 +130,8 @@ public class TeacherTest {
 		sessionClass.clear();
 		sessionActivity.clear();
 		sessionSubject.clear();
+		sessionTeacher = null;
+		testSession = null;
 
 	}
 

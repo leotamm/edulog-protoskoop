@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import ee.protoskoop.gwt.edulog.shared.FeedbackObject;
 import ee.protoskoop.gwt.edulog.shared.SessionObject;
 import ee.protoskoop.gwt.edulog.shared.User;
 
@@ -66,6 +67,15 @@ public interface DatabaseServiceAsync {
 			throws IllegalArgumentException;
 	
 	void addEndTimeToSession(SessionObject session, AsyncCallback<Boolean> asyncCallback)
+			throws IllegalArgumentException;
+	
+	void addFeedbackDataToDatabase(FeedbackObject feedbackObject, AsyncCallback<Long> asyncCallback)
+			throws IllegalArgumentException;
+	
+	void getFeedbackDataFromDatabase(String startCode, AsyncCallback<FeedbackObject> asyncCallback)
+			throws IllegalArgumentException;
+	
+	void addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject, AsyncCallback<Boolean> asyncCallback)
 			throws IllegalArgumentException;
 	
 }

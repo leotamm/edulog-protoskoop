@@ -28,6 +28,7 @@ public class Course<HoverEvent> extends Composite implements EntryPoint {
 
 	//private static final Logger logger = Logger.getLogger(Course.class);
 
+	@SuppressWarnings("rawtypes")
 	interface CourseUiBinder extends UiBinder<Widget, Course> {
 	}
 
