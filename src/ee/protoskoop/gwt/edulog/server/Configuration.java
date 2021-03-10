@@ -25,15 +25,17 @@ public class Configuration {
 			Ini.Section section = ini.get("databaseDefault");
 			DB_HOST = getOrDefault(section.get("DATABASE_HOST"), "localhost");
 			DB_PORT = Integer.parseInt(getOrDefault(section.get("DATABASE_PORT"), "5432"));
-			DB_NAME = getOrDefault(section.get("DATABASE_NAME"), "eduLogDatabase");
+			DB_NAME = getOrDefault(section.get("DATABASE_NAME"), "edulogdatabase");
 			DB_USER = getOrDefault(section.get("DATABASE_USER"), "postgres");
-			DB_PASS = getOrDefault(section.get("DATABASE_PASSWORD"), "docker");
+			DB_PASS = getOrDefault(section.get("DATABASE_PASSWORD"), "protoproto");
 			section = ini.get("log");
-			LOG4J_PATH = getOrDefault(section.get("LOG4J_PATH"), "log4j.conf");
+			LOG4J_PATH = getOrDefault(section.get("LOG4J_PATH"), "/edulogconfig/log4j.conf");
 			section = ini.get("emailService");
 			EMAIL_USER = getOrDefault(section.get("EMAIL_USER"), "");
 			EMAIL_PASS = getOrDefault(section.get("EMAIL_PASS"), "");
 
+			System.out.println("Loading conf SUCCESS!!!");
+			
 			return true;
 		}
 		

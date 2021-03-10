@@ -2,22 +2,4 @@
 
 -- DROP TABLE public.el_feedback;
 
-CREATE TABLE public.el_feedback
-(
-    id bigint NOT NULL DEFAULT nextval('el_feedback_id_seq'::regclass),
-    session_id bigint,
-    teacher text COLLATE pg_catalog."default",
-    start_code text COLLATE pg_catalog."default",
-    activity text COLLATE pg_catalog."default",
-    feedback integer[],
-    finished_time bigint,
-    CONSTRAINT el_feedback_pkey PRIMARY KEY (id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.el_feedback
-    OWNER to postgres;
-
-COMMENT ON TABLE public.el_feedback
-    IS 'this database holds information about student feedback in columns id - bigserial (PK, NOTNULL), session_id - bigint, teacher - text, start_code - text, activity - text, feedback integer[], finished_time - long';
+CREATE TABLE public.el_feedback ( id bigint NOT NULL DEFAULT nextval('el_feedback_id_seq'::regclass), session_id bigint, teacher text COLLATE pg_catalog."default", start_code text COLLATE pg_catalog."default", activity text COLLATE pg_catalog."default", feedback integer[], finished_time bigint, CONSTRAINT el_feedback_pkey PRIMARY KEY (id) ) TABLESPACE pg_default; ALTER TABLE public.el_feedback OWNER to postgres; COMMENT ON TABLE public.el_feedback IS 'this database holds information about student feedback in columns id - bigserial (PK, NOTNULL), session_id - bigint, teacher - text, start_code - text, activity - text, feedback integer[], finished_time - long';

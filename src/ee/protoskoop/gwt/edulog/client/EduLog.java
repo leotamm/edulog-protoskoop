@@ -45,7 +45,7 @@ public class EduLog extends Composite implements EntryPoint {
 	String requiredStartCode;
 	String activity;
 	String providedStartCode;
-	
+
 	Long feedbackId;
 
 	FeedbackObject feedbackObject;
@@ -54,6 +54,7 @@ public class EduLog extends Composite implements EntryPoint {
 	@UiHandler("buttonStartFeedbackSession")
 	void OnClick1(ClickEvent eventButtonStartFeedbackSession) {
 
+		// when correct start code provided, retrieve activity to be rated
 		providedStartCode = startCodeTextBox.getText().toUpperCase();
 
 		if (providedStartCode != "") {
@@ -67,12 +68,10 @@ public class EduLog extends Composite implements EntryPoint {
 				public void onSuccess(FeedbackObject result) { 
 
 					feedbackObject = result;
-					
+
 					feedbackId = feedbackObject.getId();
 					activity = feedbackObject.getActivity();
 					requiredStartCode = feedbackObject.getStartCode();
-					
-					// Window.alert("Received id: " + id + ", activity: " + activity + ", start code; " + requiredStartCode);
 
 					if (providedStartCode.equalsIgnoreCase(requiredStartCode)) {
 
@@ -90,24 +89,31 @@ public class EduLog extends Composite implements EntryPoint {
 		} else { Window.alert("Start code is required"); }
 
 	}
-	
-	
+
+
 	@UiHandler("buttonSubmit")
 	void OnClick2(ClickEvent eventButtonSubmit) {
-		
+
 		String rating = ratingListBox.getSelectedValue();
 		int ratingInt = Integer.parseInt(rating);
-		
-		// send feedback id and ratingInt to Main class
-		Main.gatherFeedback(feedbackId, ratingInt);
-		
-		Window.alert("Sending value " + String.valueOf(ratingInt) + " for feedback id " + String.valueOf(feedbackId));
-		
-		buttonSubmit.setEnabled(false);
-		
-		rateActivityTextBox.setText("");
-		startCodeTextBox.setText("Thank you!");
-				
+
+		// when feedback score selected, add this to database array
+		databaseService.addMyFeedbackToDatabase(feedbackId, ratingInt, new AsyncCallback<Boolean>() {
+
+			@Override
+			public void onFailure(Throwable caught) { Window.alert("Submitting your feedback failed"); }
+
+			@Override
+			public void onSuccess(Boolean result) { 
+
+				buttonSubmit.setEnabled(false);
+
+				rateActivityTextBox.setText("");
+				startCodeTextBox.setText("Thank you!");
+			}
+
+		});
+
 	}
 
 

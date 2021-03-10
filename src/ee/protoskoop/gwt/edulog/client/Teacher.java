@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -17,7 +18,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class Teacher extends Composite implements EntryPoint{
 
 	private static TeacherUiBinder uiBinder = GWT.create(TeacherUiBinder.class);
-	// private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
+	private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
 
 	interface TeacherUiBinder extends UiBinder<Widget, Teacher> { }
 
@@ -34,8 +35,8 @@ public class Teacher extends Composite implements EntryPoint{
 	Button buttonSessionResults;
 	@UiField
 	Button buttonLogout;
-//	@UiField
-//	Button buttonLoadWords;
+	@UiField
+	Button buttonLoadWords;
 
 
 	@UiHandler("buttonCourses")
@@ -75,33 +76,27 @@ public class Teacher extends Composite implements EntryPoint{
 		Window.Location.assign("Login.html");
 	}
 	
-	/**
-	 * hidden component for quick el_word setup
-	 * with a push of a button writes words from file to database
-	 * 
-	 * 1. above, uncomment buttonLoadWords
-	 * 2. below, uncomment buttonLoadWords setEnabled
-	
+
 			@UiHandler("buttonLoadWords")
-			void onClick5(ClickEvent eventLoadWords) {
+			void onClick7(ClickEvent eventLoadWords) {
 		
 				// call the method
-				Window.alert("Starting load...");
+				Window.alert("Starting loading words");
 				String junk = "junk";
 				Integer x = 1;
 		
 				databaseService.loadWordToDatabase(x, junk, new AsyncCallback<Boolean>() {
 		
 					@Override
-					public void onFailure(Throwable caught) { Window.alert("Load word to database failed!"); }
+					public void onFailure(Throwable caught) { Window.alert("Loading words to database failed!"); }
 		
 					@Override
-					public void onSuccess(Boolean result) { Window.alert("Load word to database successful!"); }
+					public void onSuccess(Boolean result) { Window.alert("Loading words to database successful!"); }
 		
 				});
 			}
 
-		*/	
+			
 			
 	@Override
 	public void onModuleLoad() {
@@ -109,16 +104,15 @@ public class Teacher extends Composite implements EntryPoint{
 		initWidget(uiBinder.createAndBindUi(this));
 		RootPanel.get().add(this);
 
-		// buttonStartSession.setEnabled(false);
-		
-		/**
+		buttonStartSession.setEnabled(true);
+
 		buttonLoadWords.setEnabled(false);	
 		String user = Cookies.getCookie("sessionUser");
 		
 		if (user.equals("leo.tamm@gmail.com")) {
 			buttonLoadWords.setEnabled(true);
 		}
-		*/
+
 	}
 
 }

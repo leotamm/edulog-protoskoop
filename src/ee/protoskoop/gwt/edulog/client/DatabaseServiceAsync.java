@@ -75,7 +75,10 @@ public interface DatabaseServiceAsync {
 	void getFeedbackDataFromDatabase(String startCode, AsyncCallback<FeedbackObject> asyncCallback)
 			throws IllegalArgumentException;
 	
-	void addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject, AsyncCallback<Boolean> asyncCallback)
+	void addEndtimeToFeedback(Long feedbackId, FeedbackObject feedbackObject, AsyncCallback<Integer> asyncCallback)
+			throws IllegalArgumentException;
+	
+	void addMyFeedbackToDatabase(Long feedbackId, Integer feedbackScore, AsyncCallback<Boolean> asyncCallbac)
 			throws IllegalArgumentException;
 	
 }

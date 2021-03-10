@@ -33,11 +33,15 @@ public class DAO {
 		return instance;
 	}
 
-	
+
 	public DAO() {
 
-		// load configuration
-		Configuration.loadConfiguration("C:\\Users\\Leo\\eclipse-workspace2\\EduLog\\settings.ini");
+		// load configuration 1. local machine 2. live environment
+		// Configuration.loadConfiguration("C:\\Users\\Leo\\eclipse-workspace2\\EduLog\\settings.ini");
+		Configuration.loadConfiguration("/edulogconfig/settings.ini");
+		
+		System.out.println(Configuration.LOG4J_PATH);
+		
 		PropertyConfigurator.configure(Configuration.LOG4J_PATH);
 		Logger.getLogger("org.apache.fontbox").setLevel(Level.OFF);
 
@@ -45,13 +49,13 @@ public class DAO {
 		pool.start();
 	}
 
-	
+
 	// purely for testing purposes
 	public boolean connectionCheck() {
 		return pool.isConnected();
 	}
 
-	
+
 	// purely for testing purposes
 	public boolean isAnyUserDataInDatabase() {
 
@@ -80,7 +84,7 @@ public class DAO {
 		return reply;
 	}
 
-	
+
 	// purely for testing purposes
 	public boolean passwordsAreHash() {
 
@@ -110,7 +114,7 @@ public class DAO {
 		return reply;
 	}
 
-	
+
 	public boolean changePassword(User user) {
 
 		boolean reply = false;
@@ -132,7 +136,7 @@ public class DAO {
 		return reply;
 	}
 
-	
+
 	public boolean doesUserExist(User user) {
 
 		boolean reply = false;
@@ -164,7 +168,7 @@ public class DAO {
 		return reply;
 	}
 
-	
+
 	public String createNewUser(User user, String hashedPassword) {
 
 		String result = "";
@@ -196,7 +200,7 @@ public class DAO {
 		return result;
 	}
 
-	
+
 	public String checkUserCredentials(User user, String hashedPassword) {
 
 		String result = "";
@@ -227,7 +231,7 @@ public class DAO {
 		return result;
 	}
 
-	
+
 	// purely for testing purposes
 	public boolean sessionsAreStoredLocally(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
 
@@ -252,6 +256,7 @@ public class DAO {
 		return result;
 	}
 	/*
+	
 	// deprecated method - use addSessionToDatabase instead
 	// test is now supposed to fail
 	public ThrowingRunnable addSessionsToDatabase(String sessionTeacher, ArrayList<String> sessionClass, ArrayList<String> sessionActivity) {
@@ -436,7 +441,7 @@ public class DAO {
 		return groupsArrayFromDatabase;
 	}
 
-	
+
 	public boolean addStudyGroupsToDatabase(String sessionTeacher, ArrayList<String> sessionClass) {
 
 		boolean result = false;
@@ -497,7 +502,7 @@ public class DAO {
 		return result;
 	}
 
-	
+
 	public List<String> getUserSubjects(User user) {
 
 		List<String> subjectsArrayFromDatabase = new ArrayList<String>();
@@ -534,10 +539,8 @@ public class DAO {
 		return subjectsArrayFromDatabase;
 	}
 
-	
-	public boolean addSessionToDatabase(SessionObject testSession) {
 
-		// string küsida random sõna start_code'iks ja lisada see resultset'i
+	public boolean addSessionToDatabase(SessionObject testSession) {
 
 		boolean result = false;
 
@@ -587,7 +590,7 @@ public class DAO {
 		return result;
 	}
 
-	
+
 	public List<SessionObject> getSessionFromDatabase(User testTeacher) {
 
 		List <SessionObject> returnSessionList = new ArrayList<SessionObject>();
@@ -601,10 +604,12 @@ public class DAO {
 					"SELECT * FROM el_session WHERE teacher = ?", 
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE);
+			
 			pstmt.setObject(1, teacherEmail);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (!rs.next()) {
+				
 				logger.debug("Empty resultset. Session data reading from database failed.");
 
 			} else {
@@ -712,9 +717,10 @@ public class DAO {
 				rs.beforeFirst();
 				while(rs.next()) { 
 					storedStartcodes.add(rs.getString("start_code")); 
+
 				}
 
-				logger.debug("Reading exisiting start codes success");
+				logger.debug("Reading exisiting start codes success. Returning list of " + String.valueOf(storedStartcodes.size()) + " used codes");
 			}
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); }
@@ -722,7 +728,7 @@ public class DAO {
 		return storedStartcodes;
 	}
 
-	
+
 	public boolean loadWordToDatabase(Integer integer, String word) {
 
 		boolean result = false;
@@ -733,7 +739,7 @@ public class DAO {
 					"INSERT INTO el_word (id, word) values (?,?)",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			pstmt.setLong(1, integer);
+			pstmt.setInt(1, integer);
 			pstmt.setString(2, word);
 			pstmt.executeUpdate();
 
@@ -774,7 +780,7 @@ public class DAO {
 		return startCode;
 	}
 
-	
+
 	public boolean addStartTimeToSession(SessionObject session) {
 
 		logger.debug("Adding start time to session started");
@@ -836,35 +842,43 @@ public class DAO {
 		try {
 
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"INSERT INTO el_feedback (session_id, teacher, start_code, activity) values (?,?,?,?) RETURNING id",
+					"INSERT INTO el_feedback (session_id, teacher, start_code, activity, feedback) values (?,?,?,?,?) RETURNING id",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setLong(1, feedbackObject.getSessionId());
 			pstmt.setString(2, feedbackObject.getTeacher());
 			pstmt.setString(3, feedbackObject.getStartCode());
 			pstmt.setString(4, feedbackObject.getActivity());
+			// we are setting the first feedback score value as 0, that should later not be considered in analysis
+
+			final Integer[] testScore = feedbackObject.getFeedback().toArray(new Integer[feedbackObject.getFeedback().size()]);
+			final java.sql.Array testScoreArray = pool.getConnection().createArrayOf("integer", testScore);
+			pstmt.setArray(5, testScoreArray);
+
+			//pstmt.setInt(5, 0);
+
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			rs.next();
 			id = rs.getLong(1);
-			
+
 			logger.debug("Adding feedback data to database success");
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding feedback data to database fail"); }
 
 		return id;
 	}
-	
-	
+
+
 	public FeedbackObject getFeedbackDataFromDatabase(String startCode) {
-		
+
 		logger.debug("Getting feedback object from database started");
-		
+
 		FeedbackObject feedbackObject = new FeedbackObject();
 		Long id;
 		String activityBack;
 		String startCodeBack;
-		
+
 		try {
 
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
@@ -886,45 +900,109 @@ public class DAO {
 				feedbackObject.setId(id);
 				feedbackObject.setActivity(activityBack);
 				feedbackObject.setStartCode(startCodeBack);
-				
+
 				logger.debug("Getting feedback object from database success");
 			}
 
 		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Getting feedback object from database failed"); }
-		
+
 		return feedbackObject;
 	}
 
-	
-	public boolean addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject) {
-		
-		logger.debug("Adding end time and feedback to database started");
-		
+
+	public boolean addMyFeedbackToDatabase(Long feedbackId, Integer feedbackScore) {
+
+		//TODO read current list IN database, update this by new value and write it again
+
+		logger.debug("Adding single feedback score to database  - reading current results - started");
+
 		boolean result = false;
-		
-		try {	//"UPDATE el_session SET finished_time = ? where id = ?"
+
+		ArrayList<Integer> storedFeedbackScores = new ArrayList<Integer>();
+
+		try {
 
 			PreparedStatement pstmt = pool.getConnection().prepareStatement(
-					"UPDATE el_feedback SET feedback = ?, finished_time = ? WHERE id = ?",
+					"SELECT feedback FROM el_feedback where id = ?", 
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			pstmt.setLong(1, feedbackId);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+
+				Array feedbackScoresFromDatabase = rs.getArray("feedback");
+
+				Integer[] int_durations = (Integer[]) feedbackScoresFromDatabase.getArray();
+				for (int i = 0; i < int_durations.length; i++) {
+					storedFeedbackScores.add(int_durations[i]);
+				}
+
+			}
+
+			logger.debug("Adding single feedback score to database  - reading current results - finished");
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding single feedback score to database  - reading current results - failed"); }
+
+		storedFeedbackScores.add(feedbackScore);
+
+		try {
+
+			logger.debug("Adding single feedback score to database - updating with current result - started");
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"UPDATE el_feedback SET feedback = ? WHERE id = ?",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			
-			final Object[] feedbackDataToSql = feedbackObject.getFeedback().toArray(new Object[feedbackObject.getFeedback().size()]);
+
+			final Object[] feedbackDataToSql = storedFeedbackScores.toArray(new Object[storedFeedbackScores.size()]);
 			final java.sql.Array feedbackSqlArray = pool.getConnection().createArrayOf("integer", feedbackDataToSql);
-			
+
 			pstmt.setArray(1, feedbackSqlArray);
-			pstmt.setLong(2, feedbackObject.getFinishedTime());
-			pstmt.setLong(3, feedbackId);
+			pstmt.setLong(2, feedbackId);
 
 			pstmt.executeUpdate();
 			pstmt.close();
-			
-			result = true;
-			
-			logger.debug("Adding end time and feedback to database success");
 
-		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding end time and feedback to database fail"); }
-		
+			result = true;
+
+			logger.debug("Adding single feedback score to database - updating with current result - finished");
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding single feedback score to database - updating with current result - failed"); }
+
 		return result;
+	}
+
+
+	public Integer addEndtimeToFeedback(Long feedbackId, FeedbackObject feedbackObject) {
+
+		logger.debug("Adding end time to database and getting feedback count - started");
+
+		Integer feedbackCount = 0;
+
+		try {
+
+			PreparedStatement pstmt = pool.getConnection().prepareStatement(
+					"UPDATE el_feedback SET finished_time = ? where id = ? RETURNING feedback",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setLong(1, feedbackObject.getFinishedTime());
+			pstmt.setLong(2, feedbackId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+
+				Array feedbackScoresFromDatabase = rs.getArray("feedback");
+				Integer[] int_scores = (Integer[]) feedbackScoresFromDatabase.getArray();
+				feedbackCount = int_scores.length;
+
+				logger.debug("Adding end time to database and getting feedback count - success");
+
+			}
+
+		} catch (SQLException ex) { logger.error(ex.getMessage()); logger.debug("Adding end time to database and getting feedback count - fail"); }
+
+		return feedbackCount;
 	}
 
 }

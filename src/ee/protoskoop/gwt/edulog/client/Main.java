@@ -70,7 +70,7 @@ public class Main extends Composite implements EntryPoint {
 	static String sessionSubject;
 	static String selectedActivity;
 	
-	static ArrayList<Integer> collectedFeedback = new ArrayList<Integer>();
+//	static ArrayList<Integer> collectedFeedback = new ArrayList<Integer>();
 
 	
 	@UiHandler("buttonSelectSession")
@@ -158,6 +158,10 @@ public class Main extends Composite implements EntryPoint {
 
 		Long feedbackSessionId = feedbackObject.getSessionId();
 		sendStartTimeToDatabase.setId(feedbackSessionId);
+		
+		ArrayList<Integer> feedback = new ArrayList<Integer>();
+		feedback.add(0);
+		feedbackObject.setFeedback(feedback);
 
 		databaseService.addStartTimeToSession(sendStartTimeToDatabase, new AsyncCallback<Boolean>() {
 
@@ -189,14 +193,6 @@ public class Main extends Composite implements EntryPoint {
 
 	@UiHandler("buttonEndFeedback")
 	void onClick4(ClickEvent eventButtonEndFeedback) {
-		
-		replies = collectedFeedback.size();
-
-		feedbackProgressTextBox.setText("Collection ended with " + String.valueOf(replies) + " replies");
-
-		buttonSelectActivity.setEnabled(false);
-		buttonStartFeedback.setEnabled(false);
-		buttonEndFeedback.setEnabled(false);
 
 		// write session end time to el_session
 		SessionObject sendEndTimeToDatabase = new SessionObject();
@@ -216,30 +212,29 @@ public class Main extends Composite implements EntryPoint {
 			@Override
 			public void onSuccess(Boolean result) { 
 
-				// send end time and collected feedback to el_feedback
-				FeedbackObject endtimeAndFeedback = new FeedbackObject();
+				// send end time  to el_feedback
+				FeedbackObject endtime = new FeedbackObject();
 				
 				Date feedbackFinishTime = new Date();
 				Long feedbackFinishTimeInLong = feedbackFinishTime.getTime();
-				
-				endtimeAndFeedback.setFeedback(collectedFeedback);
-				endtimeAndFeedback.setFinishedTime(feedbackFinishTimeInLong);
-				
-				//testScore = collectedFeedback.get(0);
-	
-				databaseService.addEndtimeAndFeedbackToDatabase(feedbackId, endtimeAndFeedback, new AsyncCallback<Boolean>() {
+				endtime.setFinishedTime(feedbackFinishTimeInLong);
+
+				databaseService.addEndtimeToFeedback(feedbackId, endtime, new AsyncCallback<Integer>() {
 
 					@Override
 					public void onFailure(Throwable caught) { Window.alert("Adding end time and feedback to database failed"); }
 
 					@Override
-					public void onSuccess(Boolean result) { 
+					public void onSuccess(Integer result) { 
 
-						// decompose the collectedFeedback Arraylist 
-						collectedFeedback.clear();
+						replies = result - 1;
 						
-						// prompt on success
-						Window.alert("Feedback successfully collected from " + replies + " replies");
+						feedbackProgressTextBox.setText("Collection ended with " + String.valueOf(replies) + " replies");
+
+						buttonSelectActivity.setEnabled(false);
+						buttonStartFeedback.setEnabled(false);
+						buttonEndFeedback.setEnabled(false);
+
 					}
 				});
 			}
@@ -247,17 +242,6 @@ public class Main extends Composite implements EntryPoint {
 	}
 	
 	
-	
-	
-	public static void gatherFeedback(Long returnedId, Integer feedbackInt) {
-
-		if (returnedId.equals(feedbackId)) { 
-			
-			collectedFeedback.add(feedbackInt); 
-			Window.alert("Main classs received feedback " + String.valueOf(feedbackInt)); }	
-	}
-
-
 	@UiHandler("buttonBack")
 	void onClick5(ClickEvent eventButtonBack) { Window.Location.assign("Teacher.html"); }
 
@@ -279,8 +263,6 @@ public class Main extends Composite implements EntryPoint {
 				if (sessionListFromDatabase.size() > 0) {
 
 					// populate session listbox with user sessions
-					// use sessionCounter to indicate the index of selected session -> .getSelectedIndex()
-					// when looking up feedback activities
 					int sessionCounter = 0;
 
 					for(SessionObject session : sessionListFromDatabase) {

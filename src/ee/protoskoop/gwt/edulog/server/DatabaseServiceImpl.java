@@ -159,20 +159,24 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 
 		String startCode = "";
 		
-/*		ArrayList<String> storedStartcodes = new ArrayList<String>();
+		ArrayList<String> storedStartcodes = new ArrayList<String>();
 
 		// read existing start codes from el_session
 		storedStartcodes = getExistingStartCodes();
+		
+		if (storedStartcodes.size() > 0) { GWT.log("Received used start code list"); }
 
 		boolean codeAlreadyPresent = false;
 
 		while (codeAlreadyPresent) {
-*/
+
 			// read a word from el_word database by random integer key
 
 			int randomIndex = (int) (Math.random() * 17133);
 			startCode = DAO.getInstance().getRandomWordFromDatabase(randomIndex);
-/*
+			
+			GWT.log("Received random word " + startCode);
+
 			// check if new code not in use		
 			for (String code : storedStartcodes) {
 
@@ -186,28 +190,31 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 			}
 
 		} storedStartcodes.clear(); 
-*/		
+		
 		return startCode;
 	}
 
-
+	// el_word database setup method, to be run before allowing user registration
+	
 	@Override
 	public boolean loadWordToDatabase(Integer integer, String word) {
 
 		Boolean result = false;
 		GWT.log("Starting loading words");
+		
+		Integer x = 0;
 
 		try {
 
 			String wordFromFile = "";
-			File file = new File("C:\\Users\\Leo\\eclipse-workspace\\EduLog\\english_words.txt");
+			File file = new File("/home/ubuntu/english_words.txt");
 			Scanner scanner = new Scanner(file);
-			Integer x = 0;
+			
 
-			//for (int i = 1; i<5001; i++) {		currently 17133 words uploaded to database
+			// last time 17133 words were uploaded to database
 			while (scanner.hasNext()) {
 				wordFromFile = scanner.nextLine().toUpperCase();
-				GWT.log("Reading word: " + wordFromFile);
+				//GWT.log("Reading word: " + wordFromFile);
 				DAO.getInstance().loadWordToDatabase(x, wordFromFile);
 				x++;
 			}
@@ -215,6 +222,8 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 			scanner.close();
 
 			result = true;
+			
+			GWT.log("Completing loading words. Result: " + String.valueOf(x) + " words in database");
 
 		} catch (FileNotFoundException e) { e.printStackTrace(); GWT.log("File not found");}
 
@@ -245,10 +254,15 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		return DAO.getInstance().getFeedbackDataFromDatabase(startCode);
 	}
 	
-	
 	@Override
-	public boolean addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject) {
-		return DAO.getInstance().addEndtimeAndFeedbackToDatabase(feedbackId, feedbackObject);
+	public boolean addMyFeedbackToDatabase(Long feedbackId, Integer feedbackScore) {
+		return DAO.getInstance().addMyFeedbackToDatabase(feedbackId, feedbackScore);
+	}
+	
+		
+	@Override
+	public Integer addEndtimeToFeedback(Long feedbackId, FeedbackObject feedbackObject) {
+		return DAO.getInstance().addEndtimeToFeedback(feedbackId, feedbackObject);
 	}
 	
 

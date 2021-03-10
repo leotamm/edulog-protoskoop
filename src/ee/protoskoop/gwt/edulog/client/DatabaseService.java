@@ -56,6 +56,8 @@ public interface DatabaseService extends RemoteService {
 	
 	FeedbackObject getFeedbackDataFromDatabase(String startCode);
 	
-	boolean addEndtimeAndFeedbackToDatabase(Long feedbackId, FeedbackObject feedbackObject);
+	Integer addEndtimeToFeedback(Long feedbackId, FeedbackObject feedbackObject);
+	
+	public boolean addMyFeedbackToDatabase(Long feedbackId, Integer feedbackScore);
 
 }

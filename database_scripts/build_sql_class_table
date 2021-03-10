@@ -1,0 +1,13 @@
+-- Table: public.el_class
+
+-- DROP TABLE public.el_class;
+
+CREATE TABLE public.el_class ( id bigint NOT NULL DEFAULT nextval('el_class_id_seq'::regclass), name text COLLATE pg_catalog."default" NOT NULL, MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION );
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.el_class
+    OWNER to postgres;
+
+COMMENT ON TABLE public.el_class
+    IS 'this database holds information about edulog user classes like admin, teacher, student in columns id and name';
