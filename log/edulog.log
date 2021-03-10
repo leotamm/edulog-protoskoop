@@ -1,6 +1,0 @@
-[2021-02-17 10:44:54,303] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - Connected to the PostgreSQL server successfully.
-[2021-02-17 10:44:54,315] INFO ee.protoskoop.gwt.edulog.server.ConnectionPool - jdbc:postgresql://localhost:5432/eduLogDatabase
-[2021-02-17 10:44:54,317] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Session data reading from database initiated.
-[2021-02-17 10:44:54,407] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Session data reading from database successful.
-[2021-02-17 10:44:54,437] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Session data transfer to database initiated.
-[2021-02-17 10:44:54,546] DEBUG ee.protoskoop.gwt.edulog.server.DAO - Session data transfer to database successful.

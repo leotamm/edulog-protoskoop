@@ -40,7 +40,7 @@ public class Configuration {
 		}
 		
 		catch (Exception e) {
-			logger.error("Error reading configuration file");
+			System.err.println("Error reading configuration file (" + e.getMessage() + ")");
 			
 			return false;
 		}

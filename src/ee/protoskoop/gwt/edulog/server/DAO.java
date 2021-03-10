@@ -38,7 +38,7 @@ public class DAO {
 
 		// load configuration 1. local machine 2. live environment
 		// Configuration.loadConfiguration("C:\\Users\\Leo\\eclipse-workspace2\\EduLog\\settings.ini");
-		Configuration.loadConfiguration("/edulogconfig/settings.ini");
+		Configuration.loadConfiguration("/opt/tomcat/webapps/edulogconfig/settings.ini");
 		
 		System.out.println(Configuration.LOG4J_PATH);
 		
@@ -46,7 +46,7 @@ public class DAO {
 		Logger.getLogger("org.apache.fontbox").setLevel(Level.OFF);
 
 		pool = new ConnectionPool();
-		pool.start();
+		//pool.start();
 	}
 
 
