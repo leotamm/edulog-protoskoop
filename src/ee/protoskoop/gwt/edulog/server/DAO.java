@@ -729,8 +729,8 @@ public class DAO {
 	}
 
 
-	public boolean loadWordToDatabase(Integer integer, String word) {
-
+	public boolean loadWordToDatabase(Integer counter, String startCode) {
+		
 		boolean result = false;
 
 		try {
@@ -739,8 +739,8 @@ public class DAO {
 					"INSERT INTO el_word (id, word) values (?,?)",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			pstmt.setInt(1, integer);
-			pstmt.setString(2, word);
+			pstmt.setInt(1, counter);
+			pstmt.setString(2, startCode);
 			pstmt.executeUpdate();
 
 			result = true;

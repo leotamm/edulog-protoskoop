@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+//import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class Teacher extends Composite implements EntryPoint{
 
 	private static TeacherUiBinder uiBinder = GWT.create(TeacherUiBinder.class);
-	private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
+	//private final DatabaseServiceAsync databaseService = ServiceFactory.getDBService(); 
 
 	interface TeacherUiBinder extends UiBinder<Widget, Teacher> { }
 
@@ -35,8 +35,8 @@ public class Teacher extends Composite implements EntryPoint{
 	Button buttonSessionResults;
 	@UiField
 	Button buttonLogout;
-	@UiField
-	Button buttonLoadWords;
+	//@UiField
+	//Button buttonLoadWords;
 
 
 	@UiHandler("buttonCourses")
@@ -56,17 +56,17 @@ public class Teacher extends Composite implements EntryPoint{
 
 		Window.Location.assign("Session.html");
 	}
-	
+
 	@UiHandler("buttonStartSession")
 	void onClick4(ClickEvent eventStartSession) {
 
 		Window.Location.assign("Main.html");
 	}
-	
+
 	@UiHandler("buttonSessionResults")
 	void onClick5(ClickEvent eventSessionResults) {
 
-		Window.alert("Nothing here yet...");
+		Window.alert("Nothing here yet ... needs coding");
 	}
 
 	@UiHandler("buttonLogout")
@@ -75,29 +75,30 @@ public class Teacher extends Composite implements EntryPoint{
 		Cookies.removeCookie("sessionUser");
 		Window.Location.assign("Login.html");
 	}
-	
 
-			@UiHandler("buttonLoadWords")
+
+	/*			
+	 * @UiHandler("buttonLoadWords")
 			void onClick7(ClickEvent eventLoadWords) {
-		
+
 				// call the method
 				Window.alert("Starting loading words");
-				String junk = "junk";
-				Integer x = 1;
-		
-				databaseService.loadWordToDatabase(x, junk, new AsyncCallback<Boolean>() {
-		
+				String randomString = "random";
+				Integer randomInt = 1;
+
+				databaseService.loadWordToDatabase(randomInt, randomString, new AsyncCallback<Boolean>() {
+
 					@Override
 					public void onFailure(Throwable caught) { Window.alert("Loading words to database failed!"); }
-		
+
 					@Override
 					public void onSuccess(Boolean result) { Window.alert("Loading words to database successful!"); }
-		
+
 				});
 			}
+	 */
 
-			
-			
+
 	@Override
 	public void onModuleLoad() {
 
@@ -106,13 +107,13 @@ public class Teacher extends Composite implements EntryPoint{
 
 		buttonStartSession.setEnabled(true);
 
-		buttonLoadWords.setEnabled(false);	
+		/*		buttonLoadWords.setEnabled(false);	
 		String user = Cookies.getCookie("sessionUser");
-		
+
 		if (user.equals("leo.tamm@gmail.com")) {
 			buttonLoadWords.setEnabled(true);
 		}
-
+		 */
 	}
 
 }

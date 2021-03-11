@@ -171,8 +171,7 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 		while (codeAlreadyPresent) {
 
 			// read a word from el_word database by random integer key
-
-			int randomIndex = (int) (Math.random() * 17133);
+			int randomIndex = (int) (Math.random() * 84094);
 			startCode = DAO.getInstance().getRandomWordFromDatabase(randomIndex);
 			
 			GWT.log("Received random word " + startCode);
@@ -200,32 +199,35 @@ public class DatabaseServiceImpl extends RemoteServiceServlet implements Databas
 	public boolean loadWordToDatabase(Integer integer, String word) {
 
 		Boolean result = false;
-		GWT.log("Starting loading words");
 		
-		Integer x = 0;
+		System.out.println("Starting loading words");
 
 		try {
-
-			String wordFromFile = "";
-			File file = new File("/home/ubuntu/english_words.txt");
-			Scanner scanner = new Scanner(file);
 			
+			Integer x = 0;
+			
+			System.out.println("Starting loading words - file found");
+			
+			Scanner scanner = new Scanner(new File("/home/ubuntu/english_words.txt"));
+			
+			if (!scanner.hasNextLine()) { System.out.println("Scanner cannot find next line"); }
+			
+			System.out.println("Starting loading words - scanner started");
 
-			// last time 17133 words were uploaded to database
-			while (scanner.hasNext()) {
-				wordFromFile = scanner.nextLine().toUpperCase();
-				//GWT.log("Reading word: " + wordFromFile);
-				DAO.getInstance().loadWordToDatabase(x, wordFromFile);
-				x++;
+			while (scanner.hasNextLine()) {
+				
+				x ++;
+				String wordFromFile = scanner.nextLine().toUpperCase();
+				
+				result = DAO.getInstance().loadWordToDatabase(x, wordFromFile);
+				
 			}
 
 			scanner.close();
-
-			result = true;
 			
-			GWT.log("Completing loading words. Result: " + String.valueOf(x) + " words in database");
+			System.out.println("Completed loading words. Result: " + String.valueOf(x) + " words in database");
 
-		} catch (FileNotFoundException e) { e.printStackTrace(); GWT.log("File not found");}
+		} catch (FileNotFoundException e) { e.printStackTrace(); System.out.println("File not found");}
 
 		return result;
 	}

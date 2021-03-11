@@ -2,12 +2,12 @@ package ee.protoskoop.gwt.edulog.server;
 
 import java.io.FileReader;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.ini4j.Ini;
 
 public class Configuration {
 
-	private static final Logger logger = Logger.getLogger(Configuration.class);
+	//private static final Logger logger = Logger.getLogger(Configuration.class);
 	public static String DB_HOST;
 	public static int DB_PORT;
 	public static String DB_NAME;
