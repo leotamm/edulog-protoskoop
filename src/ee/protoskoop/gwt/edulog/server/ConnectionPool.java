@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 public class ConnectionPool extends Thread {
@@ -12,27 +16,56 @@ public class ConnectionPool extends Thread {
 	private String url;
 	private Connection conn;
 	private boolean finished;
-	
+
 	private boolean connected;
-	
 
 	public ConnectionPool() {
+
 		connected = false;
-		this.setName("Connection Monitor Thread");// jdbc:postgresql://localhost/eduLogDatabase"
+		this.setName("Connection Monitor Thread");
+
+		InitialContext cxt;
+
 		url = "jdbc:postgresql://" + Configuration.DB_HOST + ":" + Configuration.DB_PORT + "/" + Configuration.DB_NAME;
-		finished = false;
-		
+
 		try {
-			conn = DriverManager.getConnection(url, Configuration.DB_USER, Configuration.DB_PASS);
+			cxt = new InitialContext();
+
+			DataSource ds = (DataSource) cxt.lookup("java:comp/env/jdbc/postgres");
+			
+			
+
+			conn = ds.getConnection();
+
+			connected = true; 
+
 			logger.info("Connected to the PostgreSQL server successfully.");
-            logger.info(url);
-            connected = true;
-        }
-		catch (SQLException e) {
-        	logger.error(e.getMessage());
-        }
+
+			if (ds == null) {
+				logger.error("Data source not found!");
+
+			}
+
+		} catch (NamingException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-	
+
+	/*
+	 * connected = false; this.setName("Connection Monitor Thread");//
+	 * jdbc:postgresql://localhost/eduLogDatabase" url = "jdbc:postgresql://" +
+	 * Configuration.DB_HOST + ":" + Configuration.DB_PORT + "/" +
+	 * Configuration.DB_NAME; finished = false;
+	 * 
+	 * try { conn = DriverManager.getConnection(url, Configuration.DB_USER,
+	 * Configuration.DB_PASS);
+	 * logger.info("Connected to the PostgreSQL server successfully.");
+	 * logger.info(url); connected = true; } catch (SQLException e) {
+	 * logger.error(e.getMessage()); } }
+	 */
+
 	public void run() {
 		while (!finished) {
 			try {
@@ -42,32 +75,29 @@ public class ConnectionPool extends Thread {
 					conn = null;
 					conn = DriverManager.getConnection(url);
 				}
-			}
-			catch (SQLException e) {
+			} catch (SQLException e) {
 				logger.error(e.getMessage());
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				logger.error(e.getMessage());
 			}
 		}
 	}
-	
+
 	public Connection getConnection() {
 		return conn;
 	}
-	
+
 	public boolean isConnected() {
 		return connected;
 	}
-	
+
 	public void closeConnections() {
 		finished = true;
 		try {
-        	conn.close();
-        }
-        catch (SQLException e) {
-        	logger.error(e.getMessage());
-        }
+			conn.close();
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
 	}
 
 }

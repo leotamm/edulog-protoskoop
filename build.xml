@@ -7,7 +7,8 @@
 	
 	<target name="deploy">
 		<scp sftp="true" trust="true" file="edulog.war" remoteTofile="ubuntu@90.190.182.41:/opt/tomcat/webapps/edulog.war" port="2222" password="!ylisalajane!"/>
-	<!--	AREADY SENT <scp sftp="true" trust="true" file="english_words.txt" remoteTofile="ubuntu@90.190.182.41:/home/ubuntu/english_words.txt" port="2222" password="!ylisalajane!"/> -->
+	<!--	ALREADY SENT! <scp sftp="true" trust="true" file="english_words.txt" remoteTofile="ubuntu@90.190.182.41:/home/ubuntu/english_words.txt" port="2222" password="!ylisalajane!"/> -->
+	<!--	ALREADY SENT! <scp sftp="true" trust="true" file="postgresql-42.2.18.jar" remoteTofile="ubuntu@90.190.182.41:/home/ubuntu/postgresql-42.2.18.jar" port="2222" password="!ylisalajane!"/> -->
 	</target>
 
 </project>
